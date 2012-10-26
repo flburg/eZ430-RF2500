@@ -1,3 +1,4 @@
+/** @file */
 //******************************************************************************
 // THIS PROGRAM IS PROVIDED "AS IS". TI MAKES NO WARRANTIES OR
 // REPRESENTATIONS, EITHER EXPRESS, IMPLIED OR STATUTORY,
@@ -202,9 +203,12 @@ static uint8_t sChannel = 0;
 
 #endif  /* FREQUENCY_AGILITY */
 
-/*------------------------------------------------------------------------------
- * Main
- *----------------------------------------------------------------------------*/
+/**
+ * @fn          main
+ *
+ * @brief       Entry point
+ *
+ */
 void main (void)
 {
   bspIState_t intState;
@@ -336,12 +340,13 @@ void main (void)
      */
     if (sPeerFrameSem)
     {
-      uint8_t     msg[MAX_APP_PAYLOAD], len, i;
+      uint8_t  msg[MAX_APP_PAYLOAD+NET_ADDR_SIZE], len, i;
+      addr_t   peeraddr;
 
       /* process all frames waiting */
       for (i=0; i<sNumCurrentPeers; ++i)
       {
-        if (SMPL_SUCCESS == SMPL_Receive(sLID[i], msg, &len))
+        if (SMPL_SUCCESS == SMPL_ReceiveWithAddr(sLID[i], msg, &len, &peeraddr))
         {
           ioctlRadioSiginfo_t sigInfo;
 
@@ -350,6 +355,8 @@ void main (void)
           sigInfo.lid = sLID[i];
 
           SMPL_Ioctl(IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_SIGINFO, (void *)&sigInfo);
+
+          memcpy((char *) &msg[len], (char *) &peeraddr, NET_ADDR_SIZE);
 
           transmitData( i, sigInfo.sigInfo.rssi, (char*)msg );
           BSP_TOGGLE_LED2();
@@ -484,3 +491,33 @@ __interrupt void Timer_A (void)
 {
   sSelfMeasureSem = 1;
 }
+
+/*
+ * void nwkGetRemotePeerAddr(linkID_t sLinkId, addr_t *peerAddr)
+{
+  uint8_t index;
+
+  if(map_lid2idx(sLinkId, &index))
+  {
+    memcpy(peerAddr->addr, sPersistInfo.connStruct[index].peerAddr, NET_ADDR_SIZE);
+  }
+}
+
+    Add the declaration in the application code to use the function above:
+
+extern void nwkGetRemotePeerAddr(linkID_t sLinkId, addr_t *peerAddr);
+
+....
+
+void main(void)
+{
+  addr_t peerAddr;
+  linkID_t sLinkId1;
+  .....
+  // do the linking using SMPL_Link() or SMPL_LinkListen() to get valid linkID
+  .....
+  nwkGetRemotePeerAddr(sLinkId1, &peerAddr);
+  .....
+}
+*/
+

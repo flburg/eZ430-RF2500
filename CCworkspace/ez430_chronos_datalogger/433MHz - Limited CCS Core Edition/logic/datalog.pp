@@ -1,17 +1,35 @@
 # FIXED
+
 logic/datalog.obj: ../logic/datalog.c
-logic/datalog.obj: C:/Dokumente\ und\ Einstellungen/anton/Eigene\ Dateien/workspace/ez430_chronos_datalogger/include/project.h
-logic/datalog.obj: C:/Programme/Texas\ Instruments/ccsv4/msp430/include/cc430x613x.h
-logic/datalog.obj: C:/Programme/Texas\ Instruments/ccsv4/msp430/include/In430.h
-logic/datalog.obj: C:/Dokumente\ und\ Einstellungen/anton/Eigene\ Dateien/workspace/ez430_chronos_datalogger/bluerobin/bm.h
-logic/datalog.obj: C:/Programme/Texas\ Instruments/ccsv4/tools/compiler/msp430/include/stddef.h
-logic/datalog.obj: C:/Programme/Texas\ Instruments/ccsv4/tools/compiler/msp430/include/limits.h
-logic/datalog.obj: C:/Programme/Texas\ Instruments/ccsv4/tools/compiler/msp430/include/float.h
-logic/datalog.obj: C:/Dokumente\ und\ Einstellungen/anton/Eigene\ Dateien/workspace/ez430_chronos_datalogger/driver/display.h
-logic/datalog.obj: C:/Dokumente\ und\ Einstellungen/anton/Eigene\ Dateien/workspace/ez430_chronos_datalogger/driver/flash.h
+logic/datalog.obj: C:/Users/flb.bwrclt61-1/Desktop/eZ430-RF2500/CCworkspace/ez430_chronos_datalogger/include/project.h
+logic/datalog.obj: C:/ti/ccsv5/ccs_base/msp430/include/cc430x613x.h
+logic/datalog.obj: C:/ti/ccsv5/ccs_base/msp430/include/in430.h
+logic/datalog.obj: C:/Users/flb.bwrclt61-1/Desktop/eZ430-RF2500/CCworkspace/ez430_chronos_datalogger/bluerobin/bm.h
+logic/datalog.obj: C:/ti/ccsv5/tools/compiler/msp430_4.1.1/include/stddef.h
+logic/datalog.obj: C:/ti/ccsv5/tools/compiler/msp430_4.1.1/include/limits.h
+logic/datalog.obj: C:/ti/ccsv5/tools/compiler/msp430_4.1.1/include/float.h
+logic/datalog.obj: C:/Users/flb.bwrclt61-1/Desktop/eZ430-RF2500/CCworkspace/ez430_chronos_datalogger/driver/display.h
+logic/datalog.obj: C:/Users/flb.bwrclt61-1/Desktop/eZ430-RF2500/CCworkspace/ez430_chronos_datalogger/driver/flash.h
 logic/datalog.obj: ../logic/datalog.h
 logic/datalog.obj: ../logic/date.h
 logic/datalog.obj: ../logic/clock.h
 logic/datalog.obj: ../logic/altitude.h
 logic/datalog.obj: ../logic/temperature.h
 logic/datalog.obj: ../logic/bluerobin.h
+
+../logic/datalog.c: 
+C:/Users/flb.bwrclt61-1/Desktop/eZ430-RF2500/CCworkspace/ez430_chronos_datalogger/include/project.h: 
+C:/ti/ccsv5/ccs_base/msp430/include/cc430x613x.h: 
+C:/ti/ccsv5/ccs_base/msp430/include/in430.h: 
+C:/Users/flb.bwrclt61-1/Desktop/eZ430-RF2500/CCworkspace/ez430_chronos_datalogger/bluerobin/bm.h: 
+C:/ti/ccsv5/tools/compiler/msp430_4.1.1/include/stddef.h: 
+C:/ti/ccsv5/tools/compiler/msp430_4.1.1/include/limits.h: 
+C:/ti/ccsv5/tools/compiler/msp430_4.1.1/include/float.h: 
+C:/Users/flb.bwrclt61-1/Desktop/eZ430-RF2500/CCworkspace/ez430_chronos_datalogger/driver/display.h: 
+C:/Users/flb.bwrclt61-1/Desktop/eZ430-RF2500/CCworkspace/ez430_chronos_datalogger/driver/flash.h: 
+../logic/datalog.h: 
+../logic/date.h: 
+../logic/clock.h: 
+../logic/altitude.h: 
+../logic/temperature.h: 
+../logic/bluerobin.h: 

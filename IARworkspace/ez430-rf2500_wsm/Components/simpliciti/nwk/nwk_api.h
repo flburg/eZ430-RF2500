@@ -46,6 +46,7 @@ smplStatus_t SMPL_LinkListen(linkID_t *);
 smplStatus_t SMPL_Send(linkID_t lid, uint8_t *msg, uint8_t len);
 smplStatus_t SMPL_SendOpt(linkID_t lid, uint8_t *msg, uint8_t len, txOpt_t);
 smplStatus_t SMPL_Receive(linkID_t lid, uint8_t *msg, uint8_t *len);
+smplStatus_t SMPL_ReceiveWithAddr(linkID_t lid, uint8_t *msg, uint8_t *len, addr_t *peeraddr);
 smplStatus_t SMPL_Ioctl(ioctlObject_t, ioctlAction_t, void *);
 #ifdef EXTENDED_API
 smplStatus_t SMPL_Ping(linkID_t);

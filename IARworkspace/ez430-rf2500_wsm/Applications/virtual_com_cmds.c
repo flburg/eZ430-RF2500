@@ -123,9 +123,17 @@ void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESS
   temp_string[2] = '0'+((temp/10)%10);
   temp_string[1] = '0'+((temp/100)%10);
 
+  char pressure_string[] = {"XXXX"};
+  int pressure = msg[3] + (msg[4]<<8);
+
+  pressure_string[0] = '0'+((pressure/1000)%10);
+  pressure_string[1] = '0'+((pressure/100)%10);
+  pressure_string[2] = '0'+((pressure/10)%10);
+  pressure_string[3] = '0'+(pressure%10);
+
   if(data_mode & verboseMode)
   {
-    char output_verbose[] = {"\r\nNode:XXXX,Temp:-XX.XC,Battery:X.XV,Strength:XX%,RE:no,remaddr:XX"};
+        char output_verbose[] = {"\r\nNode:XXXX,Temp:-XX.XC,Battery:X.XV,Strength:XX,RE:no,remaddr:XX"};
 
     output_verbose[7] = addr[0];
     output_verbose[8] = addr[1];
@@ -141,40 +149,47 @@ void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESS
 
     output_verbose[32] = '0'+(msg[2]/10)%10;
     output_verbose[34] = '0'+(msg[2]%10);
-    output_verbose[47] = rssi[1];
-    output_verbose[48] = rssi[0];
 
-    output_verbose[63] = ((msg[3] >> 4) & 0x0f) + 48;
-    output_verbose[64] = (msg[3] & 0x0f) + 48;
+    output_verbose[46] = rssi[1];
+    output_verbose[47] = rssi[0];
+
+    output_verbose[63] = ((msg[5] >> 4) & 0x0f) + 48;
+    output_verbose[64] = (msg[6] & 0x0f) + 48;
 
     TXString(output_verbose, sizeof output_verbose );
   }
   else
   {
-    char output_short[] = {"\r\n$ADDR,-XX.XC,V.C,RS,N#,XX"};
+    char output_short[] = {"\r\n$ADDR,-XX.XC,V.C,RSI,N#,XX,PPPP"};
 
-    output_short[3] = addr[0];
-    output_short[4] = addr[1];
-    output_short[5] = addr[2];
-    output_short[6] = addr[3];
+   	output_short[3] = addr[0];
+   	output_short[4] = addr[1];
+   	output_short[5] = addr[2];
+   	output_short[6] = addr[3];
 
-    output_short[8] = temp_string[0];
-    output_short[9] = temp_string[1];
-    output_short[10] = temp_string[2];
-    output_short[11] = temp_string[3];
-    output_short[12] = temp_string[4];
-    output_short[13] = temp_string[5];
+   	output_short[8] = temp_string[0];
+   	output_short[9] = temp_string[1];
+   	output_short[10] = temp_string[2];
+   	output_short[11] = temp_string[3];
+   	output_short[12] = temp_string[4];
+   	output_short[13] = temp_string[5];
 
-    output_short[15] = '0'+(msg[2]/10)%10;
-    output_short[17] = '0'+(msg[2]%10);
+   	output_short[15] = '0'+(msg[2]/10)%10;
+   	output_short[17] = '0'+(msg[2]%10);
 
-    output_short[19] = rssi[1];
-    output_short[20] = rssi[0];
+   	output_short[19] = '0';
+   	output_short[20] = rssi[1];
+   	output_short[21] = rssi[0];
 
-    output_short[25] = ((msg[3] >> 4) & 0x0f) + 48;
-    output_short[26] = (msg[3] & 0xf) + 48;
+   	output_short[26] = ((msg[5] >> 4) & 0x0f) + 48;
+   	output_short[27] = (msg[5] & 0xf) + 48;
 
-    TXString(output_short, sizeof output_short );
+   	output_short[29] = pressure_string[0];
+   	output_short[30] = pressure_string[1];
+   	output_short[31] = pressure_string[2];
+   	output_short[32] = pressure_string[3];
+
+   	TXString(output_short, sizeof output_short );
   }
 }
 

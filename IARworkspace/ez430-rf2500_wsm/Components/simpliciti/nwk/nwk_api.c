@@ -1,3 +1,4 @@
+/** @file */
 /**************************************************************************************************
   Filename:       nwk_api.c
   Revised:        $Date: 2009-01-28 18:27:38 -0800 (Wed, 28 Jan 2009) $
@@ -94,7 +95,8 @@ static uint8_t ioctlPreInitAccessIsOK(ioctlObject_t);
  * GLOBAL FUNCTIONS
  */
 
-/***********************************************************************************
+/**
+ * *********************************************************************************
  * @fn          SMPL_Init
  *
  * @brief       Initialize the SimpliciTI stack.
@@ -395,9 +397,11 @@ smplStatus_t SMPL_SendOpt(linkID_t lid, uint8_t *msg, uint8_t len, txOpt_t optio
  *
  *
  * output parameters
- * @param   msg     - pointer to where received message should be copied.
- *                    buffer should be of size == MAX_APP_PAYLOAD
- * @param   len     - pointer to receive length of received message
+ * @param   msg      - pointer to where received message should be copied.
+ *                     buffer should be of size == MAX_APP_PAYLOAD
+ * @param   len      - pointer to receive length of received message
+ *
+ * @param   peeraddr - pointer to address of sender (for the WithAddr variant)
  *
  * @return    Status of operation.
  *            Caller should not use the value returned in 'len' to decide
@@ -425,9 +429,21 @@ smplStatus_t SMPL_SendOpt(linkID_t lid, uint8_t *msg, uint8_t len, txOpt_t optio
  */
 smplStatus_t SMPL_Receive(linkID_t lid, uint8_t *msg, uint8_t *len)
 {
+  addr_t addr;
+  return SMPL_ReceiveWithAddr(lid, msg, len, &addr);
+}
+
+smplStatus_t SMPL_ReceiveWithAddr(linkID_t lid, uint8_t *msg, uint8_t *len, addr_t *peeraddr)
+{
   connInfo_t  *pCInfo = nwk_getConnInfo(lid);
   smplStatus_t rc = SMPL_BAD_PARAM;
   rcvContext_t rcv;
+
+//  memcpy((char *) peeraddr, (char *) pCInfo->peerAddr, NET_ADDR_SIZE);
+  peeraddr->addr[0] = pCInfo->peerAddr[0];
+  peeraddr->addr[1] = pCInfo->peerAddr[1];
+  peeraddr->addr[2] = pCInfo->peerAddr[2];
+  peeraddr->addr[3] = pCInfo->peerAddr[3];
 
   if (!pCInfo || ((rc=nwk_checkConnInfo(pCInfo, CHK_RX)) != SMPL_SUCCESS))
   {

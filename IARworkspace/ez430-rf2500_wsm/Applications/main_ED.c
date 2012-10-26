@@ -1,3 +1,4 @@
+/** @file */
 //******************************************************************************
 // THIS PROGRAM IS PROVIDED "AS IS". TI MAKES NO WARRANTIES OR
 // REPRESENTATIONS, EITHER EXPRESS, IMPLIED OR STATUTORY,
@@ -94,10 +95,12 @@
 #include "bsp.h"
 #include "mrfi.h"
 #include "nwk_types.h"
+#include "nwk_globals.h"
 #include "nwk_api.h"
 #include "bsp_leds.h"
 #include "bsp_buttons.h"
 #include "vlo_rand.h"
+#include <ti/mcu/msp430/csl/CSL.h>
 
 /*------------------------------------------------------------------------------
  * Defines
@@ -112,8 +115,6 @@ static void linkTo(void);
 void createRandomAddress(void);
 __interrupt void ADC10_ISR(void);
 __interrupt void Timer_A (void);
-
-#include <ti/mcu/msp430/csl/CSL.h>
 
 /*------------------------------------------------------------------------------
 * Globals
@@ -131,28 +132,39 @@ static volatile uint8_t sSelfMeasureSem = 0;
  *----------------------------------------------------------------------------*/
 void main (void)
 {
-  addr_t lAddr;
+//  addr_t lAddr;
+  addr_t const *myaddr;
 
   /* Initialize board-specific hardware */
   BSP_Init();
+  /* Initalize Ports 2 and 4 (mostly test points) */
+  CSL_init();
 
   /* Check flash for previously stored address */
+/* We're using hard-coded addresses in this application
   if(Flash_Addr[0] == 0xFF && Flash_Addr[1] == 0xFF &&
      Flash_Addr[2] == 0xFF && Flash_Addr[3] == 0xFF )
   {
     createRandomAddress(); // Create and store a new random address
   }
-
+*/
   /* Read out address from flash */
+/*
   lAddr.addr[0] = Flash_Addr[0];
   lAddr.addr[1] = Flash_Addr[1];
   lAddr.addr[2] = Flash_Addr[2];
   lAddr.addr[3] = Flash_Addr[3];
+*/
+  /* Tell network stack the device address */
+/*
+  SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
+*/
+
+  /* Read out address from flash */
+  myaddr = nwk_getMyAddress();
 
   /* Tell network stack the device address */
-  SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
-
-//  CSL_init();
+  SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, (void *) myaddr);
 
   /* Initialize TimerA and oscillator */
   BCSCTL3 |= LFXT1S_2;                      // LFXT1 = VLO
@@ -185,7 +197,7 @@ void main (void)
 
 static void linkTo()
 {
-  uint8_t msg[3];
+  uint8_t msg[5];
 #ifdef APP_AUTO_ACK
   uint8_t misses, done;
 #endif
@@ -216,8 +228,8 @@ static void linkTo()
     /* Time to measure */
     if (sSelfMeasureSem) {
       volatile long temp;
-      int degC, volt;
-      int results[2];
+      int degC, volt, pressure;
+      int results[3];
 #ifdef APP_AUTO_ACK
       uint8_t      noAck;
       smplStatus_t rc;
@@ -242,6 +254,16 @@ static void linkTo()
       ADC10CTL0 |= ENC + ADC10SC;             // Sampling and conversion start
       __bis_SR_register(CPUOFF + GIE);        // LPM0 with interrupts enabled
       results[1] = ADC10MEM;                  // Retrieve result
+      ADC10CTL0 &= ~ENC;
+
+      /* Get pressure */
+      ADC10CTL1 = INCH_0;                     // A0 (P2.0)
+      ADC10CTL0 = SREF_0 + ADC10SHT_2 + ADC10SR + ADC10ON + ADC10IE;
+      ADC10AE0 = 0x1;
+      __delay_cycles(240);
+      ADC10CTL0 |= ENC + ADC10SC;             // Sampling and conversion start
+      __bis_SR_register(CPUOFF + GIE);        // LPM0 with interrupts enabled
+      results[2] = ADC10MEM;                  // Retrieve result
 
       /* Stop and turn off ADC */
       ADC10CTL0 &= ~ENC;
@@ -266,9 +288,15 @@ static void linkTo()
       */
       temp = results[1];
       volt = (temp*25)/512;
-      msg[0] = degC&0xFF;
-      msg[1] = (degC>>8)&0xFF;
+
+      temp = results[2];
+      pressure = temp;
+
+      msg[0] = degC & 0xFF;
+      msg[1] = (degC >> 8) & 0xFF;
       msg[2] = volt;
+      msg[3] = pressure & 0xFF;
+      msg[4] = (pressure >> 8) & 0x3;
 
       /* Get radio ready...awakens in idle state */
       SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_AWAKE, 0);

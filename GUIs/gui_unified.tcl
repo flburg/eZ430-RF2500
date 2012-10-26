@@ -31,7 +31,7 @@ if {[string match $platform "fredsmbp_win7"]} {
     set width [expr [lindex $screensize 0] - 400]
     set height [expr [lindex $screensize 1] - 200]
 } elseif {[string match $platform "pc"]} {
-    set comport 3
+    set comport 8
     set width [expr [lindex $screensize 0] - 400]
     set height [expr [lindex $screensize 1] - 200]
 } else {
