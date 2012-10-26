@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>2457092933</fileChecksum>
+  <configuration>
+    <name>CC2500 Sensor Demo-Access Point</name>
+    <outputs>
+      <file>$PROJ_DIR$\Applications\main_AP.c</file>
+      <file>$PROJ_DIR$\Applications\virtual_com_cmds.c</file>
+      <file>$PROJ_DIR$\Applications\vlo_rand.h</file>
+      <file>$PROJ_DIR$\Applications\main_ED.c</file>
+      <file>$PROJ_DIR$\Applications\virtual_com_cmds.h</file>
+      <file>$PROJ_DIR$\Applications\vlo_rand.s43</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp.c</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp.h</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp_macros.h</file>
+      <file>$PROJ_DIR$\Components\grace\ADC10_init.c</file>
+      <file>$PROJ_DIR$\Components\grace\CSL_init.c</file>
+      <file>$PROJ_DIR$\Components\grace\GPIO_init.c</file>
+      <file>$PROJ_DIR$\Components\grace\WDTplus_init.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi_defs.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk.c</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk_api.c</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_api.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk_app.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk_frame.c</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_frame.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk_globals.c</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_globals.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk_QMgmt.c</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_QMgmt.h</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_types.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_link.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_freq.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_freq.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ioctl.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ioctl.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_join.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_join.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_link.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_mgmt.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_security.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_mgmt.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ping.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ping.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_security.h</file>
+      <file>$PROJ_DIR$\Configuration\smpl_config_AP.dat</file>
+      <file>$PROJ_DIR$\Configuration\smpl_config_ED.dat</file>
+      <file>$PROJ_DIR$\Configuration\smpl_nwk_config.dat</file>
+      <file>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\WDTplus_init.c</file>
+      <file>$PROJ_DIR$\Components\grace\BCSplus_init.c</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\WDTplus_init.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\ADC10_init.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_ioctl.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\GPIO_init.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\BCSplus_init.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\System_init.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\CSL_init.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\virtual_com_cmds.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\bsp.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_ping.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_api.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\mrfi.r43</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.h</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_frame.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_globals.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_buttons.c</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\vlo_rand.r43</file>
+      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_QMgmt.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_link.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_freq.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_buttons.h</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\main_AP.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_mgmt.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_join.r43</file>
+      <file>$TOOLKIT_DIR$\config\lnk430F2274.xcl</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_radio.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board_defs.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_leds.h</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\List\Sensor_Demo_AP_as_Data_Hub.map</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_led_defs.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_leds.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_buttons.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_drivers.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_driver_defs.h</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_config.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_leds.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_button_defs.h</file>
+      <file>$TOOLKIT_DIR$\inc\in430.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430f2274.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430.h</file>
+      <file>$PROJ_DIR$\Components\bsp\mcus\bsp_msp430_defs.h</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl430f.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board_defs.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430x22x4.h</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Obj\nwk_security.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Exe\Sensor_Demo_AP_as_Data_Hub.d43</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\smartrf\CC2500\smartrf_CC2500.h</file>
+      <file>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\BCSplus_init.c</file>
+      <file>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\CSL_init.c</file>
+      <file>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\GPIO_init.c</file>
+      <file>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\ADC10_init.c</file>
+      <file>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\System_init.c</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\..\ti\grace_1_10_04_36\packages\ti\mcu\msp430\csl\CSL.h</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 97 77</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Applications\main_AP.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 69</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 76 79 80 68 87 81 27 19 22 17 4</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Applications\virtual_com_cmds.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 54</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 4</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Applications\vlo_rand.s43</name>
+      <outputs>
+        <tool>
+          <name>A430</name>
+          <file> 63</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>A430</name>
+          <file> 94</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\bsp\bsp.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 55</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 7 93 91 90 89 88 84 85 8 83 78 82 76 79 80 68 87 81 86 62</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\grace\ADC10_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 48</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 90 89 88 84</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\grace\CSL_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 53</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 90 89 88 84 108</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\grace\GPIO_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 50</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 90 89 88 84</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\grace\WDTplus_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 47</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 90 89 88 84</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\mrfi\mrfi.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 58</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 15 7 93 91 90 89 88 84 85 8 73 64 75 14 74 59 99 102 98 100 101</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk\nwk.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 95</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 27 22 17 20 30 40 28 38 34 41 32 24 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk\nwk_api.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 57</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 27 19 22 17 20 30 40 28 38 34 41 32 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk\nwk_frame.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 60</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 27 22 17 20 30 40 28 38 34 41 32 26 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk\nwk_globals.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 61</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 27 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk\nwk_QMgmt.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 65</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 84 64 75 7 93 91 90 89 88 85 8 14 15 27 17 22 26 38</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_freq.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 67</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 27 17 22 30 24 19 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ioctl.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 49</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 27 22 17 32 24 41 34</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_join.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 71</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 27 19 22 17 28 34 24 30 41 38</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_link.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 66</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 27 19 22 17 28 24 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_mgmt.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 70</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 27 19 22 17 38 34 24 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_security.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 96</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 14 7 93 91 90 89 88 84 85 8 15 27 41 22 17</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ping.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 56</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 42 44 64 75 7 93 91 90 89 88 84 85 8 14 15 27 22 17 40 24 19 30 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\WDTplus_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 47</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\grace\BCSplus_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 51</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\CC2500 Sensor Demo-Access Point\Exe\Sensor_Demo_AP_as_Data_Hub.d43</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 77</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 72 48 53 50 47 55 69 58 95 65 57 60 67 61 49 71 66 70 56 96 54 63 92</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\BCSplus_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 51</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\CSL_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 53</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\GPIO_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 50</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\ADC10_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 48</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\CCworkspace\ez430-rf2500_wsn_grace\src\csl\System_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 52</file>
+        </tool>
+      </outputs>
+    </file>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\Applications\main_ED.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>CC2500 Sensor Demo-End Device</name>
+    <outputs>
+      <file>$PROJ_DIR$\Applications\main_AP.c</file>
+      <file>$PROJ_DIR$\Applications\virtual_com_cmds.c</file>
+      <file>$PROJ_DIR$\Applications\vlo_rand.h</file>
+      <file>$PROJ_DIR$\Applications\main_ED.c</file>
+      <file>$PROJ_DIR$\Applications\virtual_com_cmds.h</file>
+      <file>$PROJ_DIR$\Applications\vlo_rand.s43</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp.c</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp.h</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp_macros.h</file>
+      <file>$PROJ_DIR$\Components\grace\ADC10_init.c</file>
+      <file>$PROJ_DIR$\Components\grace\CSL_init.c</file>
+      <file>$PROJ_DIR$\Components\grace\GPIO_init.c</file>
+      <file>$PROJ_DIR$\Components\grace\WDTplus_init.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi_defs.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk.c</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk_api.c</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_api.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk_app.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk_frame.c</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_frame.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk_globals.c</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_globals.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk\nwk_QMgmt.c</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_QMgmt.h</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_types.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_link.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_freq.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_freq.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ioctl.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ioctl.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_join.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_join.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_link.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_mgmt.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_security.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_mgmt.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ping.c</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ping.h</file>
+      <file>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_security.h</file>
+      <file>$PROJ_DIR$\Configuration\smpl_config_AP.dat</file>
+      <file>$PROJ_DIR$\Configuration\smpl_config_ED.dat</file>
+      <file>$PROJ_DIR$\Configuration\smpl_nwk_config.dat</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_buttons.c</file>
+      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_buttons.h</file>
+      <file>$TOOLKIT_DIR$\config\lnk430F2274.xcl</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_radio.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board_defs.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_leds.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_led_defs.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_leds.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_buttons.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_drivers.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_driver_defs.h</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_config.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_leds.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_button_defs.h</file>
+      <file>$TOOLKIT_DIR$\inc\in430.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430f2274.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430.h</file>
+      <file>$PROJ_DIR$\Components\bsp\mcus\bsp_msp430_defs.h</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl430f.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board_defs.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430x22x4.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\smartrf\CC2500\smartrf_CC2500.h</file>
+      <file>$PROJ_DIR$\..\..\..\..\..\..\ti\grace_1_10_04_36\packages\ti\mcu\msp430\csl\CSL.h</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\List\Sensor_Demo_AP_as_Data_Hub.map</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_api.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Exe\Sensor_Demo_AP_as_Data_Hub.d43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\virtual_com_cmds.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_frame.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_globals.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_QMgmt.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_ioctl.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_freq.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_join.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_link.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_mgmt.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\vlo_rand.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_ping.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk_security.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\mrfi.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\WDTplus_init.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\CSL_init.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\bsp.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\main_ED.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\nwk.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\ADC10_init.r43</file>
+      <file>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Obj\GPIO_init.r43</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 79 77</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Applications\virtual_com_cmds.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 80</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 4</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Applications\main_ED.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 96</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 7 69 67 66 65 64 60 61 8 14 15 27 19 53 55 56 48 63 57 2 76</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Applications\vlo_rand.s43</name>
+      <outputs>
+        <tool>
+          <name>A430</name>
+          <file> 89</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>A430</name>
+          <file> 70</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\bsp\bsp.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 95</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 7 69 67 66 65 64 60 61 8 59 54 58 53 55 56 48 63 57 62 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\grace\ADC10_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 98</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 66 65 64 60</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\grace\CSL_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 94</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 66 65 64 60 76</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\grace\GPIO_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 99</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 66 65 64 60</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\grace\WDTplus_init.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 93</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 66 65 64 60</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\mrfi\mrfi.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 92</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 15 7 69 67 66 65 64 60 61 8 50 47 52 14 51 45 72 75 71 73 74</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk\nwk.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 97</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 14 15 27 22 17 20 30 40 28 38 34 41 32 24 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk\nwk_api.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 78</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 14 15 27 19 22 17 20 30 40 28 38 34 41 32 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk\nwk_frame.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 81</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 14 15 27 22 17 20 30 40 28 38 34 41 32 26 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk\nwk_globals.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 82</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 14 15 27 24</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk\nwk_QMgmt.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 83</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 60 47 52 7 69 67 66 65 64 61 8 14 15 27 17 22 26 38</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_freq.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 85</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 14 15 27 17 22 30 24 19 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ioctl.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 84</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 14 15 27 22 17 32 24 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_join.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 86</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 14 15 27 19 22 17 28 34 24 30 41 38</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_link.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 87</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 14 15 27 19 22 17 28 24 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_mgmt.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 88</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 14 15 27 19 22 17 38 34 24 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_security.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 91</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 14 7 69 67 66 65 64 60 61 8 15 27 41 22 17</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\simpliciti\nwk_applications\nwk_ping.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 90</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 43 44 47 52 7 69 67 66 65 64 60 61 8 14 15 27 22 17 40 24 19 30 41</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\CC2500 Sensor Demo-End Device\Exe\Sensor_Demo_AP_as_Data_Hub.d43</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 77</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 49 98 94 99 93 95 96 92 97 83 78 81 85 82 84 86 87 88 90 91 80 89 68</file>
+        </tool>
+      </inputs>
+    </file>
+  </configuration>
+</project>
+
+

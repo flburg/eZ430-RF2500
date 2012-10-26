@@ -1,0 +1,17 @@
+Package Plotchart 2.0.0
+Meta as::build::date 2012-03-31
+Meta as::origin      http://sourceforge.net/projects/tcllib
+Meta category        Plotchart
+Meta description     Simple plotting and charting package
+Meta license         BSD
+Meta platform        tcl
+Meta recommend       math::fuzzy
+Meta require         Img
+Meta require         {Tcl 8.4}
+Meta require         Tk
+Meta subject         {polar plots} {coordinate transformations} tables
+Meta subject         {time charts} charts {graphical presentation}
+Meta subject         xy-plots plotting {isometric plots} {bar charts}
+Meta subject         coordinates {pie charts} {3D surfaces} {strip charts}
+Meta subject         {3D bars}
+Meta summary         Plotchart

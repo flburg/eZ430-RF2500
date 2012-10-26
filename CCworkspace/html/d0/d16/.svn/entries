@@ -1,0 +1,28 @@
+10
+
+dir
+0
+svn+ssh://repositorypub@repository.eecs.berkeley.edu/public/Projects/MESensornet/trunk/CCworkspace/html/d0/d16
+svn+ssh://repositorypub@repository.eecs.berkeley.edu/public
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+d478818c-914a-0410-a11c-fe9a00987c8c
+

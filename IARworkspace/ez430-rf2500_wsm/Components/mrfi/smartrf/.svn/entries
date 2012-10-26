@@ -1,0 +1,31 @@
+10
+
+dir
+30877
+svn+ssh://repositorypub@repository.eecs.berkeley.edu/public/Projects/MESensornet/trunk/IARworkspace/ez430-rf2500_wsm/Components/mrfi/smartrf
+svn+ssh://repositorypub@repository.eecs.berkeley.edu/public
+
+
+
+2012-10-11T02:31:49.589513Z
+30860
+flb
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+d478818c-914a-0410-a11c-fe9a00987c8c
+
+CC2500
+dir
+

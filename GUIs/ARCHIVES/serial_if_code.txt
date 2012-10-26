@@ -1,0 +1,56 @@
+ ### Constants
+ set baudrate   38400
+ set parity     n
+ set databits   8
+ set stopbits   1
+
+ ### G U I
+ text .t1 -width 85 -font {courier 8 } -tabs {3c 6c 9c 13c left}\
+      -cursor gobbler
+ pack .t1 -side top -anchor nw
+ button .b1 -text Exit -command exit
+ pack .b1 -side bottom -anchor nw -fill x -expand true
+ wm title . "Com1 Reader - HexCharacters "
+
+ ### M A I N
+ .t1 tag configure underline -underline true
+ .t1 tag configure bold -font {courier 10 bold}
+ .t1 tag configure finsih -font {courier 6}
+ .t1 insert end "\tRead COM1: $baudrate, Parity=$parity,\
+     Databits=$databits, Stopbits=$stopbits\n\n" {underline bold}
+
+ ### Procedures
+
+ proc rd_chid {chid} {
+   set msg [read $chid 3]
+   set listOfLetters [split $msg {} ]
+   set serialIPinHex ""
+
+   foreach iChar $listOfLetters {
+      scan $iChar "%c" decimalValue
+      set hexValue [format "%02X" $decimalValue ]
+      set hexValue "0x$hexValue"
+      set serialIPinHex "$serialIPinHex $hexValue"
+   }
+   .t1 insert @0,0 "hallo:\"$serialIPinHex\"\n"
+ }
+
+ proc open_com {} {
+   global com
+   global baudrate
+   global parity
+   global databits
+   global stopbits
+
+   set com [open com1: r+]
+   fconfigure $com -mode $baudrate,$parity,$databits,$stopbits\
+      -blocking 0 -translation auto -buffering none -buffersize 12
+
+   fileevent $com readable [list rd_chid $com]
+ }
+
+ open_com
+
+ # the channel shouldn't be closed before exiting
+
+ #close $com

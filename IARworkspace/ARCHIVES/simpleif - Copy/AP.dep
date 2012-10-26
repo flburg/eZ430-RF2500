@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<project>
+  <fileVersion>2</fileVersion>
+  <fileChecksum>3723115811</fileChecksum>
+  <configuration>
+    <name>Debug</name>
+    <outputs>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi.c</file>
+      <file>$PROJ_DIR$\Applications\main_ED.c</file>
+      <file>$PROJ_DIR$\..\Components\bsp\bsp.c</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\virtual_com_cmds.r43</file>
+      <file>$PROJ_DIR$\Applications\virtual_com_cmds.h</file>
+      <file>$PROJ_DIR$\Applications\virtual_com_cmds.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\bsp_drivers.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\mrfi_f1f2.r43</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\xencoding_limits.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi_defs.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board_defs.h</file>
+      <file>$PROJ_DIR$\Configuration\smpl_config_ED.dat</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.c</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ysizet.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_leds.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board.c</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_buttons.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_led_defs.h</file>
+      <file>$PROJ_DIR$\..\Components\mrfi\radios\common\mrfi_f1f2.c</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.h</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp.h</file>
+      <file>$PROJ_DIR$\Debug\Exe\AP.d43</file>
+      <file>$TOOLKIT_DIR$\inc\msp430f2274.h</file>
+      <file>$PROJ_DIR$\Applications\vlo_rand.h</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\..\Components\bsp\boards\EZ430RF\bsp_drivers.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_driver_defs.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_config.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_radio.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_drivers.c</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\yvals.h</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp_macros.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board_defs.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\smartrf\CC2500\smartrf_CC2500.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Defaults.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board.c</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_buttons.h</file>
+      <file>$PROJ_DIR$\Configuration\smpl_nwk_config.dat</file>
+      <file>$TOOLKIT_DIR$\lib\dlib\dl430fn.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\bsp.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\mcus\bsp_msp430_defs.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\string.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_buttons.h</file>
+      <file>$PROJ_DIR$\..\Components\bsp\boards\EZ430RF\bsp_board.c</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Product.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\mrfi_spi.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_button_defs.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_leds.c</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\stdlib.h</file>
+      <file>$PROJ_DIR$\..\Components\mrfi\radios\family1\mrfi_radio.c</file>
+      <file>$PROJ_DIR$\Debug\Obj\mrfi_radio.r43</file>
+      <file>$TOOLKIT_DIR$\config\lnk430F2274.xcl</file>
+      <file>$PROJ_DIR$\Debug\Obj\main_ED.r43</file>
+      <file>$PROJ_DIR$\..\Components\mrfi\mrfi.c</file>
+      <file>$PROJ_DIR$\..\Components\mrfi\radios\family1\mrfi_spi.c</file>
+      <file>$TOOLKIT_DIR$\inc\in430.h</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\ycheck.h</file>
+      <file>$TOOLKIT_DIR$\inc\dlib\c\DLib_Threads.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\mrfi.r43</file>
+      <file>$PROJ_DIR$\Debug\Obj\main_AP.r43</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\bsp_board.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_leds.h</file>
+      <file>$PROJ_DIR$\Applications\main_AP.c</file>
+      <file>$PROJ_DIR$\main_ED.c</file>
+    </outputs>
+    <file>
+      <name>[ROOT_NODE]</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 25</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\mrfi\mrfi.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 65</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42 13 24 14 45 32 26 61 62 31 36 33 46 63 35 39 23 49 12 64 17 11 37 5 67 38 0 16 40</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Applications\main_ED.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 58</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42 54 63 35 39 23 49 12 64 17 46 24 14 45 32 26 61 62 31 36 11 13 18 21 69 41 52 47 27</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Components\bsp\bsp.c</name>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\bsp\bsp.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 44</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42 24 14 45 32 26 61 62 31 36 30 19 34 18 21 69 41 52 47 53 20</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Applications\virtual_com_cmds.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 6</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42 46 63 35 39 23 49 12 64 17 24 14 45 32 26 61 62 31 36 7</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Components\mrfi\radios\common\mrfi_f1f2.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\AP.d43</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 57 44 66 65 6 43</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 50</file>
+        </tool>
+      </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Components\bsp\boards\EZ430RF\bsp_drivers.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 9</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Components\bsp\boards\EZ430RF\bsp_board.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 68</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Components\mrfi\radios\family1\mrfi_radio.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 56</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Components\mrfi\mrfi.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 65</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\Components\mrfi\radios\family1\mrfi_spi.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 51</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Applications\main_AP.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 66</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42 46 63 35 39 23 49 12 64 17 24 14 45 32 26 61 62 31 36 11 13 18 21 69 41 52 47 7</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\main_ED.c</name>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 15 42</file>
+        </tool>
+      </inputs>
+    </file>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\..\Components\bsp\bsp.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\..\Components\mrfi\radios\common\mrfi_f1f2.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\..\Components\bsp\boards\EZ430RF\bsp_drivers.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\..\Components\bsp\boards\EZ430RF\bsp_board.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\..\Components\mrfi\radios\family1\mrfi_radio.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\..\Components\mrfi\mrfi.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\..\Components\mrfi\radios\family1\mrfi_spi.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>$PROJ_DIR$\main_ED.c</name>
+      <tool>ICC430</tool>
+    </forcedrebuild>
+  </configuration>
+  <configuration>
+    <name>Release</name>
+    <outputs/>
+    <forcedrebuild>
+      <name>[MULTI_TOOL]</name>
+      <tool>XLINK</tool>
+    </forcedrebuild>
+    <forcedrebuild>
+      <name>[REBUILD_ALL]</name>
+    </forcedrebuild>
+  </configuration>
+</project>
+
+
