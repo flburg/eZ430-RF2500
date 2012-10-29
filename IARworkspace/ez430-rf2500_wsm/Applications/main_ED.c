@@ -137,6 +137,7 @@ void main (void)
 
   /* Initialize board-specific hardware */
   BSP_Init();
+
   /* Initalize Ports 2 and 4 (mostly test points) */
   CSL_init();
 
