@@ -105,6 +105,9 @@ void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESS
   char temp_string[] = {" XX.XC"};
   int temp = msg[0] + (msg[1]<<8);
 
+  int idhi = (msg[5] >> 4) & 0x0f;
+  int idlo = msg[5] & 0x0f;
+        
   if(!(data_mode & degCMode))
   {
     temp = (int)(((float)temp)*1.8)+320;
@@ -133,7 +136,7 @@ void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESS
 
   if(data_mode & verboseMode)
   {
-        char output_verbose[] = {"\r\nNode:XXXX,Temp:-XX.XC,Battery:X.XV,Strength:XX,RE:no,remaddr:XX"};
+    char output_verbose[] = {"\r\nNode:XXXX,Temp:-XX.XC,Battery:X.XV,Strength:XX,RE:no,remaddr:XX"};
 
     output_verbose[7] = addr[0];
     output_verbose[8] = addr[1];
@@ -153,9 +156,9 @@ void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESS
     output_verbose[46] = rssi[1];
     output_verbose[47] = rssi[0];
 
-    output_verbose[63] = ((msg[5] >> 4) & 0x0f) + 48;
-    output_verbose[64] = (msg[6] & 0x0f) + 48;
-
+    output_verbose[63] = (idhi > 9) ? idhi + 55 : idhi + 48;
+    output_verbose[64] = (idlo > 9) ? idlo + 55 : idlo + 48;
+                
     TXString(output_verbose, sizeof output_verbose );
   }
   else
@@ -181,9 +184,9 @@ void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESS
    	output_short[20] = rssi[1];
    	output_short[21] = rssi[0];
 
-   	output_short[26] = ((msg[5] >> 4) & 0x0f) + 48;
-   	output_short[27] = (msg[5] & 0xf) + 48;
-
+        output_short[26] = (idhi > 9) ? idhi + 55 : idhi + 48;
+        output_short[27] = (idlo > 9) ? idlo + 55 : idlo + 48;
+                
    	output_short[29] = pressure_string[0];
    	output_short[30] = pressure_string[1];
    	output_short[31] = pressure_string[2];

@@ -16,8 +16,8 @@
 ##
 ## These may need to be set
 ##
-set platform "pc"
-#set platform "fredsmac_windows"
+#set platform "pc"
+set platform "fredsmbp_win7"
 set baudrate   57600
 set parity     n
 set databits   8

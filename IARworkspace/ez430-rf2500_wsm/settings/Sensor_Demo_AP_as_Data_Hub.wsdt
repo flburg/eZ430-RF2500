@@ -3,7 +3,7 @@
 <Workspace>
   <ConfigDictionary>
     
-  <CurrentConfigs><Project>Sensor_Demo_AP_as_Data_Hub/CC2500 Sensor Demo-End Device</Project></CurrentConfigs></ConfigDictionary>
+  <CurrentConfigs><Project>Sensor_Demo_AP_as_Data_Hub/CC2500 Sensor Demo-Access Point</Project></CurrentConfigs></ConfigDictionary>
   <Desktop>
     <Static>
       <Workspace>
@@ -12,7 +12,7 @@
           
           
           
-        <Column0>450</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>382</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Find-in-Files>
         
@@ -31,7 +31,7 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>Sensor_Demo_AP_as_Data_Hub</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications/Access Point</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications/End Device</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Components</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Components/bsp</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Components/grace</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Configuration</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Grace</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Output</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>Sensor_Demo_AP_as_Data_Hub</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications/Access Point</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications/End Device</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Components</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Components/bsp</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Components/nwk</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Configuration</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Grace</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Output</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
@@ -51,14 +51,14 @@
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_ED.c</Filename><XPos>0</XPos><YPos>117</YPos><SelStart>6090</SelStart><SelEnd>6090</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\grace\ADC10_init.c</Filename><XPos>0</XPos><YPos>3</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\grace\CSL_init.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\grace\GPIO_init.c</Filename><XPos>0</XPos><YPos>15</YPos><SelStart>812</SelStart><SelEnd>812</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_AP.c</Filename><XPos>0</XPos><YPos>197</YPos><SelStart>9799</SelStart><SelEnd>9799</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\virtual_com_cmds.c</Filename><XPos>0</XPos><YPos>153</YPos><SelStart>7180</SelStart><SelEnd>7180</SelEnd></Tab><ActiveTab>1</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Configuration\smpl_config_ED.dat</Filename><XPos>0</XPos><YPos>41</YPos><SelStart>3937</SelStart><SelEnd>3937</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board.c</Filename><XPos>0</XPos><YPos>48</YPos><SelStart>3207</SelStart><SelEnd>3207</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-01b93058><key>iaridepm.enu1</key></Toolbar-01b93058></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2><Row3><Sizes/></Row3><Row4><Sizes/></Row4><Row5><Sizes/></Row5><Row6><Sizes/></Row6><Row7><Sizes/></Row7><Row8><Sizes><Toolbar-01b9bcb0><key>debuggergui.enu1</key></Toolbar-01b9bcb0></Sizes></Row8><Row9><Sizes><Toolbar-01b9b670><key>430fet1</key></Toolbar-01b9b670></Sizes></Row9></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>556</Bottom><Right>541</Right><x>-2</x><y>-2</y><xscreen>300</xscreen><yscreen>311</yscreen><sizeHorzCX>156250</sizeHorzCX><sizeHorzCY>278175</sizeHorzCY><sizeVertCX>282813</sizeVertCX><sizeVertCY>499106</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>517</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>519</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>464222</sizeHorzCY><sizeVertCX>156250</sizeVertCX><sizeVertCY>278175</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00e60040><key>iaridepm.enu1</key></Toolbar-00e60040></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2><Row3><Sizes/></Row3><Row4><Sizes/></Row4><Row5><Sizes/></Row5><Row6><Sizes/></Row6><Row7><Sizes/></Row7><Row8><Sizes/></Row8></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>721</Bottom><Right>473</Right><x>-2</x><y>-2</y><xscreen>263</xscreen><yscreen>269</yscreen><sizeHorzCX>156548</sizeHorzCX><sizeHorzCY>277893</sizeHorzCY><sizeVertCX>282738</sizeVertCX><sizeVertCY>746901</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>202</Bottom><Right>1682</Right><x>-2</x><y>-2</y><xscreen>1684</xscreen><yscreen>204</yscreen><sizeHorzCX>1002381</sizeHorzCX><sizeHorzCY>210744</sizeHorzCY><sizeVertCX>156548</sizeVertCX><sizeVertCY>277893</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 
