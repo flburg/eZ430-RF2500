@@ -67,7 +67,7 @@ set backgroundcolor "#aaaaaa"
 #set backgroundcolor "#df8080"
 
 # File from which values are read.
-set logfile "log_gui_test_101712.txt"
+set logfile "log_gui.txt"
 
 package require Plotchart
 
