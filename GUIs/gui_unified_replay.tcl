@@ -58,9 +58,15 @@ set defaults(rssi)        [list 0 50 5 10 50 "RSSI" "nounits"]
 # Color map for nodes, indexed by node ID (note index 0 is a placeholder)
 # Format is #rrggbb in 8 bit hex
 set seriescolors [list "0" \
-  "#ff0000" "#00ff00" "#0000ff" "#ffff00" \
-  "#ff00ff" "#00ffff" "#800000" "#008000" \
-  "#000080"]
+  "#ff0000" "#00ff00" "#0000ff" \
+  "#ffff00" "#ff00ff" "#00ffff" \
+  "#c0c000" "#00c0c0" "#c000c0" \
+  "#c00000" "#00c000" "#0000c0" \
+  "#800000" "#008000" "#000080" \
+  "#808000" "#008080" "#800080" \
+  "#400000" "#004000" "#000040" \
+  "#404000" "#004040" "#400040" \
+]
 
 # Background color for all graphs.
 set backgroundcolor "#aaaaaa"

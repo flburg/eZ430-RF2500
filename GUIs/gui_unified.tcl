@@ -1,43 +1,11 @@
- package require registry
- 
- proc get_serial_ports { } {
-    set serial_base "HKEY_LOCAL_MACHINE\\HARDWARE\\DEVICEMAP\\SERIALCOMM"
-    set values [ registry values $serial_base ]
- 
-    set result {}
- 
-    foreach valueName $values {
-       lappend result [ registry get $serial_base $valueName ]
-    }
- 
-    return $result
- }
-
 ##
 ## These may need to be set
 ##
-#set platform "pc"
-set platform "fredsmbp_win7"
 set baudrate   57600
 set parity     n
 set databits   8
 set stopbits   1
 ##
-
-# This is a hack - should be more flexible and dynamic
-set screensize [wm maxsize .]
-if {[string match $platform "fredsmbp_win7"]} {
-    set comport 6
-    set width [expr [lindex $screensize 0] - 400]
-    set height [expr [lindex $screensize 1] - 200]
-} elseif {[string match $platform "pc"]} {
-    set comport 8
-    set width [expr [lindex $screensize 0] - 400]
-    set height [expr [lindex $screensize 1] - 200]
-} else {
-    set width [lindex $screensize 0]
-    set height [expr [lindex $screensize 1] - 100]
-}
 
 ##
 ## Global state variables:
@@ -56,7 +24,6 @@ if {[string match $platform "fredsmbp_win7"]} {
 set state stop
 set timestamp 0
 set timeout_secs 5
-
 
 set xspan 100.0
 set xmin 0.0
@@ -81,9 +48,15 @@ set defaults(rssi)        [list 0 50 5 10 50 "RSSI" "nounits"]
 # Color map for nodes, indexed by node ID (note index 0 is a placeholder)
 # Format is #rrggbb in 8 bit hex
 set seriescolors [list "0" \
-  "#ff0000" "#00ff00" "#0000ff" "#ffff00" \
-  "#ff00ff" "#00ffff" "#800000" "#008000" \
-  "#000080"]
+  "#ff0000" "#00ff00" "#0000ff" \
+  "#ffff00" "#ff00ff" "#00ffff" \
+  "#c0c000" "#00c0c0" "#c000c0" \
+  "#c00000" "#00c000" "#0000c0" \
+  "#800000" "#008000" "#000080" \
+  "#808000" "#008080" "#800080" \
+  "#400000" "#004000" "#000040" \
+  "#404000" "#004040" "#400040" \
+]
 
 # Background color for all graphs.
 set backgroundcolor "#aaaaaa"
@@ -188,6 +161,11 @@ proc create_graph {} {
     tk::toplevel .graphs
     wm title .graphs "Real Time Sensor Graph"
 #    lower .graphs
+# This is a hack - should be more flexible and dynamic
+set screensize [wm maxsize .graphs]
+set width [expr [lindex $screensize 0] - 400]
+set height [expr [lindex $screensize 1] - 200]
+wm resizable .graphs 1 1
 
     # Build the graphs for each selected paramter (control widget checkboxes)
     foreach param [array names defaults] {
@@ -252,6 +230,8 @@ proc read_port {comfd logfd} {
     set pressure [string trimleft [lindex $buf 6] "0"]
     # pressure is followed by a null ????
     set pressure [string trimright $pressure \0]
+
+    scan $id %x id
 
     if {![string match "\$HUB0*" $node]} {
         if {![string is double -strict $temp]} {
@@ -342,6 +322,26 @@ proc plot_point {node id} {
 ###############
 
 ##
+## Locate the correct serial port.
+##
+
+package require registry
+ 
+proc get_serial_port {} {
+    set serial_base "HKEY_LOCAL_MACHINE\\HARDWARE\\DEVICEMAP\\SERIALCOMM"
+    set values [registry values $serial_base]
+ 
+    set target [lsearch -glob $values "*USBSER*"]
+
+    set result ""
+    if {$target > -1} {
+       set result [registry get $serial_base [lindex $values $target]]
+    }
+ 
+    return $result
+}
+
+##
 ## Open the log file.
 ##
 proc open_log {logfile} {
@@ -351,13 +351,13 @@ proc open_log {logfile} {
 ##
 ## Open the serial port.
 ##
-proc open_com {port} {
+proc open_com {} {
     global baudrate
     global parity
     global databits
     global stopbits
 
-    set comfd [open com$port: r+]
+    set comfd [open [get_serial_port]: r+]
     fconfigure $comfd -mode $baudrate,$parity,$databits,$stopbits \
       -blocking 0 -translation auto -buffering none -buffersize 12
 
@@ -527,7 +527,7 @@ proc exitgui {} {
 create_controls
 
 set logfd [open_log $logfile]
-if {[catch {set comfd [open_com $comport]} errmsg]} {
+if {[catch {set comfd [open_com]} errmsg]} {
     error $errmsg
 }
 
