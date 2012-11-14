@@ -1,11 +1,23 @@
 ##
 ## These may need to be set
 ##
-set baudrate   57600
-set parity     n
-set databits   8
-set stopbits   1
-##
+set platform "fredsmbp_win7"
+#set platform "fredsmac_windows"
+
+# This is a hack - should be more flexible and dynamic
+set screensize [wm maxsize .]
+if {[string match $platform "fredsmbp_win7"]} {
+    set comport 6
+    set width [expr [lindex $screensize 0] - 400]
+    set height [expr [lindex $screensize 1] - 200]
+} elseif {[string match $platform "pc"]} {
+    set comport 8
+    set width [expr [lindex $screensize 0] - 400]
+    set height [expr [lindex $screensize 1] - 200]
+} else {
+    set width [lindex $screensize 0]
+    set height [expr [lindex $screensize 1] - 100]
+}
 
 ##
 ## Global state variables:
@@ -24,6 +36,7 @@ set stopbits   1
 set state stop
 set timestamp 0
 set timeout_secs 5
+set playrate_msecs 1000
 
 set xspan 100.0
 set xmin 0.0
@@ -33,14 +46,6 @@ set xtick [expr $xspan / 10]
 ##
 ## CONSTANTS
 ##
-
-# Width and height of graph window. Should be user-resizable (todo).
-set screensize [wm maxsize .]
-set width [expr [lindex $screensize 0] - 400]
-set height [expr [lindex $screensize 1] - 200]
-
-# Expected length of string read from serial port.
-set recordstringlength 32
 
 # map for the defaults array
 set defaultsmap [list "ymin" "ymax" "ytick" "ylolim" "yhilim" "title" "ylabel"]
@@ -67,7 +72,7 @@ set seriescolors [list "0" \
 set backgroundcolor "#aaaaaa"
 #set backgroundcolor "#df8080"
 
-# File to which log entries are written.
+# File from which values are read.
 set logfile "log_gui.txt"
 
 package require Plotchart
@@ -83,10 +88,12 @@ proc create_controls {} {
     global state 
     global defaults
     global vars
+    global logfile
+    global playrate_msecs
 
     set entrywidth 10
 
-    wm title . "Graph Control Panel"
+    wm title . "Replay Control Panel"
 
     catch {destroy .controls}
 
@@ -123,19 +130,54 @@ proc create_controls {} {
         create_entry $w $param yhilim $entrywidth
     }
     
+    # Create the log file name entry.
+
+    set w .controls.fileentry
+
+    frame $w
+    pack $w -side top -pady 1m
+
+    label $w.flabel -text "Log file:   "
+    pack $w.flabel -side left
+
+    entry $w.fname -textvariable logfile -width 50
+    pack $w.fname -side left
+    bind $w.fname <KeyPress-Return> {set state "restart"}
+
+    # Create the sample rate entry.
+
+    set w .controls.playrate
+
+    frame $w
+    pack $w -side top -pady 1m
+
+    label $w.labl1 -text "Rate:   "
+    pack $w.labl1 -side left
+
+    entry $w.rate -textvariable playrate_msecs -width 5
+    pack $w.rate -side left
+
+    label $w.labl2 -text " ms/sample"
+    pack $w.labl2 -side left
+
+    # Create the run control buttons.
+
     set w .controls.buttons
 
     frame $w
-    pack $w -side top -pady 3m
+    pack $w -side top -pady 1m
 
     button $w.stop -text "Stop" -command {set state "stop"} -relief raised
-    pack $w.stop -side left -padx 2m
+    pack $w.stop -side left -padx 1m
 
     button $w.go -text "Go" -command {set state "go"} -relief raised
-    pack $w.go -side left -padx 24
+    pack $w.go -side left -padx 1m
+
+    button $w.rego -text "Restart" -command {set state "restart"} -relief raised
+    pack $w.rego -side left -padx 1m
 
     button $w.exit -text "Exit" -relief raised -command exitgui
-    pack $w.exit -side left -padx 2m
+    pack $w.exit -side left -padx 1m
 }
 
 ##
@@ -164,10 +206,10 @@ proc create_graph {} {
     }
 
     tk::toplevel .graphs
-    wm title .graphs "Real Time Sensor Graph"
+    wm title .graphs "Sensor Replay Graph"
 #    lower .graphs
 
-    # Build the graphs for each selected parameter (control widget checkboxes)
+    # Build the graphs for each selected paramter (control widget checkboxes)
     foreach param [array names defaults] {
         if {$vars(${param}state) == 0} {
             continue
@@ -197,108 +239,96 @@ proc create_graph {} {
 }
 
 ##
-## Read from the serial port.
+## Read from the log file. The log line format is 
+## somewhat different from the access point line format.
 ##
-proc read_port {comfd logfd} {
+set lasttime 0
+proc read_log {} {
     global state
     global data
-    global recordstringlength
+    global lasttime
+    global logfd
+    global playrate_msecs
+
+    if {[string match $state "restart"]} {
+        reopen_log
+    }
 
     if {[string match $state "stop"]} {
+        after $playrate_msecs read_log
         return
     }
 
-    # Get a line from the com port.
-    set retval [gets $comfd line]
-    if {$retval > 0 && $retval != $recordstringlength} {
-        puts "bad string length = $retval, expecting $recordstringlength"
-        return
-    }
-
-    if {![regexp "^\\$" $line]} {
-#        puts "bad string format: $line"
-        return
-    }
-
-    set buf [split $line ',']
-
-    set node     [lindex $buf 0]
-    set temp     [string trim [lindex $buf 1] " F"]
-    set voltage  [string trimleft [lindex $buf 2] "0"]
-    set rssi     [string trimleft [lindex $buf 3] "0"]
-    set id       [string trimleft [lindex $buf 5] "0"]
-    set pressure [string trimleft [lindex $buf 6] "0"]
-    # pressure is followed by a null ????
-    set pressure [string trimright $pressure \0]
-
-    scan $id %x id
-
-    if {![string match "\$HUB0*" $node]} {
-        if {![string is double -strict $temp]} {
-            puts "bad temp: $node $temp $voltage $rssi $pressure"
-           return
+    # Get all lines with the same timestamp from the log file.
+    while {1 == 1} {
+        gets $logfd line
+        if {[eof $logfd]} {
+            reopen_log
         }
-        if {![string is integer -strict $rssi]} {
-            puts "bad RSSI: $node $temp $voltage $rssi $pressure"
-            return
-        }
-        if {![string is integer $pressure]} {
-            puts "bad pressure: $node $temp $voltage $rssi :$pressure:"
-            return
+
+        set timestamp [lindex $line 0]
+        set node      [lindex $line 1]
+        set id        [lindex $line 2]
+        set temp      [lindex $line 3]
+        set voltage   [lindex $line 4]
+        set rssi      [lindex $line 5]
+        set pressure  [lindex $line 6]
+
+        set data(timestamp) $timestamp
+        set data(id) $id
+        set data(temperature) $temp
+        set data(voltage) $voltage
+        set data(rssi) $rssi
+        set data(pressure) $pressure
+
+        plot_point $id
+
+        if {$timestamp != $lasttime} {
+            set lasttime $timestamp
+            break
         }
     }
 
-    set data(id) $id
-    set data(temperature) $temp
-    set data(voltage) $voltage
-    set data(rssi) $rssi
-    set data(pressure) $pressure
-
-    plot_point $node $id
+    after $playrate_msecs read_log
 }
 
 ##
 ## Plot a datapoint for a node on all active graphs.
 ##
-proc plot_point {node id} {
+proc plot_point {id} {
     global defaults
     global vars
     global data
-    global timestamp
+    global timeout_secs
     global xmin xmax xspan
     global connected
-    global logfd
 
-    puts "$timestamp $node $data(id) $data(temperature) \
+    # Protect against trash at end of file.
+    if {![string is integer $id] || $id <= 0} {
+        return
+    }
+
+    puts "$data(timestamp) $data(id) $data(temperature) \
       $data(voltage) $data(rssi) $data(pressure)"
 
-    # Test for a sample from the access point.
-    if {[string match "\$HUB0*" $node]} {
-        # Hub sets the time base for live data.
-        set timestamp [expr $timestamp + 1]
-        # Post active alarms and update the alarms array.
-        post_alarms
-        # Check all nodes for timeouts.
-        check_timeout $timestamp
+    set timestamp $data(timestamp)
 
-        # Test for X axis out-of-bounds.  
-        # If found, reset axis parameters and rebuild graphs.
-        if {[expr $timestamp == $xmax]} {
-            set xmin $timestamp
-            set xmax [expr $xmin + $xspan] 
-            create_graph
-        }
-
-	return
-    } 
+    # Test for X axis out-of-bounds.  
+    # If found, reset axis parameters and rebuild graphs.
+    if {$timestamp == $xmax} {
+        set xmin $timestamp
+        set xmax [expr $xmin + $xspan] 
+        create_graph
+    }
 
     # If this node has not been plotted yet, add it to the active graphs.
     if {![llength [array names connected -exact $id]]} {
         add_series $id
     }
 
-    # Update the nodes timestamp.
+    # Update the nodes timestamp, and check all nodes for timeouts.
     set connected($id) $timestamp
+    check_timeout $timestamp
 
     # Plot this sample on each graph.
     foreach param [array names defaults] {
@@ -310,11 +340,7 @@ proc plot_point {node id} {
         $vars(${param}plot) plot $id $timestamp $data($param)
     }
 
-    puts $logfd "$timestamp $node $data(id) $data(temperature) \
-      $data(voltage) $data(rssi) $data(pressure)"
-    flush $logfd
-
-    return $timestamp
+    post_alarms
 }
 
 ###############
@@ -322,46 +348,28 @@ proc plot_point {node id} {
 ###############
 
 ##
-## Locate the correct serial port.
-##
-
-package require registry
- 
-proc get_serial_port {} {
-    set serial_base "HKEY_LOCAL_MACHINE\\HARDWARE\\DEVICEMAP\\SERIALCOMM"
-    set values [registry values $serial_base]
- 
-    set target [lsearch -glob $values "*USBSER*"]
-
-    set result ""
-    if {$target > -1} {
-       set result [registry get $serial_base [lindex $values $target]]
-    }
- 
-    return $result
-}
-
-##
 ## Open the log file.
 ##
 proc open_log {logfile} {
-    return [open $logfile w+]
+    return [open $logfile r]
 }
 
 ##
-## Open the serial port.
+## Close and reopen the log file on restart
 ##
-proc open_com {} {
-    global baudrate
-    global parity
-    global databits
-    global stopbits
+proc reopen_log {} {
+    global state
+    global logfd logfile
+    global timestamp
+    global xmin xmax xspan
 
-    set comfd [open [get_serial_port]: r+]
-    fconfigure $comfd -mode $baudrate,$parity,$databits,$stopbits \
-      -blocking 0 -translation auto -buffering none -buffersize 12
+    set xmin 0
+    set xmax [expr $xmin + $xspan] 
 
-    return $comfd
+    close $logfd
+    set logfd [open_log $logfile]
+    create_graph
+    set state "go"
 }
 
 ##
@@ -527,10 +535,5 @@ proc exitgui {} {
 create_controls
 
 set logfd [open_log $logfile]
-if {[catch {set comfd [open_com]} errmsg]} {
-    error $errmsg
-}
-
-# Call read_port when there's something on the port to read.
-fileevent $comfd readable [list read_port $comfd $logfd]
+read_log
 

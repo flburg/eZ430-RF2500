@@ -209,7 +209,7 @@ static uint8_t sChannel = 0;
  * @brief       Entry point
  *
  */
-void main (void)
+In IAvoid main (void)
 {
   bspIState_t intState;
 
