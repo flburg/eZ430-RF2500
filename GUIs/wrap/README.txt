@@ -1,6 +1,7 @@
 To create a stand-alone exe from a tcltk script that uses plotchart:
 
-1) Make sure there are no source commands in your script (must be all in one file).
+1) Make sure there are no source commands in your script (must be all in one file) and remove any occurance of 
+   the string ::Plotchart::
 
 2) Import plotchart_flat.tcl into your script (cat plotchart_flat.tcl >> yourfile.tcl)
 
