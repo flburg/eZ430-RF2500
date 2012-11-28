@@ -1,3 +1,4 @@
+##
 ## These may need to be set
 ##
 set baudrate   57600
@@ -174,12 +175,10 @@ proc create_graph {} {
 	  -background white -width $width -height [expr $height / $numgraphs]
         pack .graphs.$param -fill x
 
-puts tp1
-
         set vars(${param}plot) [createXYPlot .graphs.$param \
             [list $xmin $xmax $xtick] \
 	    [list $vars(${param}ymin) $vars(${param}ymax) $vars(${param}ytick)]]
-puts tp2
+
         $vars(${param}plot) title [lindex $defaults($param) 5]
         $vars(${param}plot) xtext "seconds"
         $vars(${param}plot) ytext [lindex $defaults($param) 6]
@@ -207,51 +206,45 @@ proc read_port {comfd logfd} {
         return
     }
 
-    # Get a line from the com port.
-    set retval [gets $comfd line]
-    if {$retval > 0 && $retval != $recordstringlength} {
-        puts "bad string length = $retval, expecting $recordstringlength"
+    # Get a record from the com port.
+    # The first token should be the start-of-record symbol.
+    set retval [read $comfd 14]
+    binary scan $retval c sor
+
+    # This is a little dangerous because comfd is blocking!!
+    while {$sor != -1} {
+        puts "WARNING: Unsynchronized read: sor = $sor"
+        set retval [read $comfd 1]
+        binary scan $retval c sor
+    }
+
+    set args [binary scan $retval ccccscs sor node id rssi temp volt pres]
+    if {$args != 7} {
+        puts "WARNING: Incorrect number of arguments: $args"
         return
     }
 
-    if {![regexp "^\\$" $line]} {
-#        puts "bad string format: $line"
-        return
-    }
-
-    set buf [split $line ',']
-
-    set node     [lindex $buf 0]
-    set temp     [string trim [lindex $buf 1] " F"]
-    set voltage  [string trimleft [lindex $buf 2] "0"]
-    set rssi     [string trimleft [lindex $buf 3] "0"]
-    set id       [string trimleft [lindex $buf 5] "0"]
-    set pressure [string trimleft [lindex $buf 6] "0"]
-    # pressure is followed by a null ????
-    set pressure [string trimright $pressure \0]
-
-    scan $id %x id
-
-    if {![string match "\$HUB0*" $node]} {
-        if {![string is double -strict $temp]} {
-            puts "bad temp: $node $temp $voltage $rssi $pressure"
-           return
-        }
-        if {![string is integer -strict $rssi]} {
-            puts "bad RSSI: $node $temp $voltage $rssi $pressure"
-            return
-        }
-        if {![string is integer $pressure]} {
-            puts "bad pressure: $node $temp $voltage $rssi :$pressure:"
-            return
-        }
-    }
+## Fix this error checking code
+#    if {$id > 0} {
+#        if {![string is double -strict $temp]} {
+#            puts "bad temp: $node $temp $voltage $rssi $pressure"
+#           return
+#        }
+#        if {![string is integer -strict $rssi]} {
+#            puts "bad RSSI: $node $temp $voltage $rssi $pressure"
+#            return
+#        }
+#        if {![string is integer $pressure]} {
+#            puts "bad pressure: $node $temp $voltage $rssi :$pressure:"
+#            return
+#        }
+#    }
 
     set data(id) $id
-    set data(temperature) $temp
-    set data(voltage) $voltage
+    set data(temperature) [format "%.2f" [expr (($temp * 1.8)+320)/10]]
+    set data(voltage) [format "%.1f" [expr double(double($volt) / 10)]]
     set data(rssi) $rssi
-    set data(pressure) $pressure
+    set data(pressure) $pres
 
     plot_point $node $id
 }
@@ -272,8 +265,8 @@ proc plot_point {node id} {
       $data(voltage) $data(rssi) $data(pressure)"
 
     # Test for a sample from the access point.
-    if {[string match "\$HUB0*" $node]} {
-        # Hub sets the time base for live data.
+    if {$data(id) == 0} {
+        # AP sets the time base for live data.
         set timestamp [expr $timestamp + 1]
         # Post active alarms and update the alarms array.
         post_alarms
@@ -358,7 +351,10 @@ proc open_com {} {
 
     set comfd [open [get_serial_port]: r+]
     fconfigure $comfd -mode $baudrate,$parity,$databits,$stopbits \
-      -blocking 0 -translation auto -buffering none -buffersize 12
+      -blocking 1 -encoding binary -translation binary -buffering none \
+      -buffersize 1024
+
+    fconfigure $comfd -translation binary
 
     return $comfd
 }
@@ -527,15 +523,17 @@ create_controls
 
 set logfd [open_log $logfile]
 if {[catch {set comfd [open_com]} errmsg]} {
-    error "Error opening com port: $errmsg"
+    error $errmsg
 }
 
 # Call read_port when there's something on the port to read.
 fileevent $comfd readable [list read_port $comfd $logfd]
 
 
+
 #############################################################################
-## Plotchart code ###########################################################
+## Plotchart code with flat namespace suitable for importing into a 
+## stand-alone tcl script that is portable as an exe.
 #############################################################################
 
 # plot3d.tcl --

@@ -107,7 +107,7 @@ void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESS
 
   int idhi = (msg[5] >> 4) & 0x0f;
   int idlo = msg[5] & 0x0f;
-        
+
   if(!(data_mode & degCMode))
   {
     temp = (int)(((float)temp)*1.8)+320;
@@ -158,7 +158,7 @@ void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESS
 
     output_verbose[63] = (idhi > 9) ? idhi + 55 : idhi + 48;
     output_verbose[64] = (idlo > 9) ? idlo + 55 : idlo + 48;
-                
+
     TXString(output_verbose, sizeof output_verbose );
   }
   else
@@ -186,7 +186,7 @@ void transmitDataString(char data_mode, char addr[4],char rssi[3], char msg[MESS
 
         output_short[26] = (idhi > 9) ? idhi + 55 : idhi + 48;
         output_short[27] = (idlo > 9) ? idlo + 55 : idlo + 48;
-                
+
    	output_short[29] = pressure_string[0];
    	output_short[30] = pressure_string[1];
    	output_short[31] = pressure_string[2];

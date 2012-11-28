@@ -209,7 +209,7 @@ static uint8_t sChannel = 0;
  * @brief       Entry point
  *
  */
-In IAvoid main (void)
+void main (void)
 {
   bspIState_t intState;
 
@@ -272,14 +272,10 @@ In IAvoid main (void)
       BSP_EXIT_CRITICAL_SECTION(intState);
     }
 
-
     // if it is time to measure our own temperature...
     if(sSelfMeasureSem)
     {
-      char msg [6];
-      char addr[] = {"HUB0"};
-      char rssi[] = {"000"};
-      int degC, volt;
+      int deg, deghi, deglo, volt;
       volatile long temp;
       int results[2];
 
@@ -311,23 +307,56 @@ In IAvoid main (void)
        * the temperature is transmitted as an integer where 32.1 = 321
        * hence 4230 instead of 423
        */
-      temp = results[0];
-      degC = ((temp - 673) * 4230) / 1024;
+
+      deg = ((results[0] - 673) * 4230) / 1024;
       if( (*tempOffset) != 0xFFFF )
       {
-        degC += (*tempOffset);
+        deg += (*tempOffset);
       }
+      deglo = deg & 0xFF;
+      deghi = (deg >> 8) & 0xFF;
 
-      temp = results[1];
-      volt = (temp*25)/512;
+      volt = (results[1] * 25) / 512;
+
+#define INTEGER_PLD
+#ifdef INTEGER_PLD
+      uint8_t pld[MAX_APP_PAYLOAD+4];
+
+      memset((char *) pld, 0, sizeof(pld));
+
+      // start of frame
+      pld[0] = -1;
+
+      // address of peer (AP has unique addr 0)
+      pld[2] = 0;
+
+      // temperature
+      pld[4] = deglo;
+      pld[5] = deghi;
+
+      // voltage
+      pld[6] = volt;
+
+      // everything else is zero
+
+      // message from AP - payload is 14 bytes, like the ED
+      // (sof: 1, index:1, address:1, rssi: 1, MAX_APP_PAYLOAD: 10)
+      TXString((char *) pld, sizeof(pld));
+
+#else // string payload
+      char msg[6];
+      char addr[] = {"HUB0"};
+      char rssi[] = {"000"};
 
       /* Package up the data */
-      msg[0] = degC&0xFF;
-      msg[1] = (degC>>8)&0xFF;
+      msg[0] = deglo;
+      msg[1] = deghi;
       msg[2] = volt;
 
       /* Send it over serial port */
       transmitDataString(1, addr, rssi, msg );
+
+#endif
 
       BSP_TOGGLE_LED1();
 
@@ -340,7 +369,7 @@ In IAvoid main (void)
      */
     if (sPeerFrameSem)
     {
-      uint8_t  msg[MAX_APP_PAYLOAD+NET_ADDR_SIZE], len, i;
+      uint8_t  msg[MAX_APP_PAYLOAD], len, i;
       addr_t   peeraddr;
 
       /* process all frames waiting */
@@ -349,16 +378,43 @@ In IAvoid main (void)
         if (SMPL_SUCCESS == SMPL_ReceiveWithAddr(sLID[i], msg, &len, &peeraddr))
         {
           ioctlRadioSiginfo_t sigInfo;
-
           processMessage(sLID[i], msg, len);
 
           sigInfo.lid = sLID[i];
-
           SMPL_Ioctl(IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_SIGINFO, (void *)&sigInfo);
 
-          memcpy((char *) &msg[len], (char *) &peeraddr, NET_ADDR_SIZE);
+#define INTEGER_PLD
+#ifdef INTEGER_PLD
+          uint8_t pld[MAX_APP_PAYLOAD+4];
+          volatile signed int rssi_int;
 
+          memset((char *) pld, 0, sizeof(pld));
+
+          // start of frame
+          pld[0] = -1;
+
+          // device index
+          pld[1] = i;
+
+          // address of peer
+          pld[2] = peeraddr.addr[0];
+
+          // RSSI for peer
+          rssi_int = (signed int) sigInfo.sigInfo.rssi;
+          rssi_int = rssi_int+128;
+          rssi_int = (rssi_int*100)/256;
+          pld[3] = rssi_int;
+
+          memcpy((char *) &(pld[4]), (char *) msg, len);
+
+          // message from peer - payload is 14 bytes
+          // (sof: 1, index:1, address:1, rssi: 1, MAX_APP_PAYLOAD: 10)
+          TXString((char *) pld, sizeof(pld));
+
+#else // string payload
+          memcpy((char *) &msg[len], (char *) &peeraddr, NET_ADDR_SIZE);
           transmitData( i, sigInfo.sigInfo.rssi, (char*)msg );
+#endif
           BSP_TOGGLE_LED2();
 
           BSP_ENTER_CRITICAL_SECTION(intState);
