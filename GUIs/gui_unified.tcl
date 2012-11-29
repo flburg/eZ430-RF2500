@@ -19,6 +19,8 @@ set stopbits   1
 ##     xspan, xmin, xmax, xtick:
 ##                X axis paramters. xmin and xmax are updated dynamically,
 ##                xspan and xtick are constants at present.
+##     logmod:	  Modulus of timestamp for writing to log. 
+##                (fmod($timestamp,$logmod)
 ##
 
 set state stop
@@ -29,6 +31,8 @@ set xspan 100.0
 set xmin 0.0
 set xmax $xspan
 set xtick [expr $xspan / 10]
+
+set logmod 3600
 
 ##
 ## CONSTANTS
@@ -261,7 +265,7 @@ proc plot_point {node id} {
     global timestamp
     global xmin xmax xspan
     global connected
-    global logfd
+    global logfd logmod
 
     puts "$timestamp $node $data(id) $data(temperature) \
       $data(voltage) $data(rssi) $data(pressure)"
@@ -304,9 +308,11 @@ proc plot_point {node id} {
         $vars(${param}plot) plot $id $timestamp $data($param)
     }
 
-    puts $logfd "$timestamp $node $data(id) $data(temperature) \
-      $data(voltage) $data(rssi) $data(pressure)"
-    flush $logfd
+    if {![expr fmod($timestamp,$logmod)]} {
+        puts $logfd "$timestamp $node $data(id) $data(temperature) \
+          $data(voltage) $data(rssi) $data(pressure)"
+        flush $logfd
+    }
 
     return $timestamp
 }
