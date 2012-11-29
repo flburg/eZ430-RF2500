@@ -9,20 +9,22 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [State Storage]
-Control Register=35840
+Control Register=35346
 [Sequencer]
-Control Register=35840
-NextState0=35840
-NextState1=35840
+Control Register=35346
+NextState0=35346
+NextState1=35346
 [Action Register]
 Break=0
 State Storage=1
 [DebugChecksum]
-Checksum=2125052934
+Checksum=-571172588
 [CallStack]
 ShowArgs=0
 [Disassembly]
 MixedMode=1
+[array_types]
+Fmt0=uint8_t [16]	3	0
 [Log file]
 LoggingEnabled=_ 0
 LogFile=_ ""
