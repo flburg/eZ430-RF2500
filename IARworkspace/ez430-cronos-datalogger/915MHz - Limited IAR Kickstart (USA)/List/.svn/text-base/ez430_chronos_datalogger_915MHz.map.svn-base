@@ -1,1 +1,0 @@
-Error[e24]: Segment DATA16_AN (seg part no 1, symbol "TA0R" in module "bluerobin", address [350-351])  overlaps segment DATA16_AN (seg part no 4, symbol "_A_TA0R_L" in module "BRRX_Radio", address [350-351]) 

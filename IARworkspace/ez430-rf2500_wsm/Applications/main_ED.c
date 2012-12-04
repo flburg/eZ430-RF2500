@@ -198,7 +198,7 @@ void main (void)
 
 static void linkTo()
 {
-  uint8_t msg[5];
+  uint8_t msg[6];
 #ifdef APP_AUTO_ACK
   uint8_t misses, done;
 #endif
@@ -228,7 +228,7 @@ static void linkTo()
 
     /* Time to measure */
     if (sSelfMeasureSem) {
-      volatile long temp;
+      volatile long resval;
       int degC, volt, pressure;
       int results[3];
 #ifdef APP_AUTO_ACK
@@ -274,30 +274,33 @@ static void linkTo()
        * the temperature is transmitted as an integer where 32.1 = 321
        * hence 4230 instead of 423
        */
-      temp = results[0];
-      degC = ((temp - 673) * 4230) / 1024;
+      resval = results[0];
+      degC = ((resval - 673) * 4230) / 1024;
       if( (*tempOffset) != 0xFFFF )
       {
         degC += (*tempOffset);
       }
 
-      /* message format,  UB = upper Byte, LB = lower Byte
-      -------------------------------
-      |degC LB | degC UB |  volt LB |
-      -------------------------------
-         0         1          2
-      */
-      temp = results[1];
-      volt = (temp*25)/512;
+      // send raw voltage for higher precision
+      volt = results[1];
+//      resval = results[1];
+//      volt = (resval*25)/512;
 
-      temp = results[2];
-      pressure = temp;
+      pressure = results[2];
+
+      /* message format,  UB = upper Byte, LB = lower Byte
+      --------------------------------------------------------------
+      |degC LB | degC UB |  volt LB | volt UB | press LB | press UB |
+      --------------------------------------------------------------
+         0         1           2         3          4         5
+      */
 
       msg[0] = degC & 0xFF;
       msg[1] = (degC >> 8) & 0xFF;
-      msg[2] = volt;
-      msg[3] = pressure & 0xFF;
-      msg[4] = (pressure >> 8) & 0x3;
+      msg[2] = volt & 0xFF;
+      msg[3] = (volt >> 8) & 0xFF;
+      msg[4] = pressure & 0xFF;
+      msg[5] = (pressure >> 8) & 0x3;
 
       /* Get radio ready...awakens in idle state */
       SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_AWAKE, 0);

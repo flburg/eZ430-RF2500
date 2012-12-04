@@ -1,0 +1,5 @@
+git branch xxx		This will create a branch called xxx
+git checkout xxx	Checkout the branch
+git commit -a		After making changes
+git checkout master	Switch back to the master branch
+git merge xxx		Pull in those changes from the other branch

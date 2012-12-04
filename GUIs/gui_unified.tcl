@@ -32,7 +32,7 @@ set xmin 0.0
 set xmax $xspan
 set xtick [expr $xspan / 10]
 
-set logmod 3600
+set logmod 1
 
 ##
 ## CONSTANTS
@@ -217,14 +217,12 @@ proc read_port {comfd logfd} {
     set retval [read $comfd 14]
     binary scan $retval c sor
 
-    # This is a little dangerous because comfd is blocking!!
     while {$sor != -1} {
         puts "WARNING: Unsynchronized read: sor = $sor"
-        set retval [read $comfd 1]
-        binary scan $retval c sor
+	return
     }
 
-    set args [binary scan $retval ccccscs sor node id rssi temp volt pres]
+    set args [binary scan $retval ccccsss sor node id rssi temp volt pres]
     if {$args != 7} {
         puts "WARNING: Incorrect number of arguments: $args"
         return
@@ -246,9 +244,11 @@ proc read_port {comfd logfd} {
 #        }
 #    }
 
+    set volt [expr double(((double($volt) / 1024) * 2.5) * 2)]
+
     set data(id) $id
     set data(temperature) [format "%.2f" [expr (($temp * 1.8)+320)/10]]
-    set data(voltage) [format "%.1f" [expr double(double($volt) / 10)]]
+    set data(voltage) [format "%.3f" $volt]
     set data(rssi) $rssi
     set data(pressure) $pres
 

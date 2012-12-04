@@ -275,7 +275,7 @@ void main (void)
     // if it is time to measure our own temperature...
     if(sSelfMeasureSem)
     {
-      int deg, deghi, deglo, volt;
+      int deg, volt;
       volatile long temp;
       int results[2];
 
@@ -313,10 +313,12 @@ void main (void)
       {
         deg += (*tempOffset);
       }
-      deglo = deg & 0xFF;
-      deghi = (deg >> 8) & 0xFF;
 
-      volt = (results[1] * 25) / 512;
+      // send raw voltage for higher precision
+      volt = results[1];
+//      resval = results[1];
+//      volt = (resval*25)/512;
+
 
 #define INTEGER_PLD
 #ifdef INTEGER_PLD
@@ -331,11 +333,12 @@ void main (void)
       pld[2] = 0;
 
       // temperature
-      pld[4] = deglo;
-      pld[5] = deghi;
+      pld[4] = deg & 0xFF;
+      pld[5] = (deg >> 8) & 0xFF;
 
       // voltage
-      pld[6] = volt;
+      pld[6] = volt & 0xFF;
+      pld[7] = (volt >> 8) & 0xFF;
 
       // everything else is zero
 
@@ -349,8 +352,8 @@ void main (void)
       char rssi[] = {"000"};
 
       /* Package up the data */
-      msg[0] = deglo;
-      msg[1] = deghi;
+      msg[0] = deg & 0xFF;
+      msg[1] = (deg >> 8) & 0xFF;
       msg[2] = volt;
 
       /* Send it over serial port */
