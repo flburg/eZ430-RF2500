@@ -1,46 +1,0 @@
-10
-
-dir
-30877
-svn+ssh://repositorypub@repository.eecs.berkeley.edu/public/Projects/MESensornet/trunk/IARworkspace
-svn+ssh://repositorypub@repository.eecs.berkeley.edu/public
-
-
-
-2012-10-11T02:31:49.589513Z
-30860
-flb
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-d478818c-914a-0410-a11c-fe9a00987c8c
-
-RF Access Point
-dir
-
-ez430-cronos-datalogger
-dir
-
-ez430-cronos-sportwatch
-dir
-
-ez430-cronos_wirelessupdate
-dir
-
-ez430-rf2500_wsm
-dir
-
-simpleif
-dir
-
