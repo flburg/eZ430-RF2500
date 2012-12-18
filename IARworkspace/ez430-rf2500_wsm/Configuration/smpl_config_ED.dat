@@ -77,3 +77,7 @@
  */
 /* -DRX_POLLS */
 
+/* Acknowledge a packet when requested in SMPL_SendOp */
+-DAPP_AUTO_ACK
+
+-DEXTENDED_API

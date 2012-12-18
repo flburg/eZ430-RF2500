@@ -156,6 +156,12 @@ Solution overview:
 /******  THIS SOURCE FILE REPRESENTS THE AUTOMATIC NOTIFICATION SOLUTION ******/
 
 /*------------------------------------------------------------------------------
+ * Defines
+ *----------------------------------------------------------------------------*/
+/* Number of seconds between timestamps (unused at present) */
+#define TIMESTAMP_PERIOD_SECS 60
+
+/*------------------------------------------------------------------------------
  * Prototypes
  *----------------------------------------------------------------------------*/
 /* Frequency Agility helper functions */
@@ -333,8 +339,11 @@ void main (void)
       pld[2] = 0;
 
       // temperature
-      pld[4] = deg & 0xFF;
-      pld[5] = (deg >> 8) & 0xFF;
+// Something wrong with temp - high byte sometimes 0xff.  Disable for now.
+      pld[4] = 0;
+      pld[5] = 0;
+//      pld[4] = deg & 0xFF;
+//      pld[5] = (deg >> 8) & 0xFF;
 
       // voltage
       pld[6] = volt & 0xFF;

@@ -107,6 +107,8 @@
  *----------------------------------------------------------------------------*/
 /* How many times to try a TX and miss an acknowledge before doing a scan */
 #define MISSES_IN_A_ROW  2
+/* Number of seconds between transmissions */
+#define TRANSMIT_PERIOD_SECS 10
 
 /*------------------------------------------------------------------------------
  * Prototypes
@@ -132,7 +134,7 @@ static volatile uint8_t sSelfMeasureSem = 0;
  *----------------------------------------------------------------------------*/
 void main (void)
 {
-//  addr_t lAddr;
+  //  addr_t lAddr;
   addr_t const *myaddr;
 
   /* Initialize board-specific hardware */
@@ -141,27 +143,7 @@ void main (void)
   /* Initalize Ports 2 and 4 (mostly test points) */
   CSL_init();
 
-  /* Check flash for previously stored address */
-/* We're using hard-coded addresses in this application
-  if(Flash_Addr[0] == 0xFF && Flash_Addr[1] == 0xFF &&
-     Flash_Addr[2] == 0xFF && Flash_Addr[3] == 0xFF )
-  {
-    createRandomAddress(); // Create and store a new random address
-  }
-*/
-  /* Read out address from flash */
-/*
-  lAddr.addr[0] = Flash_Addr[0];
-  lAddr.addr[1] = Flash_Addr[1];
-  lAddr.addr[2] = Flash_Addr[2];
-  lAddr.addr[3] = Flash_Addr[3];
-*/
-  /* Tell network stack the device address */
-/*
-  SMPL_Ioctl(IOCTL_OBJ_ADDR, IOCTL_ACT_SET, &lAddr);
-*/
-
-  /* Read out address from flash */
+  /* Read out address from flash (hard-coded) */
   myaddr = nwk_getMyAddress();
 
   /* Tell network stack the device address */
@@ -171,7 +153,7 @@ void main (void)
   BCSCTL3 |= LFXT1S_2;                      // LFXT1 = VLO
   TACCTL0 = CCIE;                           // TACCR0 interrupt enabled
   TACCR0 = 12000;                           // ~ 1 sec
-  TACTL = TASSEL_1 + MC_1;                  // ACLK, upmode
+  TACTL = TASSEL_1 + MC_1;                  // ACLK/8, upmode
 
   /* Keep trying to join (a side effect of successful initialization) until
    * successful. Toggle LEDS to indicate that joining has not occurred.
@@ -227,7 +209,7 @@ static void linkTo()
     __bis_SR_register(LPM3_bits);
 
     /* Time to measure */
-    if (sSelfMeasureSem) {
+    if (sSelfMeasureSem >= TRANSMIT_PERIOD_SECS) {
       volatile long resval;
       int degC, volt, pressure;
       int results[3];
@@ -235,7 +217,6 @@ static void linkTo()
       uint8_t      noAck;
       smplStatus_t rc;
 #endif
-
       /* Get temperature */
       ADC10CTL1 = INCH_10 + ADC10DIV_4;       // Temp Sensor ADC10CLK/5
       ADC10CTL0 = SREF_1 + ADC10SHT_3 + REFON + ADC10ON + ADC10IE + ADC10SR;
@@ -334,6 +315,7 @@ static void linkTo()
             noAck++;
           }
         }
+
         if (MISSES_IN_A_ROW == noAck)
         {
           /* Message not acked */
@@ -417,6 +399,6 @@ __interrupt void ADC10_ISR(void)
 #pragma vector=TIMERA0_VECTOR
 __interrupt void Timer_A (void)
 {
-  sSelfMeasureSem = 1;
+  sSelfMeasureSem++;
   __bic_SR_register_on_exit(LPM3_bits);        // Clear LPM3 bit from 0(SR)
 }

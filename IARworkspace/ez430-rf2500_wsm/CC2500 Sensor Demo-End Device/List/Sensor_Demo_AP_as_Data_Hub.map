@@ -2,7 +2,7 @@
 #                                                                              #
 #      IAR Universal Linker V5.2.4.16                                          #
 #                                                                              #
-#           Link time     =  30/Nov/2012  14:13:58                             #
+#           Link time     =  11/Dec/2012  18:22:59                             #
 #           Target CPU    =  MSP430                                            #
 #           List file     =  "C:\Users\flb.bwrclt61-1\Desktop\eZ430-RF2500\IAR #
 #                            workspace\ez430-rf2500_wsm\CC2500 Sensor Demo-End #
@@ -197,11 +197,11 @@ DATA16_AN
            ADC10CTL0               01B0 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9C54 - 9C67 (0x14 bytes), align: 1
+  Relative segment, address: 9C56 - 9C69 (0x14 bytes), align: 1
   Segment part 4.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ADC10_init              9C54            CSL_init (CSL_init)
+           ADC10_init              9C56            CSL_init (CSL_init)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 CSTACK
@@ -236,11 +236,11 @@ DATA16_AN
            WDTCTL                  0120 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9C68 - 9C79 (0x12 bytes), align: 1
+  Relative segment, address: 9C6A - 9C7B (0x12 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           CSL_init                9C68            main (main_ED)
+           CSL_init                9C6A            main (main_ED)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -342,11 +342,11 @@ DATA16_AN
            P2SEL                   002E 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9A08 - 9A31 (0x2a bytes), align: 1
+  Relative segment, address: 9A0A - 9A33 (0x2a bytes), align: 1
   Segment part 11.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           GPIO_init               9A08            CSL_init (CSL_init)
+           GPIO_init               9A0A            CSL_init (CSL_init)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 CSTACK
@@ -378,11 +378,11 @@ DATA16_AN
            WDTCTL                  
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E04 - 9E0B (0x8 bytes), align: 1
+  Relative segment, address: 9E06 - 9E0D (0x8 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           WDTplus_init            9E04            CSL_init (CSL_init)
+           WDTplus_init            9E06            CSL_init (CSL_init)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 CSTACK
@@ -469,11 +469,11 @@ DATA16_AN
            CALBC1_8MHZ             10FD 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9C10 - 9C27 (0x18 bytes), align: 1
+  Relative segment, address: 9C12 - 9C29 (0x18 bytes), align: 1
   Segment part 18.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BSP_Init                9C10            main (main_ED)
+           BSP_Init                9C12            main (main_ED)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -486,27 +486,27 @@ DATA16_Z
            sIterationsPerUsec      023E 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9DC8 - 9DD1 (0xa bytes), align: 1
+  Relative segment, address: 9DCA - 9DD3 (0xa bytes), align: 1
   Segment part 17. ROOT.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __low_level_init        9DC8            ?cstart_call_low_level_init (?cstart)
+           __low_level_init        9DCA            ?cstart_call_low_level_init (?cstart)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9B0C - 9B2B (0x20 bytes), align: 1
+  Relative segment, address: 9B0E - 9B2D (0x20 bytes), align: 1
   Segment part 16.            Intra module refs:   BSP_Init
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BSP_InitBoard           9B0C 
+           BSP_InitBoard           9B0E 
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9AA6 - 9AC7 (0x22 bytes), align: 1
+  Relative segment, address: 9AA8 - 9AC9 (0x22 bytes), align: 1
   Segment part 15.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BSP_Delay               9AA6            ?Subroutine9 (mrfi)
+           BSP_Delay               9AA8            ?Subroutine9 (mrfi)
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 CODE
@@ -517,19 +517,19 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D0A - 9D1B (0x12 bytes), align: 1
+  Relative segment, address: 9D0C - 9D1D (0x12 bytes), align: 1
   Segment part 13.            Intra module refs:   BSP_Init
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BSP_InitLeds            9D0A 
+           BSP_InitLeds            9D0C 
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9DFA - 9E03 (0xa bytes), align: 1
+  Relative segment, address: 9DFC - 9E05 (0xa bytes), align: 1
   Segment part 12.            Intra module refs:   BSP_Init
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           BSP_InitButtons         9DFA 
+           BSP_InitButtons         9DFC 
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 CSTACK
@@ -689,24 +689,24 @@ DATA16_Z
            sSelfMeasureSem         0240 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 95A4 - 95F1 (0x4e bytes), align: 1
+  Relative segment, address: 95A6 - 95F3 (0x4e bytes), align: 1
   Segment part 32.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           main                    95A4            Segment part 17 (?cstart)
+           main                    95A6            Segment part 17 (?cstart)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D3C - 9D49 (0xe bytes), align: 1
+  Relative segment, address: 9D3E - 9D4B (0xe bytes), align: 1
   Segment part 33.            Intra module refs:   linkTo
                                                    main
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine1            9D3C 
+           ?Subroutine1            9D3E 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 8B2E - 8C45 (0x118 bytes), align: 1
+  Relative segment, address: 8B2E - 8C47 (0x11a bytes), align: 1
   Segment part 29.            Intra module refs:   main
            LOCAL                   ADDRESS         
            =====                   =======         
@@ -715,18 +715,18 @@ DATA16_Z
                CSTACK = 00000000 ( 00000014 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9DE6 - 9DEF (0xa bytes), align: 1
+  Relative segment, address: 9DE8 - 9DF1 (0xa bytes), align: 1
   Segment part 30.            Intra module refs:   linkTo
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine2            9DE6 
+           ?Subroutine2            9DE8 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9C28 - 9C3D (0x16 bytes), align: 1
+  Relative segment, address: 9C2A - 9C3F (0x16 bytes), align: 1
   Segment part 31.            Intra module refs:   linkTo
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            9C28 
+           ?Subroutine0            9C2A 
     -------------------------------------------------------------------------
 CODE
   Segment part 28. NOT NEEDED.
@@ -736,20 +736,20 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E0C - 9E13 (0x8 bytes), align: 1
+  Relative segment, address: 9E0E - 9E15 (0x8 bytes), align: 1
   Segment part 27.            Intra module refs:   ADC10_ISR::??INTVEC 10
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ADC10_ISR               9E0C 
+           ADC10_ISR               9E0E 
                interrupt function
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D9A - 9DA5 (0xc bytes), align: 1
+  Relative segment, address: 9D9C - 9DA7 (0xc bytes), align: 1
   Segment part 26.            Intra module refs:   Timer_A::??INTVEC 18
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           Timer_A                 9D9A 
+           Timer_A                 9D9C 
                interrupt function
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -1525,7 +1525,7 @@ CODE
                CSTACK = 00000000 ( 00000006 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D2C - 9D3B (0x10 bytes), align: 1
+  Relative segment, address: 9D2E - 9D3D (0x10 bytes), align: 1
   Segment part 86.            Intra module refs:   MRFI_Init
                                                    MRFI_Rssi
                                                    MRFI_Transmit
@@ -1533,15 +1533,15 @@ CODE
                                                    mrfiSpiWriteReg
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine3            9D2C 
+           ?Subroutine3            9D2E 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9A32 - 9A59 (0x28 bytes), align: 1
+  Relative segment, address: 9A34 - 9A5B (0x28 bytes), align: 1
   Segment part 33.            Intra module refs:   MRFI_Rssi
                                                    Mrfi_SyncPinRxIsr
            LOCAL                   ADDRESS         
            =====                   =======         
-           Mrfi_CalculateRssi      9A32 
+           Mrfi_CalculateRssi      9A34 
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 INTVEC
@@ -1594,50 +1594,50 @@ DATA16_I
            sPersistInfo            0206 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 931E - 93A3 (0x86 bytes), align: 1
+  Relative segment, address: 9320 - 93A5 (0x86 bytes), align: 1
   Segment part 22.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_nwkInit             931E            SMPL_Init (nwk_api)
+           nwk_nwkInit             9320            SMPL_Init (nwk_api)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 95F2 - 963D (0x4c bytes), align: 1
+  Relative segment, address: 95F4 - 963F (0x4c bytes), align: 1
   Segment part 21.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getNextConnection   95F2            nwk_link (nwk_link)
+           nwk_getNextConnection   95F4            nwk_link (nwk_link)
                                                    smpl_send_link_reply (nwk_link)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9926 - 9953 (0x2e bytes), align: 1
+  Relative segment, address: 9928 - 9955 (0x2e bytes), align: 1
   Segment part 20.            Intra module refs:   nwk_getNextConnection
            LOCAL                   ADDRESS         
            =====                   =======         
-           initializeConnection    9926 
+           initializeConnection    9928 
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E20 - 9E25 (0x6 bytes), align: 1
+  Relative segment, address: 9E22 - 9E27 (0x6 bytes), align: 1
   Segment part 19.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_freeConnection      9E20            nwk_connectionControl (nwk_ioctl)
+           nwk_freeConnection      9E22            nwk_connectionControl (nwk_ioctl)
                                                    nwk_link (nwk_link)
                                                    smpl_send_link_reply (nwk_link)
                                                    smpl_send_unlink_reply (nwk_link)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99DC - 9A07 (0x2c bytes), align: 1
+  Relative segment, address: 99DE - 9A09 (0x2c bytes), align: 1
   Segment part 18.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getConnInfo         99DC            SMPL_SendOpt (nwk_api)
+           nwk_getConnInfo         99DE            SMPL_SendOpt (nwk_api)
                                                    nwk_QfindOldest (nwk_QMgmt)
                                                    nwk_connectionControl (nwk_ioctl)
                                                    nwk_radioControl (nwk_ioctl)
@@ -1646,20 +1646,20 @@ DATA16_I
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D82 - 9D8D (0xc bytes), align: 1
+  Relative segment, address: 9D84 - 9D8F (0xc bytes), align: 1
   Segment part 14.            Intra module refs:   nwk_allocateLocalRxPort
                                                    nwk_isConnectionValid
                                                    nwk_isLinkDuplicate
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine1            9D82 
+           ?Subroutine1            9D84 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 974A - 9783 (0x3a bytes), align: 1
+  Relative segment, address: 974C - 9785 (0x3a bytes), align: 1
   Segment part 17.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_isLinkDuplicate     974A            smpl_send_link_reply (nwk_link)
+           nwk_isLinkDuplicate     974C            smpl_send_link_reply (nwk_link)
                calls direct
                CSTACK = 00000000 ( 0000000A )
     -------------------------------------------------------------------------
@@ -1671,50 +1671,50 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9A5A - 9A7F (0x26 bytes), align: 1
+  Relative segment, address: 9A5C - 9A81 (0x26 bytes), align: 1
   Segment part 15.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_checkConnInfo       9A5A            SMPL_SendOpt (nwk_api)
+           nwk_checkConnInfo       9A5C            SMPL_SendOpt (nwk_api)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 94FA - 9553 (0x5a bytes), align: 1
+  Relative segment, address: 94FC - 9555 (0x5a bytes), align: 1
   Segment part 13.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_isConnectionValid   94FA            dispatchFrame (nwk_frame)
+           nwk_isConnectionValid   94FC            dispatchFrame (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 0000000C )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 8FE4 - 90A5 (0xc2 bytes), align: 1
+  Relative segment, address: 8FE6 - 90A7 (0xc2 bytes), align: 1
   Segment part 12.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            nwk_allocateLocalRxPort
-                                   8FE4            nwk_link (nwk_link)
+                                   8FE6            nwk_link (nwk_link)
                                                    smpl_send_link_reply (nwk_link)
                calls direct
                CSTACK = 00000000 ( 0000000E )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 8F0A - 8F35 (0x2c bytes), align: 1
+  Relative segment, address: 8F0C - 8F37 (0x2c bytes), align: 1
   Segment part 6.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            nwk_getNumObjectFromMsg
-                                   8F0A            smpl_send_link_reply (nwk_link)
+                                   8F0C            smpl_send_link_reply (nwk_link)
                calls direct
                CSTACK = 00000000 ( 00000006 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 8F36 - 8F3B (0x6 bytes), align: 1
+  Relative segment, address: 8F38 - 8F3D (0x6 bytes), align: 1
   Segment part 7.             Intra module refs:   nwk_getNumObjectFromMsg
                                                    nwk_isValidReply
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            8F36 
+           ?Subroutine0            8F38 
     -------------------------------------------------------------------------
 CODE
   Segment part 8. NOT NEEDED.
@@ -1723,29 +1723,29 @@ CODE
            nwk_checkAppMsgTID      
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 8F3C - 8F7D (0x42 bytes), align: 1
+  Relative segment, address: 8F3E - 8F7F (0x42 bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_findPeer            8F3C            smpl_send_unlink_reply (nwk_link)
+           nwk_findPeer            8F3E            smpl_send_unlink_reply (nwk_link)
                calls direct
                CSTACK = 00000000 ( 0000000A )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 8F7E - 8FA7 (0x2a bytes), align: 1
+  Relative segment, address: 8F80 - 8FA9 (0x2a bytes), align: 1
   Segment part 10.            Intra module refs:   initializeConnection
                                                    nwk_getConnInfo
            LOCAL                   ADDRESS         
            =====                   =======         
-           map_lid2idx             8F7E 
+           map_lid2idx             8F80 
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 8FA8 - 8FE3 (0x3c bytes), align: 1
+  Relative segment, address: 8FAA - 8FE5 (0x3c bytes), align: 1
   Segment part 11.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_isValidReply        8FA8            nwk_processJoin (nwk_join)
+           nwk_isValidReply        8FAA            nwk_processJoin (nwk_join)
                                                    nwk_processLink (nwk_link)
                                                    nwk_processMgmt (nwk_mgmt)
                                                    nwk_processPing (nwk_ping)
@@ -1753,22 +1753,22 @@ CODE
                CSTACK = 00000000 ( 00000006 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 97F6 - 982B (0x36 bytes), align: 1
+  Relative segment, address: 97F8 - 982D (0x36 bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            nwk_putNumObjectIntoMsg
-                                   97F6            nwk_join (nwk_join)
+                                   97F8            nwk_join (nwk_join)
                                                    nwk_link (nwk_link)
                calls direct
                CSTACK = 00000000 ( 00000008 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E3C - 9E3F (0x4 bytes), align: 1
+  Relative segment, address: 9E3E - 9E41 (0x4 bytes), align: 1
   Segment part 4.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_NVObj               9E3C            SMPL_Ioctl (nwk_api)
+           nwk_NVObj               9E3E            SMPL_Ioctl (nwk_api)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 CSTACK
@@ -1816,38 +1816,38 @@ DATA16_Z
            sOutFrameQ              0292 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9BA6 - 9BC1 (0x1c bytes), align: 1
+  Relative segment, address: 9BA8 - 9BC3 (0x1c bytes), align: 1
   Segment part 8.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_QInit               9BA6            nwk_nwkInit (nwk)
+           nwk_QInit               9BA8            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 93A4 - 9421 (0x7e bytes), align: 1
+  Relative segment, address: 93A6 - 9423 (0x7e bytes), align: 1
   Segment part 7.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_QfindSlot           93A4            MRFI_RxCompleteISR (nwk_frame)
+           nwk_QfindSlot           93A6            MRFI_RxCompleteISR (nwk_frame)
                                                    nwk_buildFrame (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 0000000A )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 99B0 - 99DB (0x2c bytes), align: 1
+  Relative segment, address: 99B2 - 99DD (0x2c bytes), align: 1
   Segment part 6.             Intra module refs:   nwk_QfindSlot
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_QadjustOrder        99B0            nwk_retrieveFrame (nwk_frame)
+           nwk_QadjustOrder        99B2            nwk_retrieveFrame (nwk_frame)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 8E2A - 8F09 (0xe0 bytes), align: 1
+  Relative segment, address: 8E2C - 8F0B (0xe0 bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_QfindOldest         8E2A            nwk_retrieveFrame (nwk_frame)
+           nwk_QfindOldest         8E2C            nwk_retrieveFrame (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 00000016 )
     -------------------------------------------------------------------------
@@ -1888,11 +1888,11 @@ DATA16_Z
            sInit_done              02C6 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9860 - 9893 (0x34 bytes), align: 1
+  Relative segment, address: 9862 - 9895 (0x34 bytes), align: 1
   Segment part 13.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SMPL_Init               9860            main (main_ED)
+           SMPL_Init               9862            main (main_ED)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -1911,11 +1911,11 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9422 - 949D (0x7c bytes), align: 1
+  Relative segment, address: 9424 - 949F (0x7c bytes), align: 1
   Segment part 10.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SMPL_SendOpt            9422            linkTo (main_ED)
+           SMPL_SendOpt            9424            linkTo (main_ED)
                calls direct
                CSTACK = 00000000 ( 0000000C )
     -------------------------------------------------------------------------
@@ -1934,11 +1934,11 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E48 - 9E4B (0x4 bytes), align: 1
+  Relative segment, address: 9E4A - 9E4D (0x4 bytes), align: 1
   Segment part 7.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SMPL_Link               9E48            linkTo (main_ED)
+           SMPL_Link               9E4A            linkTo (main_ED)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -1964,11 +1964,11 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 8C46 - 8D3D (0xf8 bytes), align: 1
+  Relative segment, address: 8C48 - 8D3F (0xf8 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           SMPL_Ioctl              8C46            ?Subroutine2 (main_ED)
+           SMPL_Ioctl              8C48            ?Subroutine2 (main_ED)
                                                    Segment part 19 (nwk_link)
                                                    linkTo (main_ED)
                                                    main (main_ED)
@@ -2047,20 +2047,20 @@ DATA16_Z
            spCallback              0232 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9B6A - 9B87 (0x1e bytes), align: 1
+  Relative segment, address: 9B6C - 9B89 (0x1e bytes), align: 1
   Segment part 14.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_frameInit           9B6A            nwk_nwkInit (nwk)
+           nwk_frameInit           9B6C            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9296 - 931D (0x88 bytes), align: 1
+  Relative segment, address: 9298 - 931F (0x88 bytes), align: 1
   Segment part 13.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_buildFrame          9296            SMPL_SendOpt (nwk_api)
+           nwk_buildFrame          9298            SMPL_SendOpt (nwk_api)
                                                    nwk_rawSend (nwk_ioctl)
                                                    smpl_send_link_reply (nwk_link)
                                                    smpl_send_ping_reply (nwk_ping)
@@ -2069,38 +2069,38 @@ DATA16_Z
                CSTACK = 00000000 ( 0000000C )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9B88 - 9BA5 (0x1e bytes), align: 1
+  Relative segment, address: 9B8A - 9BA7 (0x1e bytes), align: 1
   Segment part 12.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           MRFI_RxCompleteISR      9B88            Mrfi_SyncPinRxIsr (mrfi)
+           MRFI_RxCompleteISR      9B8A            Mrfi_SyncPinRxIsr (mrfi)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9160 - 9209 (0xaa bytes), align: 1
+  Relative segment, address: 9162 - 920B (0xaa bytes), align: 1
   Segment part 11.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_retrieveFrame       9160            nwk_rawReceive (nwk_ioctl)
+           nwk_retrieveFrame       9162            nwk_rawReceive (nwk_ioctl)
                calls direct
                CSTACK = 00000000 ( 00000010 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 920A - 9295 (0x8c bytes), align: 1
+  Relative segment, address: 920C - 9297 (0x8c bytes), align: 1
   Segment part 10.            Intra module refs:   MRFI_RxCompleteISR
            LOCAL                   ADDRESS         
            =====                   =======         
-           dispatchFrame           920A 
+           dispatchFrame           920C 
                calls direct and indirect
                CSTACK = 00000000 ( 00000008 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9982 - 99AF (0x2e bytes), align: 1
+  Relative segment, address: 9984 - 99B1 (0x2e bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_sendFrame           9982            ?Subroutine2 (nwk_link)
+           nwk_sendFrame           9984            ?Subroutine2 (nwk_link)
                                                    SMPL_SendOpt (nwk_api)
                                                    nwk_rawSend (nwk_ioctl)
                                                    smpl_send_ping_reply (nwk_ping)
@@ -2109,11 +2109,11 @@ DATA16_Z
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E26 - 9E2B (0x6 bytes), align: 1
+  Relative segment, address: 9E28 - 9E2D (0x6 bytes), align: 1
   Segment part 8.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getMyRxType         9E26            nwk_link (nwk_link)
+           nwk_getMyRxType         9E28            nwk_link (nwk_link)
                                                    smpl_send_link_reply (nwk_link)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -2140,19 +2140,19 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E50 - 9E51 (0x2 bytes), align: 1
+  Relative segment, address: 9E52 - 9E53 (0x2 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_freqInit            9E50            nwk_nwkInit (nwk)
+           nwk_freqInit            9E52            nwk_nwkInit (nwk)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E44 - 9E47 (0x4 bytes), align: 1
+  Relative segment, address: 9E46 - 9E49 (0x4 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processFreq         9E44            func (nwk_frame)
+           nwk_processFreq         9E46            func (nwk_frame)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 CSTACK
@@ -2219,28 +2219,28 @@ DATA16_C
            sVersionInfo            8057 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9B4C - 9B69 (0x1e bytes), align: 1
+  Relative segment, address: 9B4E - 9B6B (0x1e bytes), align: 1
   Segment part 14.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_globalsInit         9B4C            nwk_nwkInit (nwk)
+           nwk_globalsInit         9B4E            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D74 - 9D81 (0xe bytes), align: 1
+  Relative segment, address: 9D76 - 9D83 (0xe bytes), align: 1
   Segment part 15.            Intra module refs:   nwk_globalsInit
                                                    nwk_setMyAddress
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            9D74 
+           ?Subroutine0            9D76 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9CC2 - 9CD3 (0x12 bytes), align: 1
+  Relative segment, address: 9CC4 - 9CD5 (0x12 bytes), align: 1
   Segment part 13.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getMyAddress        9CC2            SMPL_Init (nwk_api)
+           nwk_getMyAddress        9CC4            SMPL_Init (nwk_api)
                                                    main (main_ED)
                                                    nwk_deviceAddress (nwk_ioctl)
                                                    nwk_frameInit (nwk_frame)
@@ -2249,40 +2249,40 @@ DATA16_C
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E14 - 9E19 (0x6 bytes), align: 1
+  Relative segment, address: 9E16 - 9E1B (0x6 bytes), align: 1
   Segment part 12.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getFWVersion        9E14            SMPL_Ioctl (nwk_api)
+           nwk_getFWVersion        9E16            SMPL_Ioctl (nwk_api)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E2C - 9E2F (0x4 bytes), align: 1
+  Relative segment, address: 9E2E - 9E31 (0x4 bytes), align: 1
   Segment part 11.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            nwk_getProtocolVersion
-                                   9E2C            SMPL_Ioctl (nwk_api)
+                                   9E2E            SMPL_Ioctl (nwk_api)
                                                    nwk_join (nwk_join)
                                                    nwk_link (nwk_link)
                                                    smpl_send_link_reply (nwk_link)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9C3E - 9C53 (0x16 bytes), align: 1
+  Relative segment, address: 9C40 - 9C55 (0x16 bytes), align: 1
   Segment part 10.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_setMyAddress        9C3E            nwk_deviceAddress (nwk_ioctl)
+           nwk_setMyAddress        9C40            nwk_deviceAddress (nwk_ioctl)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9DB2 - 9DBD (0xc bytes), align: 1
+  Relative segment, address: 9DB4 - 9DBF (0xc bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_setAPAddress        9DB2            nwk_join (nwk_join)
+           nwk_setAPAddress        9DB4            nwk_join (nwk_join)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -2294,11 +2294,11 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E1A - 9E1F (0x6 bytes), align: 1
+  Relative segment, address: 9E1C - 9E21 (0x6 bytes), align: 1
   Segment part 7.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getBCastAddress     9E1A            nwk_join (nwk_join)
+           nwk_getBCastAddress     9E1C            nwk_join (nwk_join)
                                                    nwk_link (nwk_link)
                                                    nwk_nwkInit (nwk)
                CSTACK = 00000000 ( 00000002 )
@@ -2371,11 +2371,11 @@ CODE
                CSTACK = 00000000 ( 00000006 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9AEA - 9B0B (0x22 bytes), align: 1
+  Relative segment, address: 9AEC - 9B0D (0x22 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_connectionControl   9AEA            SMPL_Ioctl (nwk_api)
+           nwk_connectionControl   9AEC            SMPL_Ioctl (nwk_api)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -2428,45 +2428,45 @@ DATA16_Z
            sTid                    02D3 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9A80 - 9AA5 (0x26 bytes), align: 1
+  Relative segment, address: 9A82 - 9AA7 (0x26 bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_joinInit            9A80            nwk_nwkInit (nwk)
+           nwk_joinInit            9A82            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9C7A - 9C8B (0x12 bytes), align: 1
+  Relative segment, address: 9C7C - 9C8D (0x12 bytes), align: 1
   Segment part 8.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_setJoinToken        9C7A            SMPL_Ioctl (nwk_api)
+           nwk_setJoinToken        9C7C            SMPL_Ioctl (nwk_api)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9C8C - 9C9D (0x12 bytes), align: 1
+  Relative segment, address: 9C8E - 9C9F (0x12 bytes), align: 1
   Segment part 7.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getJoinToken        9C8C            SMPL_Ioctl (nwk_api)
+           nwk_getJoinToken        9C8E            SMPL_Ioctl (nwk_api)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 8D3E - 8E29 (0xec bytes), align: 1
+  Relative segment, address: 8D40 - 8E2B (0xec bytes), align: 1
   Segment part 6.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_join                8D3E            SMPL_Init (nwk_api)
+           nwk_join                8D40            SMPL_Init (nwk_api)
                calls direct
                CSTACK = 00000000 ( 00000022 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9B2C - 9B4B (0x20 bytes), align: 1
+  Relative segment, address: 9B2E - 9B4D (0x20 bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processJoin         9B2C            func (nwk_frame)
+           nwk_processJoin         9B2E            func (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -2535,29 +2535,29 @@ DATA16_Z
            sTid                    02D8 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 98C6 - 98F5 (0x30 bytes), align: 1
+  Relative segment, address: 98C8 - 98F7 (0x30 bytes), align: 1
   Segment part 24.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_linkInit            98C6            nwk_nwkInit (nwk)
+           nwk_linkInit            98C8            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9CD4 - 9CE5 (0x12 bytes), align: 1
+  Relative segment, address: 9CD6 - 9CE7 (0x12 bytes), align: 1
   Segment part 23.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_setLinkToken        9CD4            SMPL_Ioctl (nwk_api)
+           nwk_setLinkToken        9CD6            SMPL_Ioctl (nwk_api)
                                                    nwk_join (nwk_join)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9CE6 - 9CF7 (0x12 bytes), align: 1
+  Relative segment, address: 9CE8 - 9CF9 (0x12 bytes), align: 1
   Segment part 22.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_getLinkToken        9CE6            SMPL_Ioctl (nwk_api)
+           nwk_getLinkToken        9CE8            SMPL_Ioctl (nwk_api)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 CODE
@@ -2568,30 +2568,30 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D8E - 9D8F (0x2 bytes), align: 1
+  Relative segment, address: 9D90 - 9D91 (0x2 bytes), align: 1
   Segment part 18.            Intra module refs:   nwk_link
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine5            9D8E 
+           ?Subroutine5            9D90 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D90 - 9D99 (0xa bytes), align: 1
+  Relative segment, address: 9D92 - 9D9B (0xa bytes), align: 1
   Segment part 19.            Intra module refs:   ?Subroutine5
                                                    nwk_link
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9DD2 - 9DDB (0xa bytes), align: 1
+  Relative segment, address: 9DD4 - 9DDD (0xa bytes), align: 1
   Segment part 20.            Intra module refs:   nwk_link
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine1            9DD2 
+           ?Subroutine1            9DD4 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9DF0 - 9DF9 (0xa bytes), align: 1
+  Relative segment, address: 9DF2 - 9DFB (0xa bytes), align: 1
   Segment part 21.            Intra module refs:   nwk_link
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine0            9DF0 
+           ?Subroutine0            9DF2 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: 88E2 - 8A13 (0x132 bytes), align: 1
@@ -2603,22 +2603,22 @@ CODE
                CSTACK = 00000000 ( 00000022 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 949E - 94F9 (0x5c bytes), align: 1
+  Relative segment, address: 94A0 - 94FB (0x5c bytes), align: 1
   Segment part 14.            Intra module refs:   nwk_processLink
            LOCAL                   ADDRESS         
            =====                   =======         
            smpl_send_unlink_reply
-                                   949E 
+                                   94A0 
                calls direct
                CSTACK = 00000000 ( 0000000A )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D4A - 9D57 (0xe bytes), align: 1
+  Relative segment, address: 9D4C - 9D59 (0xe bytes), align: 1
   Segment part 15.            Intra module refs:   ?Subroutine2
                                                    smpl_send_unlink_reply
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine6            9D4A 
+           ?Subroutine6            9D4C 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
   Relative segment, address: 8A14 - 8B2D (0x11a bytes), align: 1
@@ -2630,32 +2630,32 @@ CODE
                CSTACK = 00000000 ( 00000012 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D66 - 9D73 (0xe bytes), align: 1
+  Relative segment, address: 9D68 - 9D75 (0xe bytes), align: 1
   Segment part 11.            Intra module refs:   smpl_send_link_reply
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine4            9D66 
+           ?Subroutine4            9D68 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9C9E - 9CAF (0x12 bytes), align: 1
+  Relative segment, address: 9CA0 - 9CB1 (0x12 bytes), align: 1
   Segment part 12.            Intra module refs:   smpl_send_link_reply
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine3            9C9E 
+           ?Subroutine3            9CA0 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9DA6 - 9DB1 (0xc bytes), align: 1
+  Relative segment, address: 9DA8 - 9DB3 (0xc bytes), align: 1
   Segment part 13.            Intra module refs:   smpl_send_link_reply
            LOCAL                   ADDRESS         
            =====                   =======         
-           ?Subroutine2            9DA6 
+           ?Subroutine2            9DA8 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 963E - 9687 (0x4a bytes), align: 1
+  Relative segment, address: 9640 - 9689 (0x4a bytes), align: 1
   Segment part 9.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processLink         963E            func (nwk_frame)
+           nwk_processLink         9640            func (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -2709,20 +2709,20 @@ DATA16_Z
            sTid                    02D9 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9DDC - 9DE5 (0xa bytes), align: 1
+  Relative segment, address: 9DDE - 9DE7 (0xa bytes), align: 1
   Segment part 6.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_mgmtInit            9DDC            nwk_nwkInit (nwk)
+           nwk_mgmtInit            9DDE            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9784 - 97BD (0x3a bytes), align: 1
+  Relative segment, address: 9786 - 97BF (0x3a bytes), align: 1
   Segment part 5.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processMgmt         9784            func (nwk_frame)
+           nwk_processMgmt         9786            func (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -2764,11 +2764,11 @@ DATA16_Z
            sTid                    02DA 
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9DBE - 9DC7 (0xa bytes), align: 1
+  Relative segment, address: 9DC0 - 9DC9 (0xa bytes), align: 1
   Segment part 6.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_pingInit            9DBE            nwk_nwkInit (nwk)
+           nwk_pingInit            9DC0            nwk_nwkInit (nwk)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -2780,20 +2780,20 @@ CODE
                calls direct
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9688 - 96CD (0x46 bytes), align: 1
+  Relative segment, address: 968A - 96CF (0x46 bytes), align: 1
   Segment part 4.             Intra module refs:   nwk_processPing
            LOCAL                   ADDRESS         
            =====                   =======         
-           smpl_send_ping_reply    9688 
+           smpl_send_ping_reply    968A 
                calls direct
                CSTACK = 00000000 ( 00000006 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9954 - 9981 (0x2e bytes), align: 1
+  Relative segment, address: 9956 - 9983 (0x2e bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processPing         9954            func (nwk_frame)
+           nwk_processPing         9956            func (nwk_frame)
                calls direct
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -2820,19 +2820,19 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E4C - 9E4D (0x2 bytes), align: 1
+  Relative segment, address: 9E4E - 9E4F (0x2 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_securityInit        9E4C            nwk_nwkInit (nwk)
+           nwk_securityInit        9E4E            nwk_nwkInit (nwk)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E38 - 9E3B (0x4 bytes), align: 1
+  Relative segment, address: 9E3A - 9E3D (0x4 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           nwk_processSecurity     9E38            func (nwk_frame)
+           nwk_processSecurity     9E3A            func (nwk_frame)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 CSTACK
@@ -2986,11 +2986,11 @@ CODE
   Segment part 30. NOT NEEDED.
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9554 - 95A3 (0x50 bytes), align: 1
+  Relative segment, address: 9556 - 95A5 (0x50 bytes), align: 1
   Segment part 18.            Intra module refs:   USCI0RX_ISR::??INTVEC 14
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           USCI0RX_ISR             9554 
+           USCI0RX_ISR             9556 
                interrupt function
                CSTACK = 00000000 ( 00000006 )
     -------------------------------------------------------------------------
@@ -3037,23 +3037,23 @@ DATA16_C
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 90A6 - 915F (0xba bytes), align: 1
+  Relative segment, address: 90A8 - 9161 (0xba bytes), align: 1
   Segment part 0. ROOT.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
            TI_getRandomIntegerFromVLO
-                                   90CE 
+                                   90D0 
            TI_getRandomIntegerFromADC
-                                   90A6 
+                                   90A8 
            LOCAL                   ADDRESS         
            =====                   =======         
-           adcloop                 90B6 
-           sampling                90BC 
-           mainLoop                90F4 
-           capture                 90FA 
-           zero                    910C 
-           one                     911E 
-           done                    9122 
+           adcloop                 90B8 
+           sampling                90BE 
+           mainLoop                90F6 
+           capture                 90FC 
+           zero                    910E 
+           one                     9120 
+           done                    9124 
 
     *************************************************************************
 
@@ -3063,11 +3063,11 @@ DATA16_C
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E34, align: 1
+  Relative segment, address: 9E36, align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           _exit                   9E34            exit (?clibexit)
+           _exit                   9E36            exit (?clibexit)
     -------------------------------------------------------------------------
 CODE
   Segment part 1. NOT NEEDED.
@@ -3094,7 +3094,7 @@ CODE
   Segment part 5. NOT NEEDED.
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E34 - 9E37 (0x4 bytes), align: 1
+  Relative segment, address: 9E36 - 9E39 (0x4 bytes), align: 1
   Segment part 6.             Intra module refs:   _exit
 
     -------------------------------------------------------------------------
@@ -3103,11 +3103,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E30 - 9E33 (0x4 bytes), align: 1
+  Relative segment, address: 9E32 - 9E35 (0x4 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           exit                    9E30            Segment part 17 (?cstart)
+           exit                    9E32            Segment part 17 (?cstart)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -3146,13 +3146,13 @@ CSTACK
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E4E - 9E4F (0x2 bytes), align: 1
+  Relative segment, address: 9E50 - 9E51 (0x2 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __exit                  9E4E            Segment part 6 (?_exit)
+           __exit                  9E50            Segment part 6 (?_exit)
                                                    _exit (?_exit)
-           ?C_EXIT                 9E4E 
+           ?C_EXIT                 9E50 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?cstart
@@ -3308,25 +3308,25 @@ RESET
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9CB0 - 9CC1 (0x12 bytes), align: 1
+  Relative segment, address: 9CB2 - 9CC3 (0x12 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Epilogue3              9CBA            MRFI_ReplyDelay (mrfi)
-           ?Epilogue4              9CB8            MRFI_Transmit (mrfi)
+           ?Epilogue3              9CBC            MRFI_ReplyDelay (mrfi)
+           ?Epilogue4              9CBA            MRFI_Transmit (mrfi)
                                                    nwk_QfindSlot (nwk_QMgmt)
                                                    nwk_findPeer (nwk)
                                                    nwk_isLinkDuplicate (nwk)
                                                    nwk_join (nwk_join)
                                                    smpl_send_link_reply (nwk_link)
-           ?Epilogue5              9CB6            SMPL_SendOpt (nwk_api)
+           ?Epilogue5              9CB8            SMPL_SendOpt (nwk_api)
                                                    nwk_allocateLocalRxPort (nwk)
                                                    nwk_buildFrame (nwk_frame)
                                                    nwk_isConnectionValid (nwk)
                                                    nwk_link (nwk_link)
-           ?Epilogue6              9CB4 
-           ?Epilogue7              9CB2            nwk_retrieveFrame (nwk_frame)
-           ?Epilogue8              9CB0            nwk_QfindOldest (nwk_QMgmt)
+           ?Epilogue6              9CB6 
+           ?Epilogue7              9CB4            nwk_retrieveFrame (nwk_frame)
+           ?Epilogue8              9CB2            nwk_QfindOldest (nwk_QMgmt)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?Cast32f32i
@@ -3379,13 +3379,13 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9894 - 98C5 (0x32 bytes), align: 1
+  Relative segment, address: 9896 - 98C7 (0x32 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Mul8                   9894            MRFI_RandomByte (mrfi)
-           ?Mul16                  9898            BSP_Delay (bsp)
-           ?Mul16to32u             9898 
+           ?Mul8                   9896            MRFI_RandomByte (mrfi)
+           ?Mul16                  989A            BSP_Delay (bsp)
+           ?Mul16to32u             989A 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?Mul32
@@ -3393,11 +3393,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 98F6 - 9925 (0x30 bytes), align: 1
+  Relative segment, address: 98F8 - 9927 (0x30 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?Mul32                  98F6            linkTo (main_ED)
+           ?Mul32                  98F8            linkTo (main_ED)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?DivMod816u
@@ -3405,12 +3405,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9BC2 - 9BDD (0x1c bytes), align: 1
+  Relative segment, address: 9BC4 - 9BDF (0x1c bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?DivMod8u               9BC2 
-           ?DivMod16u              9BC6            Segment part 0 (?DivMod816s)
+           ?DivMod8u               9BC4 
+           ?DivMod16u              9BC8            Segment part 0 (?DivMod816s)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?DivMod816s
@@ -3418,12 +3418,12 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 982C - 985F (0x34 bytes), align: 1
+  Relative segment, address: 982E - 9861 (0x34 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?DivMod8s               982C 
-           ?DivMod16s              9830            Mrfi_CalculateRssi (mrfi)
+           ?DivMod8s               982E 
+           ?DivMod16s              9832            Mrfi_CalculateRssi (mrfi)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?DivMod32u
@@ -3431,11 +3431,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 97BE - 97F5 (0x38 bytes), align: 1
+  Relative segment, address: 97C0 - 97F7 (0x38 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?DivMod32u              97BE            ?DivMod32s (?DivMod32s)
+           ?DivMod32u              97C0            ?DivMod32s (?DivMod32s)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?DivMod32s
@@ -3443,11 +3443,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 96CE - 970D (0x40 bytes), align: 1
+  Relative segment, address: 96D0 - 970F (0x40 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?DivMod32s              96CE            linkTo (main_ED)
+           ?DivMod32s              96D0            linkTo (main_ED)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?ShiftLeft16_n
@@ -3523,18 +3523,18 @@ CODE
            ?ShiftRight16u_5        
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D58 - 9D5B (0x4 bytes), align: 1
+  Relative segment, address: 9D5A - 9D5D (0x4 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?ShiftRight16u_4        9D58            Mrfi_DelayUsec (mrfi)
+           ?ShiftRight16u_4        9D5A            Mrfi_DelayUsec (mrfi)
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D5C - 9D65 (0xa bytes), align: 1
+  Relative segment, address: 9D5E - 9D67 (0xa bytes), align: 1
   Segment part 4.             Intra module refs:   ?ShiftRight16u_4
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?ShiftRight16u_3        9D5C 
+           ?ShiftRight16u_3        9D5E 
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?memcmp
@@ -3542,11 +3542,11 @@ CODE
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9AC8 - 9AE9 (0x22 bytes), align: 1
+  Relative segment, address: 9ACA - 9AEB (0x22 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memcmp                  9AC8            ?Subroutine1 (nwk)
+           memcmp                  9ACA            ?Subroutine1 (nwk)
                                                    dispatchFrame (nwk_frame)
                                                    nwk_QfindOldest (nwk_QMgmt)
                                                    nwk_findPeer (nwk)
@@ -3563,11 +3563,11 @@ CSTACK
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9BDE - 9BF7 (0x1a bytes), align: 1
+  Relative segment, address: 9BE0 - 9BF9 (0x1a bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memcpy                  9BDE            ?Subroutine0 (nwk_globals)
+           memcpy                  9BE0            ?Subroutine0 (nwk_globals)
                                                    ?Subroutine6 (nwk_link)
                                                    SMPL_Ioctl (nwk_api)
                                                    SMPL_SendOpt (nwk_api)
@@ -3594,11 +3594,11 @@ CSTACK
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 970E - 9749 (0x3c bytes), align: 1
+  Relative segment, address: 9710 - 974B (0x3c bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memmove                 970E            nwk_getNumObjectFromMsg (nwk)
+           memmove                 9710            nwk_getNumObjectFromMsg (nwk)
                                                    nwk_putNumObjectIntoMsg (nwk)
                CSTACK = 00000000 ( 00000004 )
     -------------------------------------------------------------------------
@@ -3611,11 +3611,11 @@ CSTACK
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9D1C - 9D2B (0x10 bytes), align: 1
+  Relative segment, address: 9D1E - 9D2D (0x10 bytes), align: 1
   Segment part 0.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           ?CopyMemoryBytes        9D1C            MRFI_Receive (mrfi)
+           ?CopyMemoryBytes        9D1E            MRFI_Receive (mrfi)
 
     -------------------------------------------------------------------------
   LIBRARY MODULE, NAME : ?memset
@@ -3623,11 +3623,11 @@ CSTACK
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9BF8 - 9C0F (0x18 bytes), align: 1
+  Relative segment, address: 9BFA - 9C11 (0x18 bytes), align: 1
   Segment part 2.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           memset                  9BF8            MRFI_Init (mrfi)
+           memset                  9BFA            MRFI_Init (mrfi)
                                                    Segment part 50 (mrfi)
                                                    nwk_QInit (nwk_QMgmt)
                                                    nwk_allocateLocalRxPort (nwk)
@@ -3645,19 +3645,19 @@ CSTACK
   SEGMENTS IN THE MODULE
   ======================
 <CODE> 1 (was CODE)
-  Relative segment, address: 9CF8 - 9D09 (0x12 bytes), align: 1
+  Relative segment, address: 9CFA - 9D0B (0x12 bytes), align: 1
   Segment part 4.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __data16_memzero        9CF8            ?cstart_init_zero (?cstart)
+           __data16_memzero        9CFA            ?cstart_init_zero (?cstart)
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
 <CODE> 1 (was CODE)
-  Relative segment, address: 9E40 - 9E43 (0x4 bytes), align: 1
+  Relative segment, address: 9E42 - 9E45 (0x4 bytes), align: 1
   Segment part 3.
            ENTRY                   ADDRESS         REF BY
            =====                   =======         ======
-           __data16_memcpy         9E40            ?cstart_init_copy (?cstart)
+           __data16_memcpy         9E42            ?cstart_init_copy (?cstart)
                calls direct
                CSTACK = 00000000 ( 00000002 )
     -------------------------------------------------------------------------
@@ -3781,7 +3781,7 @@ VLO_Rand_Library      186
 WDTplus_init            8
 bsp                   128      1      3
   + shared                            4
-main_ED               424      4     17      2
+main_ED               426      4     17      2
   + common             20
 mrfi                1 816     37     11     75
   + shared              8             2
@@ -3803,7 +3803,7 @@ virtual_com_cmds       80      2      7
 N/A (command line)           200
 N/A (alignment)
 ----------          -----    ---     --    ---
-Total:              7 628    421     58    136
+Total:              7 630    421     58    136
   + common             20
 
 
@@ -4899,7 +4899,7 @@ DATA16_AN                              10FC - 10FF               4   rel    0
 DATA16_C                               8000 - 805B              5C   rel    1
 DATA16_ID                              805C - 8087              2C   rel    1
 CSTART                                 8088 - 80B7              30   rel    1
-<CODE> 1                               80B8 - 9E51            1D9A   rel    1
+<CODE> 1                               80B8 - 9E53            1D9C   rel    1
 INTVEC                                 FFE0 - FFF3              14   com    1
 RESET                                  FFFE - FFFF               2   rel    1
 
@@ -4909,7 +4909,7 @@ RESET                                  FFFE - FFFF               2   rel    1
                 *                                      *
                 ****************************************
 
- 7 648 bytes of CODE  memory
+ 7 650 bytes of CODE  memory
    421 bytes of DATA  memory (+ 58 absolute )
    136 bytes of CONST memory
 

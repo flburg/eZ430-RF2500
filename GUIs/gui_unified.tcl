@@ -25,7 +25,7 @@ set stopbits   1
 
 set state stop
 set timestamp 0
-set timeout_secs 5
+set timeout_secs 300
 
 set xspan 100.0
 set xmin 0.0

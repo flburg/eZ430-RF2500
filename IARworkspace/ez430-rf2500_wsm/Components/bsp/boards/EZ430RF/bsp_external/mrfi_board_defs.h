@@ -117,7 +117,7 @@
 #define MRFI_SPI_CONFIG_SO_PIN_AS_INPUT()     /* nothing to required */
 #define MRFI_SPI_SO_IS_HIGH()                 ( P3IN & BV(__mrfi_SPI_SO_GPIO_BIT__) )
 
-/* SPI Port Configuration */
+/* SPI Port Configuration - CLK, SI, SO are SPI, STE is GPIO */
 #define MRFI_SPI_CONFIG_PORT()                st( P3SEL |= BV(__mrfi_SPI_SCLK_GPIO_BIT__) |  \
                                                            BV(__mrfi_SPI_SI_GPIO_BIT__)   |  \
                                                            BV(__mrfi_SPI_SO_GPIO_BIT__); )
