@@ -78,6 +78,7 @@
 /* -DRX_POLLS */
 
 /* Acknowledge a packet when requested in SMPL_SendOp */
--DAPP_AUTO_ACK
+//-DAPP_AUTO_ACK
 
--DEXTENDED_API
+/* This is needed for APP_AUTO_ACK to be effective */
+//-DEXTENDED_API

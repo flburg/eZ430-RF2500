@@ -222,8 +222,8 @@ proc read_port {comfd logfd} {
 	return
     }
 
-    set args [binary scan $retval ccccsss sor node id rssi temp volt pres]
-    if {$args != 7} {
+    set args [binary scan $retval ccccssssuc sor node id rssi temp volt pres seqno missedacks]
+    if {$args != 9} {
         puts "WARNING: Incorrect number of arguments: $args"
         return
     }
@@ -251,6 +251,8 @@ proc read_port {comfd logfd} {
     set data(voltage) [format "%.3f" $volt]
     set data(rssi) $rssi
     set data(pressure) $pres
+    set data(seqno) $seqno
+    set data(missedacks) $missedacks
 
     plot_point $node $id
 }
@@ -268,7 +270,7 @@ proc plot_point {node id} {
     global logfd logmod
 
     puts "$timestamp $node $data(id) $data(temperature) \
-      $data(voltage) $data(rssi) $data(pressure)"
+      $data(voltage) $data(rssi) $data(pressure) $data(seqno) $data(missedacks)"
 
     # Test for a sample from the access point.
     if {$data(id) == 0} {
@@ -310,7 +312,7 @@ proc plot_point {node id} {
 
     if {![expr fmod($timestamp,$logmod)]} {
         puts $logfd "$timestamp $node $data(id) $data(temperature) \
-          $data(voltage) $data(rssi) $data(pressure)"
+          $data(voltage) $data(rssi) $data(pressure) $data(seqno) $data(missedacks)"
         flush $logfd
     }
 
@@ -330,7 +332,7 @@ package require registry
 proc get_serial_port {} {
     set serial_base "HKEY_LOCAL_MACHINE\\HARDWARE\\DEVICEMAP\\SERIALCOMM"
     set values [registry values $serial_base]
- 
+
     set target [lsearch -glob $values "*USBSER*"]
 
     set result ""
@@ -357,7 +359,13 @@ proc open_com {} {
     global databits
     global stopbits
 
-    set comfd [open [get_serial_port]: r+]
+    set port [get_serial_port]
+    if {[string length $port] > 4} {
+        set comfd [open "\\\\.\\$port" r+]
+    } else {
+        set comfd [open $port r+]
+    }
+
     fconfigure $comfd -mode $baudrate,$parity,$databits,$stopbits \
       -blocking 1 -encoding binary -translation binary -buffering none \
       -buffersize 1024

@@ -1946,21 +1946,6 @@
       </file>
     </group>
     <group>
-      <name>grace</name>
-      <file>
-        <name>$PROJ_DIR$\Components\grace\ADC10_init.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Components\grace\CSL_init.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Components\grace\GPIO_init.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$\Components\grace\WDTplus_init.c</name>
-      </file>
-    </group>
-    <group>
       <name>mrfi</name>
       <file>
         <name>$PROJ_DIR$\Components\mrfi\mrfi.c</name>

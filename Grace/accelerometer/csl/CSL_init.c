@@ -65,10 +65,26 @@ void CSL_init(void)
  */
 
 /* Interrupt Function Prototypes */
+extern void Accel_ISR(void);
 extern void accel_ISR_Tx(void);
 extern void accel_ISR_Rx(void);
 extern void Timer_A(void);
 
+
+/*
+ *  ======== PORT2 Interrupt Service Routine ========
+ */
+#pragma vector=PORT2_VECTOR
+__interrupt void PORT2_ISR_HOOK(void)
+{
+
+
+	/* Port 2 Interrupt Handler */
+	Accel_ISR();
+
+	/* Enter active mode on exit */
+	__bic_SR_register_on_exit(LPM4_bits);
+}
 
 
 

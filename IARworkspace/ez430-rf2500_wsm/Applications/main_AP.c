@@ -226,10 +226,12 @@ void main (void)
   /* Initialize board */
   BSP_Init();
 
-  /* Initialize TimerA and oscillator */
+  /* Set low frequency clock to VLO - drives ACLK (12KHz) */
   BCSCTL3 |= LFXT1S_2;                      // LFXT1 = VLO
+
+  /* Complete initialization of TimerA */
   TACCTL0 = CCIE;                           // TACCR0 interrupt enabled
-  TACCR0 = 12000;                           // ~1 second
+  TACCR0 = 12000;                           // ~ 1 sec
   TACTL = TASSEL_1 + MC_1;                  // ACLK, upmode
 
   /* Initialize serial port */
@@ -482,7 +484,6 @@ static void processMessage(linkID_t lid, uint8_t *msg, uint8_t len)
   /* do something useful */
   if (len)
   {
-    BSP_TOGGLE_LED1();
   }
   return;
 }

@@ -28,6 +28,9 @@ void GPIO_init(void)
     /* Port 2 Interrupt Flag Register */
     P2IFG = 0;
 
+    /* Port 2 Interrupt Enable Register */
+    P2IE = BIT4;
+
     /* Port 3 Port Select Register */
     P3SEL = BIT1 + BIT2 + BIT3;
 

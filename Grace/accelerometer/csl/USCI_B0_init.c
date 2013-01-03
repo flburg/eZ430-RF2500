@@ -20,27 +20,27 @@ void USCI_B0_init(void)
      * Control Register 0
      * 
      * UCCKPH -- Data is captured on the first UCLK edge and changed on the following edge
-     * UCCKPL -- Inactive state is high
+     * ~UCCKPL -- Inactive state is low
      * UCMSB -- MSB first
      * ~UC7BIT -- 8-bit
      * UCMST -- Master mode
-     * UCMODE_2 -- 4-Pin SPI with UCxSTE active low: slave enabled when UCxSTE = 0
+     * UCMODE_0 -- 3-Pin SPI
      * UCSYNC -- Synchronous Mode
      * 
-     * Note: ~UC7BIT indicates that UC7BIT has value zero
+     * Note: ~<BIT> indicates that <BIT> has value zero
      */
-    UCB0CTL0 = UCCKPH + UCCKPL + UCMSB + UCMST + UCMODE_2 + UCSYNC;
+    UCB0CTL0 = UCCKPH + UCMSB + UCMST + UCMODE_0 + UCSYNC;
     
     /* 
      * Control Register 1
      * 
-     * UCSSEL_2 -- SMCLK
+     * UCSSEL_1 -- ACLK
      * UCSWRST -- Enabled. USCI logic held in reset state
      */
-    UCB0CTL1 = UCSSEL_2 + UCSWRST;
+    UCB0CTL1 = UCSSEL_1 + UCSWRST;
     
     /* Bit Rate Control Register 0 */
-    UCB0BR0 = 16;
+    UCB0BR0 = 2;
     
     /* Enable USCI */
     UCB0CTL1 &= ~UCSWRST;

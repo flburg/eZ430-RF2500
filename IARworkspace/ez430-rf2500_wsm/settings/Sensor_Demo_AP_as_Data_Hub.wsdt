@@ -3,7 +3,7 @@
 <Workspace>
   <ConfigDictionary>
     
-  <CurrentConfigs><Project>Sensor_Demo_AP_as_Data_Hub/CC2500 Sensor Demo-End Device</Project></CurrentConfigs></ConfigDictionary>
+  <CurrentConfigs><Project>Sensor_Demo_AP_as_Data_Hub/CC2500 Sensor Demo-Access Point</Project></CurrentConfigs></ConfigDictionary>
   <Desktop>
     <Static>
       <Workspace>
@@ -12,7 +12,7 @@
           
           
           
-        <Column0>467</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>334</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Find-in-Files>
         
@@ -45,20 +45,20 @@
           </Tab>
         <Tab><Identity>TabID-31094-12706</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-10251-10194</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd3></Windows>
+      <SelectedTab>1</SelectedTab></Wnd3></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_AP.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_ED.c</Filename><XPos>0</XPos><YPos>273</YPos><SelStart>12060</SelStart><SelEnd>12060</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Configuration\smpl_config_ED.dat</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>1338</SelStart><SelEnd>1338</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Configuration\smpl_config_AP.dat</Filename><XPos>0</XPos><YPos>54</YPos><SelStart>4413</SelStart><SelEnd>4500</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\SimpliciTI\nwk\nwk_api.h</Filename><XPos>0</XPos><YPos>26</YPos><SelStart>3203</SelStart><SelEnd>3203</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\simpliciti\nwk\nwk_api.c</Filename><XPos>0</XPos><YPos>309</YPos><SelStart>11941</SelStart><SelEnd>11954</SelEnd></Tab><ActiveTab>5</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\simpliciti\nwk_applications\nwk_ioctl.c</Filename><XPos>0</XPos><YPos>218</YPos><SelStart>7780</SelStart><SelEnd>7780</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\simpliciti\nwk_applications\nwk_link.c</Filename><XPos>0</XPos><YPos>814</YPos><SelStart>26300</SelStart><SelEnd>26300</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\simpliciti\nwk\nwk_frame.c</Filename><XPos>0</XPos><YPos>624</YPos><SelStart>21520</SelStart><SelEnd>21533</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\mrfi\radios\family1\mrfi_radio.c</Filename><XPos>0</XPos><YPos>540</YPos><SelStart>22057</SelStart><SelEnd>22057</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Configuration\smpl_config_ED.dat</Filename><XPos>0</XPos><YPos>48</YPos><SelStart>3937</SelStart><SelEnd>3937</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_ED.c</Filename><XPos>0</XPos><YPos>314</YPos><SelStart>6432</SelStart><SelEnd>6432</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_AP.c</Filename><XPos>0</XPos><YPos>209</YPos><SelStart>10069</SelStart><SelEnd>10069</SelEnd></Tab><ActiveTab>2</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board.c</Filename><XPos>0</XPos><YPos>40</YPos><SelStart>3265</SelStart><SelEnd>3265</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\virtual_com_cmds.c</Filename><XPos>0</XPos><YPos>62</YPos><SelStart>4247</SelStart><SelEnd>4247</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\virtual_com_cmds.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>2604</SelStart><SelEnd>2604</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00fb10a8><key>iaridepm.enu1</key></Toolbar-00fb10a8></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>839</Bottom><Right>541</Right><x>-2</x><y>-2</y><xscreen>301</xscreen><yscreen>311</yscreen><sizeHorzCX>156771</sizeHorzCX><sizeHorzCY>278175</sizeHorzCY><sizeVertCX>282813</sizeVertCX><sizeVertCY>752236</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>234</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>236</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>211091</sizeHorzCY><sizeVertCX>156771</sizeVertCX><sizeVertCY>278175</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00e010a8><key>iaridepm.enu1</key></Toolbar-00e010a8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2><Row3><Sizes/></Row3></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>848</Bottom><Right>408</Right><x>-2</x><y>-2</y><xscreen>612</xscreen><yscreen>707</yscreen><sizeHorzCX>318750</sizeHorzCX><sizeHorzCY>632379</sizeHorzCY><sizeVertCX>213542</sizeVertCX><sizeVertCY>760286</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>225</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>227</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>203041</sizeHorzCY><sizeVertCX>318750</sizeVertCX><sizeVertCY>632379</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

@@ -14,30 +14,6 @@
 void System_init(void)
 {
     /* 
-     * IFG2, Interrupt Flag Register 2
-     * 
-     * UCB0TXIFG -- Interrupt pending
-     * UCB0RXIFG -- Interrupt pending
-     * ~UCA0TXIFG -- No interrupt pending
-     * ~UCA0RXIFG -- No interrupt pending
-     * 
-     * Note: ~<BIT> indicates that <BIT> has value zero
-     */
-    IFG2 &= ~(UCB0TXIFG + UCB0RXIFG);
-
-    /* 
-     * IE2, Interrupt Enable Register 2
-     * 
-     * UCB0TXIE -- Interrupt enabled
-     * UCB0RXIE -- Interrupt enabled
-     * ~UCA0TXIE -- Interrupt disabled
-     * ~UCA0RXIE -- Interrupt disabled
-     * 
-     * Note: ~<BIT> indicates that <BIT> has value zero
-     */
-    IE2 |= UCB0TXIE + UCB0RXIE;
-
-    /* 
      * SR, Status Register
      * 
      * ~SCG1 -- Disable System clock generator 1
