@@ -1,0 +1,42 @@
+STOCK SIMPLICITI DEMO CONFIGURATION
+
+MCLK:	DCOCLK @ 8MHz (div by 1)			BSP_InitBoard()
+SMCLK:	DCOCLK @ 8MHz (div by 1)			BSP_InitBoard()
+ACLK:	VLOCLK						main.c
+
+TIMER A:						main.c
+	ACLK
+	DIV 1
+	Up mode
+	About 1 second
+	Interrupt enabled
+
+SPI:
+	Uses USCI_B0	
+	Data changed on first UCLK edge, captured on following edge, 
+	clock inactive state low, msb first, 8 bit data
+	Master mode, synchronous mode, 3-pin SPI 
+	Uses ACLK
+	Bit rate control = 02
+	Port 3: SCLK, SI, and SO set to SPI mode, pin 3.0 as GPIO for CS/
+	5 KBps
+	Interrupts disabled
+
+PORTS:
+	P1 controls LEDs and pushbutton. Most pins are NC, none are available for general use.
+
+	*P2.0-3 reserved for analog signals (our app)
+	*P2.4 is accelerometer interrupt
+	P2.5 is NC
+	P2.6-7 is for radio (GDO2 does not appear to be used)
+	
+	P3 is used for SPI and USB interfaces, P3.6 and P3.7 are NC. SPI CLK, SI, SO are sharable.
+	P3.0 is radio CS/
+
+	P4.0-2 are NC
+	*P4.3 is accelometer CS/
+	*P4.4-4.5 are available and have ADC inputs
+	*P4.6 is available
+	P4.7 is NC
+
+	
