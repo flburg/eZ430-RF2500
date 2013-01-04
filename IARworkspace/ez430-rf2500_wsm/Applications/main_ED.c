@@ -92,6 +92,7 @@
 //Version:  1.00
 //Comments: Initial Release Version
 //******************************************************************************
+#include <string.h>
 #include "bsp.h"
 #include "mrfi.h"
 #include "nwk_types.h"
@@ -118,8 +119,13 @@ static void init(void);
 static void join(void);
 static void link(void);
 static void run(void);
+static void soundAlarm(void);
 static void selfMeasure(uint32_t seqno);
-static smplStatus_t sendPacket(uint8_t *msg, int len);
+static smplStatus_t sendPacket(uint8_t *msg, int len, int ackreq);
+static smplStatus_t sendBestEffort(uint8_t *mag, int len);
+#ifdef APP_AUTO_ACK
+static smplStatus_t sendWithAckReq(uint8_t *mag, int len);
+#endif
 void createRandomAddress(void);
 __interrupt void ADC10_ISR(void);
 __interrupt void TimerA_ISR (void);
@@ -168,6 +174,11 @@ static void init()
   addr_t const *myaddr = nwk_getMyAddress();;
 
   /* Initialize board-specific hardware */
+  // set chip selects for all SPI devices to inactive state
+  MRFI_SPI_CONFIG_CSN_PIN_AS_OUTPUT();
+  MRFI_SPI_DRIVE_CSN_HIGH();
+  ACCEL_SPI_CONFIG_CSN_PIN_AS_OUTPUT();
+  ACCEL_SPI_DRIVE_CSN_HIGH();
   BSP_Init();
 
   /* Tell network stack the device address */
@@ -199,7 +210,7 @@ static void init()
    * possibility of conflict.
    */
 
-  accelInit();
+   accelInit();
 }
 
 static void join()
@@ -251,12 +262,28 @@ static void run()
 
     /* Check accelerometer alarm */
     if (sAccelAlarm) {
-      // send packet until acknowledged (sendPacket returns SMPL_SUCCESS
+      soundAlarm();
+      sAccelAlarm = 0;
     }
 
     /* Time to measure */
     if (sSelfMeasureSem >= TRANSMIT_PERIOD_SECS) {
       selfMeasure(seqno++);
+    }
+  }
+}
+
+static void soundAlarm(void)
+{
+  uint8_t msg[9], i;
+
+  memset(msg, 0x0, sizeof(msg));
+
+  // send packet until acknowledged (sendPacket returns SMPL_SUCCESS)
+  // but not more than some arbitrary number of times
+  for (i = 0; i < 10; i++) {
+    if (sendPacket(msg, sizeof(msg), 1) == SMPL_SUCCESS) {
+      break;
     }
   }
 }
@@ -335,23 +362,57 @@ static void selfMeasure(uint32_t seqno)
   msg[5] = (pressure >> 8) & 0x3;
   msg[6] = seqno & 0xFF;
   msg[7] = (seqno >> 8) & 0xFF;
-  msg[8] = 0;  // this is also set below when APP_AUTO_ACK is TRUE
+  msg[8] = 0;  // this is also set below when APP_AUTO_ACK is TRUE and an ack is requested
 
-  sendPacket(msg, sizeof(msg));
+  sendPacket(msg, sizeof(msg), 0);
 }
 
-static smplStatus_t sendPacket(uint8_t *msg, int len)
+static smplStatus_t sendPacket(uint8_t *msg, int len, int ackflag)
 {
 #ifdef APP_AUTO_ACK
-  uint8_t misses, done;
-  uint8_t noAck;
+  smplStatus_t retval;
+
+  if (ackflag) {
+    retval = sendWithAckReq(msg, len);
+  } else {
+    retval = sendBestEffort(msg, len);
+  }
+
+  return retval;
+#else
+  return sendBestEffort(msg, len);
 #endif
+}
+
+static smplStatus_t sendBestEffort(uint8_t *msg, int len)
+{
   smplStatus_t rc;
 
   /* Get radio ready...awakens in idle state */
   SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_AWAKE, 0);
 
+  /* No AP acknowledgement, just send a single message to the AP */
+  rc = SMPL_SendOpt(sLinkID1, msg, len, SMPL_TXOPTION_NONE);
+
+  /* Put radio back to sleep */
+  SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_SLEEP, 0);
+
+  /* Done with measurement, disable measure flag */
+  sSelfMeasureSem = 0;
+
+  return rc;
+}
+
 #ifdef APP_AUTO_ACK
+static smplStatus_t sendWithAckReq(uint8_t *msg, int len)
+{
+  uint8_t misses, done;
+  uint8_t noAck;
+  smplStatus_t rc;
+
+  /* Get radio ready...awakens in idle state */
+  SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_AWAKE, 0);
+
   /* Request that the AP sends an ACK back to confirm data transmission
    * Note: Enabling this section more than DOUBLES the current consumption
    *       due to the amount of time IN RX waiting for the AP to respond
@@ -373,13 +434,18 @@ static smplStatus_t sendPacket(uint8_t *msg, int len)
       {
         /* Message acked. We're done. Toggle LED 1 to indicate ack received. */
 //        BSP_TOGGLE_LED1();
+        BSP_TURN_ON_LED1();
         missedAcks = 0;
         __delay_cycles(2000);
+//        BSP_TURN_OFF_LED1();
         break;
       }
       if (SMPL_NO_ACK == rc)
       {
 //        BSP_TOGGLE_LED2();
+        BSP_TURN_ON_LED2();
+        __delay_cycles(10000);
+        BSP_TURN_OFF_LED2();
         /* Count ack failures. Could also fail becuase of CCA and
          * we don't want to scan in this case.
          */
@@ -415,12 +481,6 @@ static smplStatus_t sendPacket(uint8_t *msg, int len)
       done = 1;
     }
   }
-#else
-
-  /* No AP acknowledgement, just send a single message to the AP */
-  rc = SMPL_SendOpt(sLinkID1, msg, len, SMPL_TXOPTION_NONE);
-
-#endif /* APP_AUTO_ACK */
 
   /* Put radio back to sleep */
   SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_SLEEP, 0);
@@ -430,6 +490,7 @@ static smplStatus_t sendPacket(uint8_t *msg, int len)
 
   return rc;
 }
+#endif /* APP_AUTO_ACK */
 
 void createRandomAddress()
 {
@@ -491,7 +552,10 @@ __interrupt void Port2_ISR (void)
 
   // accelerometer alarm
   if (P2IFG & BIT4) {
-    sAccelAlarm++;
+    uint8_t result = accelSpiReadReg(INT_SOURCE_ADDR);
+    if (result & 0x10) {
+        sAccelAlarm++;
+    }
     P2IFG &= ~BIT4;
   }
 

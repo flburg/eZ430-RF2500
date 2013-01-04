@@ -81,9 +81,3 @@
 -DNUM_STORE_AND_FWD_CLIENTS=3
 
 -DSTARTUP_JOINCONTEXT_ON
-
-/* Acknowledge a packet when requested in SMPL_SendOp */
-//-DAPP_AUTO_ACK
-
-//-DEXTENDED_API
-
