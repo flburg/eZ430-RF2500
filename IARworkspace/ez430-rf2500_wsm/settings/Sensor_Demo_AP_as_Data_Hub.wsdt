@@ -3,7 +3,7 @@
 <Workspace>
   <ConfigDictionary>
     
-  <CurrentConfigs><Project>Sensor_Demo_AP_as_Data_Hub/CC2500 Sensor Demo-Access Point</Project></CurrentConfigs></ConfigDictionary>
+  <CurrentConfigs><Project>Sensor_Demo_AP_as_Data_Hub/CC2500 Sensor Demo-End Device</Project></CurrentConfigs></ConfigDictionary>
   <Desktop>
     <Static>
       <Workspace>
@@ -12,8 +12,8 @@
           
           
           
-        <Column0>334</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
-      </Workspace>
+        <Column0>273</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      <PreferedWindows><Position>4</Position><ScreenPosX>7</ScreenPosX><ScreenPosY>95</ScreenPosY><Windows/></PreferedWindows></Workspace>
       <Find-in-Files>
         
         
@@ -23,19 +23,7 @@
     <Windows>
       
       
-    <Wnd2>
-        <Tabs>
-          <Tab>
-            <Identity>TabID-22631-11161</Identity>
-            <TabName>Workspace</TabName>
-            <Factory>Workspace</Factory>
-            <Session>
-              
-            <NodeDict><ExpandedNode>Sensor_Demo_AP_as_Data_Hub</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications/Access Point</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications/End Device</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Components</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Components/bsp</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Components/mrfi</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Components/nwk</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Configuration</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Grace</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Output</ExpandedNode></NodeDict></Session>
-          </Tab>
-        </Tabs>
-        
-      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
+    <Wnd1>
         <Tabs>
           <Tab>
             <Identity>TabID-20540-11200</Identity>
@@ -45,20 +33,20 @@
           </Tab>
         <Tab><Identity>TabID-31094-12706</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-10251-10194</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
         
-      <SelectedTab>1</SelectedTab></Wnd3></Windows>
+      <SelectedTab>1</SelectedTab></Wnd1><Wnd2><Tabs><Tab><Identity>TabID-15674-983</Identity><TabName>Workspace</TabName><Factory>Workspace</Factory><Session><NodeDict><ExpandedNode>Sensor_Demo_AP_as_Data_Hub</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications/Access Point</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications/End Device</ExpandedNode></NodeDict></Session></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd2></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Configuration\smpl_config_ED.dat</Filename><XPos>0</XPos><YPos>48</YPos><SelStart>3937</SelStart><SelEnd>3937</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_ED.c</Filename><XPos>0</XPos><YPos>314</YPos><SelStart>6432</SelStart><SelEnd>6432</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_AP.c</Filename><XPos>0</XPos><YPos>209</YPos><SelStart>10069</SelStart><SelEnd>10069</SelEnd></Tab><ActiveTab>2</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board.c</Filename><XPos>0</XPos><YPos>40</YPos><SelStart>3265</SelStart><SelEnd>3265</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\virtual_com_cmds.c</Filename><XPos>0</XPos><YPos>62</YPos><SelStart>4247</SelStart><SelEnd>4247</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\virtual_com_cmds.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>2604</SelStart><SelEnd>2604</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_ED.c</Filename><XPos>0</XPos><YPos>235</YPos><SelStart>9527</SelStart><SelEnd>9527</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_AP.c</Filename><XPos>0</XPos><YPos>194</YPos><SelStart>10111</SelStart><SelEnd>10111</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\bsp\bsp.c</Filename><XPos>0</XPos><YPos>33</YPos><SelStart>3518</SelStart><SelEnd>3518</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\bsp\boards\EZ430RF\bsp_board.c</Filename><XPos>0</XPos><YPos>101</YPos><SelStart>5850</SelStart><SelEnd>5850</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\accel.c</Filename><XPos>0</XPos><YPos>102</YPos><SelStart>3805</SelStart><SelEnd>3805</SelEnd></Tab><ActiveTab>4</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\bsp\boards\EZ430RF\bsp_board_defs.h</Filename><XPos>0</XPos><YPos>78</YPos><SelStart>5482</SelStart><SelEnd>5482</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00e010a8><key>iaridepm.enu1</key></Toolbar-00e010a8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2><Row3><Sizes/></Row3></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>848</Bottom><Right>408</Right><x>-2</x><y>-2</y><xscreen>612</xscreen><yscreen>707</yscreen><sizeHorzCX>318750</sizeHorzCX><sizeHorzCY>632379</sizeHorzCY><sizeVertCX>213542</sizeVertCX><sizeVertCY>760286</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>225</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>227</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>203041</sizeHorzCY><sizeVertCX>318750</sizeVertCX><sizeVertCY>632379</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-01cc10a8><key>iaridepm.enu1</key></Toolbar-01cc10a8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2><Row3><Sizes/></Row3><Row4><Sizes/></Row4><Row5><Sizes/></Row5><Row6><Sizes/></Row6><Row7><Sizes/></Row7><Row8><Sizes/></Row8><Row9><Sizes/></Row9><Row10><Sizes><Toolbar-09c7cba8><key>debuggergui.enu1</key></Toolbar-09c7cba8></Sizes></Row10><Row11><Sizes><Toolbar-09c7cc70><key>430fet1</key></Toolbar-09c7cc70></Sizes></Row11></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>848</Bottom><Right>347</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>178891</sizeHorzCY><sizeVertCX>181771</sizeVertCX><sizeVertCY>760286</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>225</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>227</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>203041</sizeHorzCY><sizeVertCX>318750</sizeVertCX><sizeVertCY>632379</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

@@ -1919,6 +1919,9 @@
       </file>
     </group>
     <file>
+      <name>$PROJ_DIR$\Applications\accel.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\Applications\virtual_com_cmds.c</name>
     </file>
     <file>

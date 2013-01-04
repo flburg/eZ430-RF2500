@@ -14,16 +14,18 @@
  * ------------------------------------------------------------------------------------------------
  */
 
+#define ACCEL_SPI_CLK_CONFIG() st( UCB0CTL0 &= ~UCCKPH; UCB0CTL0 |= UCCKPL; )
+
+#define ACCEL_SPI_CONFIG_CSN_PIN_AS_OUTPUT()   st( P4SEL &= ~BIT3; P4DIR |=  BIT3; )
+#define ACCEL_SPI_DRIVE_CSN_HIGH()             st( P4OUT |=  BIT3; ) /* atomic operation */
+#define ACCEL_SPI_DRIVE_CSN_LOW()              st( P4OUT &= ~BIT3; ) /* atomic operation */
+#define ACCEL_SPI_CSN_IS_HIGH()                  ( P4OUT &   BIT3 )
+
 #define DUMMY_BYTE                  0xDB
 #define READ_BIT                    0x80
 #define BURST_BIT                   0x40
 
-#define SPI_IS_INITIALIZED() MRFI_SPI_IS_INITIALIZED()
-#define SPI_READ_BYTE()      MRFI_SPI_READ_BYTE()
-#define SPI_WRITE_BYTE(x)    MRFI_SPI_WRITE_BYTE(x)
-#define SPI_WAIT_DONE()      MRFI_SPI_WAIT_DONE()
-
-/* egister map */
+/* register map */
 #define DEVID_ADDR          0x00
 #define THRESH_TAP_ADDR     0x1d
 #define OFSX_ADDR           0x1e
@@ -55,6 +57,8 @@
 #define FIFO_CTL_ADDR       0x38
 #define FIFO_STATUS_ADDR    0x39
 
+#define ACCEL_MIN_ADDR 0
+#define ACCEL_MAX_ADDR FIFO_STATUS_ADDR
 
 
 /* ------------------------------------------------------------------------------------------------

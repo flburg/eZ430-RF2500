@@ -206,6 +206,8 @@ proc create_graph {} {
 proc read_port {comfd logfd} {
     global state
     global data
+    global timestamp
+    global xmin xmax xspan
     global recordstringlength
 
     if {[string match $state "stop"]} {
@@ -244,6 +246,31 @@ proc read_port {comfd logfd} {
 #        }
 #    }
 
+    # Test for a sample from the access point.
+    if {$id == 0} {
+        # AP sets the time base for live data.
+        set timestamp [expr $timestamp + 1]
+        # Post active alarms and update the alarms array.
+        post_limit_alarms
+        # Check all nodes for timeouts.
+        check_timeout $timestamp
+
+        # Test for X axis out-of-bounds.  
+        # If found, reset axis parameters and rebuild graphs.
+        if {[expr $timestamp == $xmax]} {
+            set xmin $timestamp
+            set xmax [expr $xmin + $xspan] 
+            create_graph
+        }
+
+	return
+    } 
+
+    if {$seqno == 0} {
+        post_impact_alarm $id
+	return
+    }
+
     set volt [expr double(((double($volt) / 1024) * 2.5) * 2)]
 
     set data(id) $id
@@ -265,32 +292,11 @@ proc plot_point {node id} {
     global vars
     global data
     global timestamp
-    global xmin xmax xspan
     global connected
     global logfd logmod
 
     puts "$timestamp $node $data(id) $data(temperature) \
       $data(voltage) $data(rssi) $data(pressure) $data(seqno) $data(missedacks)"
-
-    # Test for a sample from the access point.
-    if {$data(id) == 0} {
-        # AP sets the time base for live data.
-        set timestamp [expr $timestamp + 1]
-        # Post active alarms and update the alarms array.
-        post_alarms
-        # Check all nodes for timeouts.
-        check_timeout $timestamp
-
-        # Test for X axis out-of-bounds.  
-        # If found, reset axis parameters and rebuild graphs.
-        if {[expr $timestamp == $xmax]} {
-            set xmin $timestamp
-            set xmax [expr $xmin + $xspan] 
-            create_graph
-        }
-
-	return
-    } 
 
     # If this node has not been plotted yet, add it to the active graphs.
     if {![llength [array names connected -exact $id]]} {
@@ -302,11 +308,12 @@ proc plot_point {node id} {
 
     # Plot this sample on each graph.
     foreach param [array names defaults] {
-        update_alarms $id $param
+        update_limit_alarms $id $param
 
         if {$vars(${param}state) == 0} {
             continue
         }
+
         $vars(${param}plot) plot $id $timestamp $data($param)
     }
 
@@ -448,7 +455,7 @@ proc add_series {id} {
 ## If a parameter is over or under a limit, add it to the alarms array
 ## or overwrite an existing entry. Otherwise, remove it from the array.
 ##
-proc update_alarms {id param} {
+proc update_limit_alarms {id param} {
     global data
     global vars
     global alarms
@@ -465,20 +472,18 @@ proc update_alarms {id param} {
 }
 
 ##
-## Show or remove out of limit alarm message.
+## Show or remove out of range alarm messages.
 ##
-proc post_alarms {} {
+proc post_limit_alarms {} {
     global alarms
     global connected
 
-    set w .controls
+    set w .controls.limit_alarms
 
-    catch {destroy $w.alarms}
+    catch {destroy $w}
 
-    frame $w.alarms
-    pack $w.alarms -side top -fill x
-
-    set w $w.alarms
+    frame $w
+    pack $w -side top -fill x
 
     foreach alarm [array names alarms] {
         set id        [lindex $alarms($alarm) 0]
@@ -492,11 +497,30 @@ proc post_alarms {} {
         set limit     [lindex $alarms($alarm) 3]
         set overunder [lindex $alarms($alarm) 4]
 
-        label $w.$alarm -bg red -fg white \
+        label $w.$alarm -bg yellow -fg black \
           -text "$param $overunder limit for node $id: is $value, limit is $limit" \
           -justify center 
         pack $w.$alarm -side top -fill x
     }
+}
+
+
+##
+## Show impact alarm message.
+##
+proc post_impact_alarm {id} {
+    global connected
+
+    set w .controls.impact_alarm
+
+    catch {destroy $w}
+
+    frame $w
+    pack $w -side top -fill x
+
+    label $w.message -bg red -fg white \
+      -text "impact alarm at node $id!!!" -justify center 
+    pack $w.message -side top -fill x
 }
 
 ##

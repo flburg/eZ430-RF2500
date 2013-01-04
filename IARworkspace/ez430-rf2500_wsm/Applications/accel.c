@@ -37,10 +37,6 @@ void accelInit(void)
   P2IE |= BIT1;                              // enable interrupt on P2.1
   P2IE &= ~BIT2;                             // no interrupts on INT2 for now
 
-  P4SEL &= ~BIT3;                            // P4.3 GPIO
-  P4DIR |= BIT3;                             // P4.3 is an output
-  P4OUT |= BIT3;                             // accel CS/ high (inactive)
-
   accelSpiWriteReg(THRESH_ACT_ADDR,    0x7f); // half range
   accelSpiWriteReg(ACT_INACT_CTL_ADDR, 0x70); // enable X,Y,Z activity
   accelSpiWriteReg(BW_RATE_ADDR,       0x0a); // set serial rate to 100Hz
@@ -65,25 +61,28 @@ uint8_t accelSpiCmdStrobe(uint8_t addr)
   uint8_t statusByte;
   mrfiSpiIState_t s;
 
-  BSP_ASSERT( SPI_IS_INITIALIZED() );       /* SPI is not initialized */
-  BSP_ASSERT((addr >= 0x30) && (addr <= 0x3D));  /* invalid address */
+  BSP_ASSERT( BSP_SPI_IS_INITIALIZED() );
+  BSP_ASSERT(addr <= ACCEL_MAX_ADDR);
 
   /* disable interrupts that use SPI */
   BSP_ENTER_CRITICAL_SECTION(s);
 
+  /* make sure clock phase and polarity are correct for accelerometer */
+  ACCEL_SPI_CLK_CONFIG();
+
   /* turn chip select "off" and then "on" to clear any current SPI access */
-  P4OUT |= BIT3;
-  P4OUT &= ~BIT3;
+  ACCEL_SPI_DRIVE_CSN_HIGH();
+  ACCEL_SPI_DRIVE_CSN_LOW();
 
   /* send the command strobe, wait for SPI access to complete */
-  SPI_WRITE_BYTE(addr);
-  SPI_WAIT_DONE();
+  BSP_SPI_WRITE_BYTE(addr);
+  BSP_SPI_WAIT_DONE();
 
   /* read the readio status byte returned by the command strobe */
-  statusByte = SPI_READ_BYTE();
+  statusByte = BSP_SPI_READ_BYTE();
 
   /* turn off chip select; enable interrupts that call SPI functions */
-  P4OUT |= BIT3;
+  ACCEL_SPI_DRIVE_CSN_HIGH();
 
   BSP_EXIT_CRITICAL_SECTION(s);
 
@@ -104,13 +103,13 @@ uint8_t accelSpiCmdStrobe(uint8_t addr)
  */
 uint8_t accelSpiReadReg(uint8_t addr)
 {
-  BSP_ASSERT(addr <= 0x3B);    /* invalid address */
+  BSP_ASSERT(addr <= ACCEL_MAX_ADDR);
 
   /*
    *  The burst bit is set to allow access to read-only status registers.
    *  This does not affect normal register reads.
    */
-  return( spiRegAccess(addr | BURST_BIT | READ_BIT, DUMMY_BYTE) );
+  return( spiRegAccess(addr | BSP_SPI_READ_BIT, BSP_SPI_DUMMY_BYTE) );
 }
 
 
@@ -127,7 +126,7 @@ uint8_t accelSpiReadReg(uint8_t addr)
  */
 void accelSpiWriteReg(uint8_t addr, uint8_t value)
 {
-  BSP_ASSERT((addr <= 0x2E) || (addr == 0x3E));    /* invalid address */
+  BSP_ASSERT(addr <= ACCEL_MAX_ADDR);
 
   spiRegAccess(addr, value);
 }
@@ -150,35 +149,38 @@ static uint8_t spiRegAccess(uint8_t addrByte, uint8_t writeValue)
   uint8_t readValue;
   mrfiSpiIState_t s;
 
-  BSP_ASSERT( SPI_IS_INITIALIZED() );   /* SPI is not initialized */
+  BSP_ASSERT( BSP_SPI_IS_INITIALIZED() );
 
   /* disable interrupts that use SPI */
   BSP_ENTER_CRITICAL_SECTION(s);
 
+  /* make sure clock phase and polarity are correct for accelerometer */
+  ACCEL_SPI_CLK_CONFIG();
+
   /* turn chip select "off" and then "on" to clear any current SPI access */
-  P4OUT |= BIT3;
-  P4OUT &= ~BIT3;
+  ACCEL_SPI_DRIVE_CSN_HIGH();
+  ACCEL_SPI_DRIVE_CSN_LOW();
 
   /* send register address byte, the read/write bit is already configured */
-  SPI_WRITE_BYTE(addrByte);
-  SPI_WAIT_DONE();
+  BSP_SPI_WRITE_BYTE(addrByte);
+  BSP_SPI_WAIT_DONE();
 
   /*
    *  Send the byte value to write.  If this operation is a read, this value
    *  is not used and is just dummy data.  Wait for SPI access to complete.
    */
-  SPI_WRITE_BYTE(writeValue);
-  SPI_WAIT_DONE();
+  BSP_SPI_WRITE_BYTE(writeValue);
+  BSP_SPI_WAIT_DONE();
 
   /*
    *  If this is a read operation, SPI data register now contains the register
    *  value which will be returned.  For a write operation, it contains junk info
    *  that is not used.
    */
-  readValue = SPI_READ_BYTE();
+  readValue = BSP_SPI_READ_BYTE();
 
   /* turn off chip select; enable interrupts that call SPI functions */
-  P4OUT |= BIT3;
+  ACCEL_SPI_DRIVE_CSN_HIGH();
   BSP_EXIT_CRITICAL_SECTION(s);
 
   /* return the register value */

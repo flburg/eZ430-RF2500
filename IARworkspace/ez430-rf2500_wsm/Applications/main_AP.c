@@ -102,6 +102,7 @@
 #include "nwk_frame.h"
 #include "nwk.h"
 #include "virtual_com_cmds.h"
+#include "bsp_external/mrfi_board_defs.h"
 
 /****************** COMMENTS ON ASYNC LISTEN APPLICATION ***********************
 Summary:
@@ -224,6 +225,9 @@ void main (void)
 #endif
 
   /* Initialize board */
+  // first set chip selects for all SPI devices to inactive state
+  MRFI_SPI_CONFIG_CSN_PIN_AS_OUTPUT();
+  MRFI_SPI_DRIVE_CSN_HIGH();
   BSP_Init();
 
   /* Set low frequency clock to VLO - drives ACLK (12KHz) */

@@ -76,9 +76,3 @@
  * for the polling End Device during the Join exchange.
  */
 /* -DRX_POLLS */
-
-/* Acknowledge a packet when requested in SMPL_SendOp */
-//-DAPP_AUTO_ACK
-
-/* This is needed for APP_AUTO_ACK to be effective */
-//-DEXTENDED_API
