@@ -1,5 +1,6 @@
 .svn
-ARCHIVES
+*ARCHIVES
+GUIs/ARCHIVES
 *~
 *Copy*
 log_gui.txt
