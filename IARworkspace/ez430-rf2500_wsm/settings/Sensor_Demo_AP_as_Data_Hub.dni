@@ -9,16 +9,16 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 [State Storage]
-Control Register=35176
+Control Register=40960
 [Sequencer]
-Control Register=35176
-NextState0=35176
-NextState1=35176
+Control Register=40960
+NextState0=40960
+NextState1=40960
 [Action Register]
-Break=0
+Break=1
 State Storage=1
 [DebugChecksum]
-Checksum=-1950028266
+Checksum=981804717
 [CallStack]
 ShowArgs=0
 [Disassembly]

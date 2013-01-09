@@ -20,6 +20,7 @@ static uint8_t spiRegAccess(uint8_t addrByte, uint8_t writeValue);
  */
 void accelInit(void)
 {
+  uint8_t x;
   // The SPI interface is initialized by SimpliciTI
   /* Accelerometer wiring
          CS (Acc)   -> Pin 8  (4.3)
@@ -32,17 +33,27 @@ void accelInit(void)
 
   // MASK port bits! Port 2 is shared with radio, and port 4 may be shared.
 
-  P2IES |= BIT1;                             // INT1 on high-low transition
-  P2IES |= BIT2;                             // INT2 on high-low transition
+  P2IES &= 0xc0;                             // INT1&2 on low-high transition
   P2IE |= BIT1;                              // enable interrupt on P2.1
   P2IE &= ~BIT2;                             // no interrupts on INT2 for now
 
-  accelSpiWriteReg(THRESH_ACT_ADDR,    0x7f); // half range
-  accelSpiWriteReg(ACT_INACT_CTL_ADDR, 0x70); // enable X,Y,Z activity
+  accelSpiWriteReg(THRESH_ACT_ADDR,    0xf0); // 62.5mg/bit
+  accelSpiWriteReg(ACT_INACT_CTL_ADDR, 0xf0); // enable X,Y,Z activity, AC mode
   accelSpiWriteReg(BW_RATE_ADDR,       0x0a); // set serial rate to 100Hz
   accelSpiWriteReg(POWER_CTL_ADDR,     0x08); // select measurement mode
   accelSpiWriteReg(INT_ENABLE_ADDR,    0x10); // enable activity interrupt
   accelSpiWriteReg(INT_MAP_ADDR,       0x00); // all interrupts on INT1
+
+  x = accelSpiReadReg(INT_SOURCE_ADDR);
+  x = accelSpiReadReg(INT_SOURCE_ADDR);
+
+  x = accelSpiReadReg(THRESH_ACT_ADDR);
+  x = accelSpiReadReg(ACT_INACT_CTL_ADDR);
+  x = accelSpiReadReg(BW_RATE_ADDR);
+  x = accelSpiReadReg(POWER_CTL_ADDR);
+  x = accelSpiReadReg(INT_ENABLE_ADDR);
+  x = accelSpiReadReg(INT_MAP_ADDR);
+
 }
 
 /**************************************************************************************************

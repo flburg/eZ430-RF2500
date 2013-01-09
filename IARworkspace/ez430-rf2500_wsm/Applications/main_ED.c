@@ -286,6 +286,11 @@ static void soundAlarm(void)
       break;
     }
   }
+
+  __delay_cycles(100000);
+
+  BSP_TURN_OFF_LED1();
+  BSP_TURN_OFF_LED2();
 }
 
 static void selfMeasure(uint32_t seqno)
@@ -442,10 +447,10 @@ static smplStatus_t sendWithAckReq(uint8_t *msg, int len)
       }
       if (SMPL_NO_ACK == rc)
       {
-//        BSP_TOGGLE_LED2();
+        BSP_TOGGLE_LED2();
         BSP_TURN_ON_LED2();
         __delay_cycles(10000);
-        BSP_TURN_OFF_LED2();
+//        BSP_TURN_OFF_LED2();
         /* Count ack failures. Could also fail becuase of CCA and
          * we don't want to scan in this case.
          */
@@ -543,7 +548,7 @@ void MRFI_GpioIsr(void); /* defined in mrfi_radio.c */
 #pragma vector=PORT2_VECTOR
 __interrupt void Port2_ISR (void)
 {
-  int flags = P2IFG;
+  uint8_t flags = P2IFG, result = 0;
 
   // radio sync
   if (P2IFG & BIT6) {
@@ -551,12 +556,13 @@ __interrupt void Port2_ISR (void)
   }
 
   // accelerometer alarm
-  if (P2IFG & BIT4) {
-    uint8_t result = accelSpiReadReg(INT_SOURCE_ADDR);
+  if (P2IFG & BIT1) {
+    result = accelSpiReadReg(INT_SOURCE_ADDR);
     if (result & 0x10) {
         sAccelAlarm++;
     }
-    P2IFG &= ~BIT4;
+    P2IFG &= ~BIT1;
+    accelSpiReadReg(INT_SOURCE_ADDR);
   }
 
   __bic_SR_register_on_exit(LPM3_bits);        // Clear LPM3 bit from 0(SR)
