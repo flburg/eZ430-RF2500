@@ -2,16 +2,7 @@
 
 <workspace>
   <project>
-    <path>$WS_DIR$\..\ez430-cronos-sportwatch\ez430_chronos.ewp</path>
-  </project>
-  <project>
-    <path>$WS_DIR$\..\ez430-cronos-datalogger\ez430_chronos_datalogger.ewp</path>
-  </project>
-  <project>
     <path>$WS_DIR$\simpleif.ewp</path>
-  </project>
-  <project>
-    <path>$WS_DIR$\..\ez430-cronos_wirelessupdate\Wireless_Update.ewp</path>
   </project>
   <batchBuild>
     <batchDefinition>
@@ -22,15 +13,7 @@
       </member>
       <member>
         <project>simpleif</project>
-        <configuration>CC2500-Channel Sniffer</configuration>
-      </member>
-      <member>
-        <project>simpleif</project>
         <configuration>CC2500-End Device</configuration>
-      </member>
-      <member>
-        <project>simpleif</project>
-        <configuration>CC2500-Range Extender</configuration>
       </member>
     </batchDefinition>
   </batchBuild>

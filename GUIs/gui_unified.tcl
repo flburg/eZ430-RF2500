@@ -25,7 +25,7 @@ set stopbits   1
 
 set state stop
 set timestamp 0
-set timeout_secs 5
+set timeout_secs 300
 
 set xspan 100.0
 set xmin 0.0
@@ -206,6 +206,8 @@ proc create_graph {} {
 proc read_port {comfd logfd} {
     global state
     global data
+    global timestamp
+    global xmin xmax xspan
     global recordstringlength
 
     if {[string match $state "stop"]} {
@@ -222,8 +224,8 @@ proc read_port {comfd logfd} {
 	return
     }
 
-    set args [binary scan $retval ccccsss sor node id rssi temp volt pres]
-    if {$args != 7} {
+    set args [binary scan $retval ccccssssuc sor node id rssi temp volt pres seqno missedacks]
+    if {$args != 9} {
         puts "WARNING: Incorrect number of arguments: $args"
         return
     }
@@ -244,38 +246,12 @@ proc read_port {comfd logfd} {
 #        }
 #    }
 
-    set volt [expr double(((double($volt) / 1024) * 2.5) * 2)]
-
-    set data(id) $id
-    set data(temperature) [format "%.2f" [expr (($temp * 1.8)+320)/10]]
-    set data(voltage) [format "%.3f" $volt]
-    set data(rssi) $rssi
-    set data(pressure) $pres
-
-    plot_point $node $id
-}
-
-##
-## Plot a datapoint for a node on all active graphs.
-##
-proc plot_point {node id} {
-    global defaults
-    global vars
-    global data
-    global timestamp
-    global xmin xmax xspan
-    global connected
-    global logfd logmod
-
-    puts "$timestamp $node $data(id) $data(temperature) \
-      $data(voltage) $data(rssi) $data(pressure)"
-
     # Test for a sample from the access point.
-    if {$data(id) == 0} {
+    if {$id == 0} {
         # AP sets the time base for live data.
         set timestamp [expr $timestamp + 1]
         # Post active alarms and update the alarms array.
-        post_alarms
+        post_limit_alarms
         # Check all nodes for timeouts.
         check_timeout $timestamp
 
@@ -290,6 +266,38 @@ proc plot_point {node id} {
 	return
     } 
 
+    if {$seqno == 0} {
+        post_impact_alarm $id
+	return
+    }
+
+    set volt [expr double(((double($volt) / 1024) * 2.5) * 2)]
+
+    set data(id) $id
+    set data(temperature) [format "%.2f" [expr (($temp * 1.8)+320)/10]]
+    set data(voltage) [format "%.3f" $volt]
+    set data(rssi) $rssi
+    set data(pressure) $pres
+    set data(seqno) $seqno
+    set data(missedacks) $missedacks
+
+    plot_point $node $id
+}
+
+##
+## Plot a datapoint for a node on all active graphs.
+##
+proc plot_point {node id} {
+    global defaults
+    global vars
+    global data
+    global timestamp
+    global connected
+    global logfd logmod
+
+    puts "$timestamp $node $data(id) $data(temperature) \
+      $data(voltage) $data(rssi) $data(pressure) $data(seqno) $data(missedacks)"
+
     # If this node has not been plotted yet, add it to the active graphs.
     if {![llength [array names connected -exact $id]]} {
         add_series $id
@@ -300,17 +308,18 @@ proc plot_point {node id} {
 
     # Plot this sample on each graph.
     foreach param [array names defaults] {
-        update_alarms $id $param
+        update_limit_alarms $id $param
 
         if {$vars(${param}state) == 0} {
             continue
         }
+
         $vars(${param}plot) plot $id $timestamp $data($param)
     }
 
     if {![expr fmod($timestamp,$logmod)]} {
         puts $logfd "$timestamp $node $data(id) $data(temperature) \
-          $data(voltage) $data(rssi) $data(pressure)"
+          $data(voltage) $data(rssi) $data(pressure) $data(seqno) $data(missedacks)"
         flush $logfd
     }
 
@@ -330,7 +339,7 @@ package require registry
 proc get_serial_port {} {
     set serial_base "HKEY_LOCAL_MACHINE\\HARDWARE\\DEVICEMAP\\SERIALCOMM"
     set values [registry values $serial_base]
- 
+
     set target [lsearch -glob $values "*USBSER*"]
 
     set result ""
@@ -357,7 +366,13 @@ proc open_com {} {
     global databits
     global stopbits
 
-    set comfd [open [get_serial_port]: r+]
+    set port [get_serial_port]
+    if {[string length $port] > 4} {
+        set comfd [open "\\\\.\\$port" r+]
+    } else {
+        set comfd [open $port r+]
+    }
+
     fconfigure $comfd -mode $baudrate,$parity,$databits,$stopbits \
       -blocking 1 -encoding binary -translation binary -buffering none \
       -buffersize 1024
@@ -440,7 +455,7 @@ proc add_series {id} {
 ## If a parameter is over or under a limit, add it to the alarms array
 ## or overwrite an existing entry. Otherwise, remove it from the array.
 ##
-proc update_alarms {id param} {
+proc update_limit_alarms {id param} {
     global data
     global vars
     global alarms
@@ -457,20 +472,18 @@ proc update_alarms {id param} {
 }
 
 ##
-## Show or remove out of limit alarm message.
+## Show or remove out of range alarm messages.
 ##
-proc post_alarms {} {
+proc post_limit_alarms {} {
     global alarms
     global connected
 
-    set w .controls
+    set w .controls.limit_alarms
 
-    catch {destroy $w.alarms}
+    catch {destroy $w}
 
-    frame $w.alarms
-    pack $w.alarms -side top -fill x
-
-    set w $w.alarms
+    frame $w
+    pack $w -side top -fill x
 
     foreach alarm [array names alarms] {
         set id        [lindex $alarms($alarm) 0]
@@ -484,11 +497,30 @@ proc post_alarms {} {
         set limit     [lindex $alarms($alarm) 3]
         set overunder [lindex $alarms($alarm) 4]
 
-        label $w.$alarm -bg red -fg white \
+        label $w.$alarm -bg yellow -fg black \
           -text "$param $overunder limit for node $id: is $value, limit is $limit" \
           -justify center 
         pack $w.$alarm -side top -fill x
     }
+}
+
+
+##
+## Show impact alarm message.
+##
+proc post_impact_alarm {id} {
+    global connected
+
+    set w .controls.impact_alarm
+
+    catch {destroy $w}
+
+    frame $w
+    pack $w -side top -fill x
+
+    label $w.message -bg red -fg white \
+      -text "impact alarm at node $id!!!" -justify center 
+    pack $w.message -side top -fill x
 }
 
 ##

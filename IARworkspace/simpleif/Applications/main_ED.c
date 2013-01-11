@@ -1,4 +1,4 @@
-#define TIMER
+//#define TIMER
 
 #include <stdlib.h>
 #include <string.h>

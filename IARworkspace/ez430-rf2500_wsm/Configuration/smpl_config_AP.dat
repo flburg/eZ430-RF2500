@@ -48,10 +48,10 @@
 -DSIZE_INFRAME_Q=6
 
 /* The output frame queue can be small since Tx is done synchronously. Actually
- * 1 is probably enough. If an Access Point device is also hosting an End Device 
- * that sends to a sleeping peer the output queue should be larger -- the waiting 
- * frames in this case are held here. In that case the output frame queue should 
- * be bigger. 
+ * 1 is probably enough. If an Access Point device is also hosting an End Device
+ * that sends to a sleeping peer the output queue should be larger -- the waiting
+ * frames in this case are held here. In that case the output frame queue should
+ * be bigger.
  */
 -DSIZE_OUTFRAME_Q=2
 
@@ -81,7 +81,3 @@
 -DNUM_STORE_AND_FWD_CLIENTS=3
 
 -DSTARTUP_JOINCONTEXT_ON
-
-
-
-

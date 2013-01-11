@@ -93,6 +93,9 @@
  * ------------------------------------------------------------------------------------------------
  */
 
+/* Clock phase and polarity for the radio */
+#define MRFI_SPI_CLK_CONFIG() st( UCB0CTL0 |= UCCKPH; UCB0CTL0 &= ~UCCKPL; )
+
 /* CSn Pin Configuration */
 #define __mrfi_SPI_CSN_GPIO_BIT__             0
 #define MRFI_SPI_CONFIG_CSN_PIN_AS_OUTPUT()   st( P3DIR |=  BV(__mrfi_SPI_CSN_GPIO_BIT__); )
@@ -101,60 +104,35 @@
 #define MRFI_SPI_CSN_IS_HIGH()                 (  P3OUT &   BV(__mrfi_SPI_CSN_GPIO_BIT__) )
 
 /* SCLK Pin Configuration */
-#define __mrfi_SPI_SCLK_GPIO_BIT__            3
-#define MRFI_SPI_CONFIG_SCLK_PIN_AS_OUTPUT()  st( P3DIR |=  BV(__mrfi_SPI_SCLK_GPIO_BIT__); )
-#define MRFI_SPI_DRIVE_SCLK_HIGH()            st( P3OUT |=  BV(__mrfi_SPI_SCLK_GPIO_BIT__); )
-#define MRFI_SPI_DRIVE_SCLK_LOW()             st( P3OUT &= ~BV(__mrfi_SPI_SCLK_GPIO_BIT__); )
+#define MRFI_SPI_CONFIG_SCLK_PIN_AS_OUTPUT()  BSP_SPI_CONFIG_SCLK_PIN_AS_OUTPUT()
+#define MRFI_SPI_DRIVE_SCLK_HIGH()            BSP_SPI_DRIVE_SCLK_HIGH()
+#define MRFI_SPI_DRIVE_SCLK_LOW()             BSP_SPI_DRIVE_SCLK_LOW()
 
 /* SI Pin Configuration */
-#define __mrfi_SPI_SI_GPIO_BIT__              1
-#define MRFI_SPI_CONFIG_SI_PIN_AS_OUTPUT()    st( P3DIR |=  BV(__mrfi_SPI_SI_GPIO_BIT__); )
-#define MRFI_SPI_DRIVE_SI_HIGH()              st( P3OUT |=  BV(__mrfi_SPI_SI_GPIO_BIT__); )
-#define MRFI_SPI_DRIVE_SI_LOW()               st( P3OUT &= ~BV(__mrfi_SPI_SI_GPIO_BIT__); )
+#define MRFI_SPI_CONFIG_SI_PIN_AS_OUTPUT()    BSP_SPI_CONFIG_SI_PIN_AS_OUTPUT()
+#define MRFI_SPI_DRIVE_SI_HIGH()              BSP_SPI_DRIVE_SI_HIGH()
+#define MRFI_SPI_DRIVE_SI_LOW()               BSP_SPI_DRIVE_SI_LOW()
 
 /* SO Pin Configuration */
-#define __mrfi_SPI_SO_GPIO_BIT__              2
-#define MRFI_SPI_CONFIG_SO_PIN_AS_INPUT()     /* nothing to required */
-#define MRFI_SPI_SO_IS_HIGH()                 ( P3IN & BV(__mrfi_SPI_SO_GPIO_BIT__) )
+#define MRFI_SPI_CONFIG_SO_PIN_AS_INPUT()     BSP_SPI_CONFIG_SO_PIN_AS_INPUT()
+#define MRFI_SPI_SO_IS_HIGH()                 BSP_SPI_SO_IS_HIGH()
 
-/* SPI Port Configuration */
-#define MRFI_SPI_CONFIG_PORT()                st( P3SEL |= BV(__mrfi_SPI_SCLK_GPIO_BIT__) |  \
-                                                           BV(__mrfi_SPI_SI_GPIO_BIT__)   |  \
-                                                           BV(__mrfi_SPI_SO_GPIO_BIT__); )
+/* SPI Port Configuration - CLK, SI, SO are SPI, STE is GPIO */
+#define MRFI_SPI_CONFIG_PORT()                BSP_SPI_CONFIG_PORT()
 
 /* read/write macros */
-#define MRFI_SPI_WRITE_BYTE(x)                st( IFG2 &= ~UCB0RXIFG;  UCB0TXBUF = x; )
-#define MRFI_SPI_READ_BYTE()                  UCB0RXBUF
-#define MRFI_SPI_WAIT_DONE()                  while(!(IFG2 & UCB0RXIFG));
+#define MRFI_SPI_WRITE_BYTE(x)                BSP_SPI_WRITE_BYTE(x)
+#define MRFI_SPI_READ_BYTE()                  BSP_SPI_READ_BYTE()
+#define MRFI_SPI_WAIT_DONE()                  BSP_SPI_WAIT_DONE()
 
 /* SPI critical section macros */
 typedef bspIState_t mrfiSpiIState_t;
 #define MRFI_SPI_ENTER_CRITICAL_SECTION(x)    BSP_ENTER_CRITICAL_SECTION(x)
 #define MRFI_SPI_EXIT_CRITICAL_SECTION(x)     BSP_EXIT_CRITICAL_SECTION(x)
 
-
-/*
- *  Radio SPI Specifications
- * -----------------------------------------------
- *    Max SPI Clock   :  10 MHz
- *    Data Order      :  MSB transmitted first
- *    Clock Polarity  :  low when idle
- *    Clock Phase     :  sample leading edge
- */
-
 /* initialization macro */
-#define MRFI_SPI_INIT() \
-st ( \
-  UCB0CTL1 = UCSWRST;                           \
-  UCB0CTL1 = UCSWRST | UCSSEL1;                 \
-  UCB0CTL0 = UCCKPH | UCMSB | UCMST | UCSYNC;   \
-  UCB0BR0  = 2;                                 \
-  UCB0BR1  = 0;                                 \
-  MRFI_SPI_CONFIG_PORT();                       \
-  UCB0CTL1 &= ~UCSWRST;                         \
-)
-
-#define MRFI_SPI_IS_INITIALIZED()         (UCB0CTL0 & UCMST)
+#define MRFI_SPI_INIT()                       BSP_SPI_INIT()
+#define MRFI_SPI_IS_INITIALIZED()             BSP_SPI_IS_INITIALIZED()
 
 
 /**************************************************************************************************

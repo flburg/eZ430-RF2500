@@ -102,6 +102,7 @@
 #include "nwk_frame.h"
 #include "nwk.h"
 #include "virtual_com_cmds.h"
+#include "bsp_external/mrfi_board_defs.h"
 
 /****************** COMMENTS ON ASYNC LISTEN APPLICATION ***********************
 Summary:
@@ -154,6 +155,12 @@ Solution overview:
 ******************* END COMMENTS ON ASYNC LISTEN APPLICATION ******************/
 
 /******  THIS SOURCE FILE REPRESENTS THE AUTOMATIC NOTIFICATION SOLUTION ******/
+
+/*------------------------------------------------------------------------------
+ * Defines
+ *----------------------------------------------------------------------------*/
+/* Number of seconds between timestamps (unused at present) */
+#define TIMESTAMP_PERIOD_SECS 60
 
 /*------------------------------------------------------------------------------
  * Prototypes
@@ -218,12 +225,17 @@ void main (void)
 #endif
 
   /* Initialize board */
+  // first set chip selects for all SPI devices to inactive state
+  MRFI_SPI_CONFIG_CSN_PIN_AS_OUTPUT();
+  MRFI_SPI_DRIVE_CSN_HIGH();
   BSP_Init();
 
-  /* Initialize TimerA and oscillator */
+  /* Set low frequency clock to VLO - drives ACLK (12KHz) */
   BCSCTL3 |= LFXT1S_2;                      // LFXT1 = VLO
+
+  /* Complete initialization of TimerA */
   TACCTL0 = CCIE;                           // TACCR0 interrupt enabled
-  TACCR0 = 12000;                           // ~1 second
+  TACCR0 = 12000;                           // ~ 1 sec
   TACTL = TASSEL_1 + MC_1;                  // ACLK, upmode
 
   /* Initialize serial port */
@@ -333,8 +345,11 @@ void main (void)
       pld[2] = 0;
 
       // temperature
-      pld[4] = deg & 0xFF;
-      pld[5] = (deg >> 8) & 0xFF;
+// Something wrong with temp - high byte sometimes 0xff.  Disable for now.
+      pld[4] = 0;
+      pld[5] = 0;
+//      pld[4] = deg & 0xFF;
+//      pld[5] = (deg >> 8) & 0xFF;
 
       // voltage
       pld[6] = volt & 0xFF;
@@ -473,7 +488,6 @@ static void processMessage(linkID_t lid, uint8_t *msg, uint8_t len)
   /* do something useful */
   if (len)
   {
-    BSP_TOGGLE_LED1();
   }
   return;
 }

@@ -26,7 +26,7 @@
   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
 
   Should you have any questions regarding your right to use this Software,
-  contact Texas Instruments Incorporated at www.TI.com. 
+  contact Texas Instruments Incorporated at www.TI.com.
 **************************************************************************************************/
 
 /* ~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=
@@ -48,10 +48,6 @@
  *                                            Defines
  * ------------------------------------------------------------------------------------------------
  */
-#define DUMMY_BYTE                  0xDB
-
-#define READ_BIT                    0x80
-#define BURST_BIT                   0x40
 
 
 /* ------------------------------------------------------------------------------------------------
@@ -90,18 +86,8 @@ static void spiBurstFifoAccess(uint8_t addrByte, uint8_t * pData, uint8_t len);
  */
 void mrfiSpiInit(void)
 {
-  /* configure all SPI related pins */
-  MRFI_SPI_CONFIG_CSN_PIN_AS_OUTPUT();
-  MRFI_SPI_CONFIG_SCLK_PIN_AS_OUTPUT();
-  MRFI_SPI_CONFIG_SI_PIN_AS_OUTPUT();
-  MRFI_SPI_CONFIG_SO_PIN_AS_INPUT();
-
-  /* set CSn to default high level */
-  MRFI_SPI_DRIVE_CSN_HIGH();
-  
-  /* initialize the SPI registers */
-  MRFI_SPI_INIT();
-} 
+  /* SPI init is now done at BSP level since the SPI bus is shared in the ED */
+}
 
 
 /**************************************************************************************************
@@ -125,6 +111,9 @@ uint8_t mrfiSpiCmdStrobe(uint8_t addr)
 
   /* disable interrupts that use SPI */
   MRFI_SPI_ENTER_CRITICAL_SECTION(s);
+
+  /* make sure clock phase and polarity are correct for radio */
+  MRFI_SPI_CLK_CONFIG();
 
   /* turn chip select "off" and then "on" to clear any current SPI access */
   MRFI_SPI_TURN_CHIP_SELECT_OFF();
@@ -159,12 +148,12 @@ uint8_t mrfiSpiCmdStrobe(uint8_t addr)
 uint8_t mrfiSpiReadReg(uint8_t addr)
 {
   MRFI_SPI_ASSERT(addr <= 0x3B);    /* invalid address */
-  
+
   /*
    *  The burst bit is set to allow access to read-only status registers.
    *  This does not affect normal register reads.
    */
-  return( spiRegAccess(addr | BURST_BIT | READ_BIT, DUMMY_BYTE) );
+  return( spiRegAccess(addr | BSP_SPI_BURST_BIT | BSP_SPI_READ_BIT, BSP_SPI_DUMMY_BYTE) );
 }
 
 
@@ -182,7 +171,7 @@ uint8_t mrfiSpiReadReg(uint8_t addr)
 void mrfiSpiWriteReg(uint8_t addr, uint8_t value)
 {
   MRFI_SPI_ASSERT((addr <= 0x2E) || (addr == 0x3E));    /* invalid address */
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
   spiRegAccess(addr, value);
 }
 
@@ -209,6 +198,9 @@ static uint8_t spiRegAccess(uint8_t addrByte, uint8_t writeValue)
   /* disable interrupts that use SPI */
   MRFI_SPI_ENTER_CRITICAL_SECTION(s);
 
+  /* make sure clock phase and polarity are correct for radio */
+  MRFI_SPI_CLK_CONFIG();
+
   /* turn chip select "off" and then "on" to clear any current SPI access */
   MRFI_SPI_TURN_CHIP_SELECT_OFF();
   MRFI_SPI_TURN_CHIP_SELECT_ON();
@@ -226,7 +218,7 @@ static uint8_t spiRegAccess(uint8_t addrByte, uint8_t writeValue)
 
   /*
    *  If this is a read operation, SPI data register now contains the register
-   *  value which will be returned.  For a read operation, it contains junk info
+   *  value which will be returned.  For a write operation, it contains junk info
    *  that is not used.
    */
   readValue = MRFI_SPI_READ_BYTE();
@@ -253,7 +245,7 @@ static uint8_t spiRegAccess(uint8_t addrByte, uint8_t writeValue)
  */
 void mrfiSpiWriteTxFifo(uint8_t * pData, uint8_t len)
 {
-  spiBurstFifoAccess(TXFIFO | BURST_BIT, pData, len);
+  spiBurstFifoAccess(TXFIFO | BSP_SPI_BURST_BIT, pData, len);
 }
 
 
@@ -270,7 +262,7 @@ void mrfiSpiWriteTxFifo(uint8_t * pData, uint8_t len)
  */
 void mrfiSpiReadRxFifo(uint8_t * pData, uint8_t len)
 {
-  spiBurstFifoAccess(RXFIFO | BURST_BIT | READ_BIT, pData, len);
+  spiBurstFifoAccess(RXFIFO | BSP_SPI_BURST_BIT | BSP_SPI_READ_BIT, pData, len);
 }
 
 
@@ -296,7 +288,7 @@ static void spiBurstFifoAccess(uint8_t addrByte, uint8_t * pData, uint8_t len)
 
   MRFI_SPI_ASSERT( MRFI_SPI_IS_INITIALIZED() );   /* SPI is not initialized */
   MRFI_SPI_ASSERT(len != 0);                      /* zero length is not allowed */
-  MRFI_SPI_ASSERT(addrByte & BURST_BIT);          /* only burst mode supported */
+  MRFI_SPI_ASSERT(addrByte & BSP_SPI_BURST_BIT);  /* only burst mode supported */
 
   /* disable interrupts that use SPI */
   MRFI_SPI_ENTER_CRITICAL_SECTION(s);
@@ -322,7 +314,7 @@ static void spiBurstFifoAccess(uint8_t addrByte, uint8_t * pData, uint8_t len)
     do
     {
       MRFI_SPI_WRITE_BYTE(*pData);
-        
+
       /*-------------------------------------------------------------------------------
        *  Use idle time.  Perform increment/decrement operations before pending on
        *  completion of SPI access.
@@ -336,7 +328,7 @@ static void spiBurstFifoAccess(uint8_t addrByte, uint8_t * pData, uint8_t len)
        *  SPI data register holds data just read.  If this is a read operation,
        *  store the value into memory.
        */
-      if (addrByte & READ_BIT)
+      if (addrByte & BSP_SPI_READ_BIT)
       {
         *pData = MRFI_SPI_READ_BYTE();
       }
