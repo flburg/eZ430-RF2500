@@ -4,6 +4,10 @@
 #include "mrfi.h"
 #include "bsp_leds.h"
 #include "bsp_buttons.h"
+#include "nwk_types.h"
+#include "nwk_api.h"
+#include "nwk_frame.h"
+#include "nwk.h"
 #include "virtual_com_cmds.h"
 
 /*------------------------------------------------------------------------------
@@ -31,7 +35,7 @@ volatile int * tempOffset = (int *)0x10F4;
  *----------------------------------------------------------------------------*/
 void main (void)
 {
-  char pktpld[6];
+//  bspIState_t intState;
 
   /* Initialize board */
   BSP_Init();
@@ -70,12 +74,16 @@ void main (void)
     if (sPktSem)
     {
       mrfiPacket_t mrfiPkt;
+      char msg[6];
 
       BSP_TOGGLE_LED2();
 
       MRFI_Receive(&mrfiPkt);
 
-      memcpy(pktpld, MRFI_P_PAYLOAD(&mrfiPkt), 3);
+      memcpy(msg, MRFI_P_PAYLOAD(&mrfiPkt), 3);
+
+      /* Send payload over serial port */
+      transmitData(1, 0, msg);
 
       --sPktSem;
     }
@@ -91,9 +99,6 @@ void main (void)
 
       /* Send sample over serial port */
       transmitDataString(1, addr, rssi, msg );
-
-      /* Also send payload - deals with packet bursts */
-      transmitData(1, 0, pktpld);
 
       /* Done with measurement, disable measure flag */
       sSelfMeasureSem = 0;

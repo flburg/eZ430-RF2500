@@ -553,7 +553,7 @@
         </option>
         <option>
           <name>TargetVoltage</name>
-          <state>3.0</state>
+          <state>3.3</state>
         </option>
         <option>
           <name>AllowLockedFlashAccessP7</name>
@@ -622,7 +622,7 @@
         </option>
         <option>
           <name>GPassword</name>
-          <state>###Uninitialized###</state>
+          <state></state>
         </option>
         <option>
           <name>DebugLPM5</name>
