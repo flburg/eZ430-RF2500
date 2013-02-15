@@ -1,6 +1,7 @@
 STOCK SIMPLICITI DEMO CONFIGURATION
 
-MCLK:	DCOCLK @ 8MHz (div by 1)			BSP_InitBoard()
+MCLK:	DCOCLK @ 8MHz (div by 1)			BSP_InitBoard()			
+	DCOCTL = 0x7c	(DCOx = 3, MODx = 0x1c, MODx is a modulation for RFI mitigation apparently) 
 SMCLK:	DCOCLK @ 8MHz (div by 1)			BSP_InitBoard()
 ACLK:	VLOCLK						main.c
 
@@ -13,10 +14,10 @@ TIMER A:						main.c
 
 SPI:
 	Uses USCI_B0	
-	Data changed on first UCLK edge, captured on following edge, 
-	clock inactive state low, msb first, 8 bit data
-	Master mode, synchronous mode, 3-pin SPI 
-	Uses ACLK
+	Data captured on first UCLK edge, changed on following edge, 
+	clock inactive state low, MSB first, 8 bit data
+	Master mode, synchronous mode, 3-pin SPI (MSP430 context)
+	Uses SMCLK/2 (UCxBRx set to 2) = 4MHz
 	Bit rate control = 02
 	Port 3: SCLK, SI, and SO set to SPI mode, pin 3.0 as GPIO for CS/
 	5 KBps

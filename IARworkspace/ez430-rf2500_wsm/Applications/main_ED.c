@@ -119,7 +119,6 @@ static void init(void);
 static void join(void);
 static void link(void);
 static void run(void);
-static void soundAlarm(void);
 static void selfMeasure(uint32_t seqno);
 static smplStatus_t sendPacket(uint8_t *msg, int len, int ackreq);
 static smplStatus_t sendBestEffort(uint8_t *mag, int len);
@@ -141,8 +140,6 @@ volatile int * tempOffset = (int *)0x10F4;
 char * Flash_Addr = (char *)0x10F0;
 /* Work loop semaphores */
 static volatile uint8_t sSelfMeasureSem = 0;
-/* Accelerometer alarm interrupt flag */
-static volatile uint8_t sAccelAlarm = 0;
 /* Keeps track of missed acknowledgements across calls to selfMeasure() */
 uint8_t missedAcks = 0;
 
@@ -209,8 +206,6 @@ static void init()
    * This port is not used by SimpliciTI for any purpose so there is no
    * possibility of conflict.
    */
-
-   accelInit();
 }
 
 static void join()
@@ -260,37 +255,11 @@ static void run()
     /* Go to sleep, waiting for interrupt every second */
     __bis_SR_register(LPM3_bits);
 
-    /* Check accelerometer alarm */
-    if (sAccelAlarm) {
-      soundAlarm();
-      sAccelAlarm = 0;
-    }
-
     /* Time to measure */
     if (sSelfMeasureSem >= TRANSMIT_PERIOD_SECS) {
       selfMeasure(seqno++);
     }
   }
-}
-
-static void soundAlarm(void)
-{
-  uint8_t msg[9], i;
-
-  memset(msg, 0x0, sizeof(msg));
-
-  // send packet until acknowledged (sendPacket returns SMPL_SUCCESS)
-  // but not more than some arbitrary number of times
-  for (i = 0; i < 10; i++) {
-    if (sendPacket(msg, sizeof(msg), 1) == SMPL_SUCCESS) {
-      break;
-    }
-  }
-
-  __delay_cycles(100000);
-
-  BSP_TURN_OFF_LED1();
-  BSP_TURN_OFF_LED2();
 }
 
 static void selfMeasure(uint32_t seqno)
@@ -334,7 +303,7 @@ static void selfMeasure(uint32_t seqno)
   ADC10CTL0 &= ~ENC;
   ADC10CTL0 &= ~(REFON + ADC10ON);
 
-/* oC = ((A10/1024)*1500mV)-986mV)*1/3.55mV = A10*423/1024 - 278
+  /* oC = ((A10/1024)*1500mV)-986mV)*1/3.55mV = A10*423/1024 - 278
    * the temperature is transmitted as an integer where 32.1 = 321
    * hence 4230 instead of 423
    */
@@ -548,21 +517,11 @@ void MRFI_GpioIsr(void); /* defined in mrfi_radio.c */
 #pragma vector=PORT2_VECTOR
 __interrupt void Port2_ISR (void)
 {
-  uint8_t flags = P2IFG, result = 0;
+  uint8_t flags = P2IFG;
 
   // radio sync
   if (P2IFG & BIT6) {
     MRFI_GpioIsr();
-  }
-
-  // accelerometer alarm
-  if (P2IFG & BIT1) {
-    result = accelSpiReadReg(INT_SOURCE_ADDR);
-    if (result & 0x10) {
-        sAccelAlarm++;
-    }
-    P2IFG &= ~BIT1;
-    accelSpiReadReg(INT_SOURCE_ADDR);
   }
 
   __bic_SR_register_on_exit(LPM3_bits);        // Clear LPM3 bit from 0(SR)
