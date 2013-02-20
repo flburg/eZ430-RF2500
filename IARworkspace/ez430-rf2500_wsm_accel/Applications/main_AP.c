@@ -284,6 +284,7 @@ void main (void)
       BSP_EXIT_CRITICAL_SECTION(intState);
     }
 
+
     // if it is time to measure our own temperature...
     if(sSelfMeasureSem)
     {
@@ -387,7 +388,7 @@ void main (void)
      */
     if (sPeerFrameSem)
     {
-      uint8_t  msg[MAX_APP_PAYLOAD], len, i;
+      uint8_t  msg[MAX_APP_PAYLOAD+4], len, i;
       addr_t   peeraddr;
 
       /* process all frames waiting */
@@ -396,9 +397,11 @@ void main (void)
         if (SMPL_SUCCESS == SMPL_ReceiveWithAddr(sLID[i], msg, &len, &peeraddr))
         {
           ioctlRadioSiginfo_t sigInfo;
+
           processMessage(sLID[i], msg, len);
 
           sigInfo.lid = sLID[i];
+
           SMPL_Ioctl(IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_SIGINFO, (void *)&sigInfo);
 
 #define INTEGER_PLD
@@ -564,33 +567,3 @@ __interrupt void Timer_A (void)
 {
   sSelfMeasureSem = 1;
 }
-
-/*
- * void nwkGetRemotePeerAddr(linkID_t sLinkId, addr_t *peerAddr)
-{
-  uint8_t index;
-
-  if(map_lid2idx(sLinkId, &index))
-  {
-    memcpy(peerAddr->addr, sPersistInfo.connStruct[index].peerAddr, NET_ADDR_SIZE);
-  }
-}
-
-    Add the declaration in the application code to use the function above:
-
-extern void nwkGetRemotePeerAddr(linkID_t sLinkId, addr_t *peerAddr);
-
-....
-
-void main(void)
-{
-  addr_t peerAddr;
-  linkID_t sLinkId1;
-  .....
-  // do the linking using SMPL_Link() or SMPL_LinkListen() to get valid linkID
-  .....
-  nwkGetRemotePeerAddr(sLinkId1, &peerAddr);
-  .....
-}
-*/
-

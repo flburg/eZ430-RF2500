@@ -74,66 +74,6 @@
 void BSP_InitBoard(void);
 void BSP_Delay(uint16_t usec);
 
-/* ------------------------------------------------------------------------------------------------
- *                                      SPI Configuration
- * ------------------------------------------------------------------------------------------------
- */
-
-/* SCLK Pin Configuration */
-#define __BSP_SPI_SCLK_GPIO_BIT__            3
-#define BSP_SPI_CONFIG_SCLK_PIN_AS_OUTPUT()  st( P3DIR |=  BV(__BSP_SPI_SCLK_GPIO_BIT__); )
-#define BSP_SPI_DRIVE_SCLK_HIGH()            st( P3OUT |=  BV(__BSP_SPI_SCLK_GPIO_BIT__); )
-#define BSP_SPI_DRIVE_SCLK_LOW()             st( P3OUT &= ~BV(__BSP_SPI_SCLK_GPIO_BIT__); )
-
-/* SI Pin Configuration */
-#define __BSP_SPI_SI_GPIO_BIT__              1
-#define BSP_SPI_CONFIG_SI_PIN_AS_OUTPUT()    st( P3DIR |=  BV(__BSP_SPI_SI_GPIO_BIT__); )
-#define BSP_SPI_DRIVE_SI_HIGH()              st( P3OUT |=  BV(__BSP_SPI_SI_GPIO_BIT__); )
-#define BSP_SPI_DRIVE_SI_LOW()               st( P3OUT &= ~BV(__BSP_SPI_SI_GPIO_BIT__); )
-
-/* SO Pin Configuration */
-#define __BSP_SPI_SO_GPIO_BIT__              2
-#define BSP_SPI_CONFIG_SO_PIN_AS_INPUT()     /* nothing to required */
-#define BSP_SPI_SO_IS_HIGH()                 ( P3IN & BV(__BSP_SPI_SO_GPIO_BIT__) )
-
-/* SPI Port Configuration - CLK, SI, SO are SPI, STE is GPIO */
-#define BSP_SPI_CONFIG_PORT()                st( P3SEL |= BV(__BSP_SPI_SCLK_GPIO_BIT__) |  \
-                                                          BV(__BSP_SPI_SI_GPIO_BIT__)   |  \
-                                                          BV(__BSP_SPI_SO_GPIO_BIT__); )
-/* read/write macros */
-#define BSP_SPI_WRITE_BYTE(x)                st( IFG2 &= ~UCB0RXIFG;  UCB0TXBUF = x; )
-#define BSP_SPI_READ_BYTE()                  UCB0RXBUF
-#define BSP_SPI_WAIT_DONE()                  while(!(IFG2 & UCB0RXIFG));
-
-/*
- *  SPI Specifications
- * -----------------------------------------------
- *    Max SPI Clock   :  10 MHz
- *    Data Order      :  MSB transmitted first
- *    Clock Polarity  :  low when idle
- *    Clock Phase     :  sample leading edge
- */
-
-/* initialization macro */
-// with UCSSEL1 set and UCB0BR0 is 2, bit rate is about 6kHz
-#define BSP_SPI_INIT() \
-st ( \
-  UCB0CTL1 = UCSWRST;                           \
-  UCB0CTL1 = UCSWRST | UCSSEL1;                 \
-  UCB0CTL0 = UCCKPH | UCMSB | UCMST | UCSYNC;   \
-  UCB0BR0  = 2;                                 \
-  UCB0BR1  = 0;                                 \
-  BSP_SPI_CONFIG_PORT();                        \
-  UCB0CTL1 &= ~UCSWRST;                         \
-)
-
-#define BSP_SPI_IS_INITIALIZED()         (UCB0CTL0 & UCMST)
-
-#define BSP_SPI_READ_BIT    0x80
-#define BSP_SPI_BURST_BIT   0x40
-#define BSP_SPI_DUMMY_BYTE  0xDB
-
-
 /* ************************************************************************************************
  *                                   Compile Time Integrity Checks
  * ************************************************************************************************

@@ -62,7 +62,7 @@
 /*-DFREQUENCY_AGILITY*/
 
 /* Remove comment to enable application autoacknowledge support. Requires extended API as well */
--DAPP_AUTO_ACK
+/*-DAPP_AUTO_ACK*/
 
 /* Remove comment to enable Extended API */
 -DEXTENDED_API

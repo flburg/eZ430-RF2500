@@ -130,6 +130,16 @@ typedef bspIState_t mrfiSpiIState_t;
 #define MRFI_SPI_ENTER_CRITICAL_SECTION(x)    BSP_ENTER_CRITICAL_SECTION(x)
 #define MRFI_SPI_EXIT_CRITICAL_SECTION(x)     BSP_EXIT_CRITICAL_SECTION(x)
 
+
+/*
+ *  Radio SPI Specifications
+ * -----------------------------------------------
+ *    Max SPI Clock   :  10 MHz
+ *    Data Order      :  MSB transmitted first
+ *    Clock Polarity  :  low when idle
+ *    Clock Phase     :  sample leading edge
+ */
+
 /* initialization macro */
 #define MRFI_SPI_INIT()                       BSP_SPI_INIT()
 #define MRFI_SPI_IS_INITIALIZED()             BSP_SPI_IS_INITIALIZED()

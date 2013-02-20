@@ -30,7 +30,7 @@
   THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
 
   Should you have any questions regarding your right to use this Software,
-  contact Texas Instruments Incorporated at www.TI.com.
+  contact Texas Instruments Incorporated at www.TI.com. 
 **************************************************************************************************/
 
 /* ~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=~=
@@ -60,8 +60,6 @@
  * @return      -
  **************************************************************************************************
  */
-// Function is redefined in end device
-#ifdef ACCESS_POINT
 BSP_ISR_FUNCTION( BSP_GpioPort1Isr, PORT2_VECTOR )
 {
   /*
@@ -70,7 +68,6 @@ BSP_ISR_FUNCTION( BSP_GpioPort1Isr, PORT2_VECTOR )
    */
   MRFI_GpioIsr();
 }
-#endif
 
 
 /**************************************************************************************************

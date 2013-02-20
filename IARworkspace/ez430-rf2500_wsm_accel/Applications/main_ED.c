@@ -334,7 +334,7 @@ static void selfMeasure(uint32_t seqno)
   ADC10CTL0 &= ~ENC;
   ADC10CTL0 &= ~(REFON + ADC10ON);
 
-/* oC = ((A10/1024)*1500mV)-986mV)*1/3.55mV = A10*423/1024 - 278
+  /* oC = ((A10/1024)*1500mV)-986mV)*1/3.55mV = A10*423/1024 - 278
    * the temperature is transmitted as an integer where 32.1 = 321
    * hence 4230 instead of 423
    */

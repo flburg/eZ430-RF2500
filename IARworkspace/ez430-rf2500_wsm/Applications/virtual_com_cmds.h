@@ -38,7 +38,7 @@
 /******************************************************************************/
 // Virtual Com Port Communication
 /******************************************************************************/
-#define MESSAGE_LENGTH 11
+#define MESSAGE_LENGTH 3
 
 void COM_Init(void);
 void TXString( char* string, int length );

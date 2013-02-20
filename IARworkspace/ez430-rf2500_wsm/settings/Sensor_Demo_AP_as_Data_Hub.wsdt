@@ -3,50 +3,64 @@
 <Workspace>
   <ConfigDictionary>
     
-  <CurrentConfigs><Project>Sensor_Demo_AP_as_Data_Hub/CC2500 Sensor Demo-End Device</Project></CurrentConfigs></ConfigDictionary>
+  <CurrentConfigs><Project>Sensor_Demo_AP_as_Data_Hub/CC2500 Sensor Demo-Access Point</Project></CurrentConfigs></ConfigDictionary>
   <Desktop>
     <Static>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1395</ColumnWidth1><ColumnWidth2>372</ColumnWidth2><ColumnWidth3>93</ColumnWidth3></Build>
       <Workspace>
         <ColumnWidths>
           
           
           
           
-        <Column0>578</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
-      <PreferedWindows><Position>4</Position><ScreenPosX>7</ScreenPosX><ScreenPosY>95</ScreenPosY><Windows/></PreferedWindows></Workspace>
-      <Find-in-Files>
-        
-        
-        
-      <ColumnWidth0>866</ColumnWidth0><ColumnWidth1>94</ColumnWidth1><ColumnWidth2>1138</ColumnWidth2></Find-in-Files>
-    <Build><ColumnWidth0>18</ColumnWidth0><ColumnWidth1>1397</ColumnWidth1><ColumnWidth2>372</ColumnWidth2><ColumnWidth3>93</ColumnWidth3></Build><TerminalIO/><Debug-Log><ColumnWidth0>17</ColumnWidth0><ColumnWidth1>1864</ColumnWidth1></Debug-Log></Static>
+        <Column0>302</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <TerminalIO/>
+    </Static>
     <Windows>
       
       
-    <Wnd1>
+    <Wnd0>
         <Tabs>
           <Tab>
-            <Identity>TabID-20540-11200</Identity>
-            <TabName>Find in Files</TabName>
-            <Factory>Find-in-Files</Factory>
+            <Identity>TabID-22755-5185</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
             <Session/>
           </Tab>
-        <Tab><Identity>TabID-31094-12706</Identity><TabName>Build</TabName><Factory>Build</Factory><Session/></Tab><Tab><Identity>TabID-10251-10194</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
+        </Tabs>
         
-      <SelectedTab>1</SelectedTab></Wnd1><Wnd2><Tabs><Tab><Identity>TabID-15674-983</Identity><TabName>Workspace</TabName><Factory>Workspace</Factory><Session><NodeDict><ExpandedNode>Sensor_Demo_AP_as_Data_Hub</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications/Access Point</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Applications/End Device</ExpandedNode></NodeDict></Session></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd2></Windows>
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-735-5188</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>Sensor_Demo_AP_as_Data_Hub</ExpandedNode><ExpandedNode>Sensor_Demo_AP_as_Data_Hub/Configuration</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_ED.c</Filename><XPos>0</XPos><YPos>141</YPos><SelStart>6752</SelStart><SelEnd>6752</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\accel.c</Filename><XPos>0</XPos><YPos>10</YPos><SelStart>2231</SelStart><SelEnd>2231</SelEnd></Tab><ActiveTab>1</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane/><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00ec10a8><key>iaridepm.enu1</key></Toolbar-00ec10a8></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>761</Bottom><Right>652</Right><x>-2</x><y>-2</y><xscreen>133</xscreen><yscreen>128</yscreen><sizeHorzCX>69271</sizeHorzCX><sizeHorzCY>114490</sizeHorzCY><sizeVertCX>340625</sizeVertCX><sizeVertCY>682469</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>312</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>314</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>280859</sizeHorzCY><sizeVertCX>212500</sizeVertCX><sizeVertCY>406082</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00f810a8><key>iaridepm.enu1</key></Toolbar-00f810a8></Sizes></Row0><Row1><Sizes/></Row1><Row2><Sizes/></Row2><Row3><Sizes/></Row3><Row4><Sizes/></Row4><Row5><Sizes/></Row5><Row6><Sizes/></Row6><Row7><Sizes/></Row7><Row8><Sizes/></Row8><Row9><Sizes/></Row9><Row10><Sizes/></Row10><Row11><Sizes/></Row11><Row12><Sizes/></Row12><Row13><Sizes/></Row13></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>875</Bottom><Right>376</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>178891</sizeHorzCY><sizeVertCX>196875</sizeVertCX><sizeVertCY>784436</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>200</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>178891</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>178891</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

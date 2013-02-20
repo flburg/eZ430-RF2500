@@ -19,7 +19,7 @@
           
           
           
-        <Column0>223</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>206</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Disassembly>
         <col-names>
@@ -34,12 +34,12 @@
         
         
       <PreferedWindows><Position>2</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows/></PreferedWindows><ShowCodeCoverage>0</ShowCodeCoverage><ShowInstrProfiling>0</ShowInstrProfiling></Disassembly>
-    <Locals><col-names><item>Location</item><item>Type</item><item>Value</item><item>Variable</item></col-names><col-widths><item>150</item><item>100</item><item>257</item><item>100</item></col-widths></Locals></Static>
+    <Locals><col-names><item>Location</item><item>Type</item><item>Value</item><item>Variable</item></col-names><col-widths><item>150</item><item>100</item><item>257</item><item>224</item></col-widths></Locals><Find-in-Files><ColumnWidth0>664</ColumnWidth0><ColumnWidth1>94</ColumnWidth1><ColumnWidth2>1138</ColumnWidth2></Find-in-Files></Static>
     <Windows>
       
       
       
-    <Wnd3>
+    <Wnd0>
         <Tabs>
           <Tab>
             <Identity>TabID-1114-15698</Identity>
@@ -53,9 +53,9 @@
             <Factory>Build</Factory>
             <Session/>
           </Tab>
-        </Tabs>
+        <Tab><Identity>TabID-26246-28267</Identity><TabName>Find in Files</TabName><Factory>Find-in-Files</Factory><Session/></Tab></Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd3><Wnd4>
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
         <Tabs>
           <Tab>
             <Identity>TabID-11863-15702</Identity>
@@ -63,24 +63,24 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>WSM</ExpandedNode><ExpandedNode>WSM/Applications</ExpandedNode><ExpandedNode>WSM/Applications/End Device</ExpandedNode><ExpandedNode>WSM/Configuration</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>WSM</ExpandedNode><ExpandedNode>WSM/Applications</ExpandedNode><ExpandedNode>WSM/Applications/End Device</ExpandedNode><ExpandedNode>WSM/Components</ExpandedNode><ExpandedNode>WSM/Components/mrfi</ExpandedNode><ExpandedNode>WSM/Components/mrfi/mrfi.c</ExpandedNode><ExpandedNode>WSM/Configuration</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd4><Wnd5><Tabs><Tab><Identity>TabID-7846-5193</Identity><TabName>Locals</TabName><Factory>Locals</Factory></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd5></Windows>
+      <SelectedTab>0</SelectedTab></Wnd1><Wnd2><Tabs><Tab><Identity>TabID-7846-5193</Identity><TabName>Locals</TabName><Factory>Locals</Factory></Tab></Tabs><SelectedTab>0</SelectedTab></Wnd2></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_AP.c</Filename><XPos>0</XPos><YPos>194</YPos><SelStart>10111</SelStart><SelEnd>10111</SelEnd></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_AP.c</Filename><XPos>0</XPos><YPos>199</YPos><SelStart>10111</SelStart><SelEnd>10111</SelEnd></Tab><ActiveTab>0</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\mrfi\radios\family1\mrfi_radio.c</Filename><XPos>0</XPos><YPos>1114</YPos><SelStart>41664</SelStart><SelEnd>41664</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\virtual_com_cmds.c</Filename><XPos>0</XPos><YPos>74</YPos><SelStart>4419</SelStart><SelEnd>4419</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\simpliciti\nwk\nwk_frame.c</Filename><XPos>0</XPos><YPos>257</YPos><SelStart>9856</SelStart><SelEnd>9856</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board.c</Filename><XPos>0</XPos><YPos>47</YPos><SelStart>3265</SelStart><SelEnd>3265</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\simpliciti\nwk\nwk_api.c</Filename><XPos>0</XPos><YPos>104</YPos><SelStart>5440</SelStart><SelEnd>5451</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Access_Point\List\WSM.map</Filename><XPos>0</XPos><YPos>4491</YPos><SelStart>214874</SelStart><SelEnd>214874</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00f510a8><key>iaridepm.enu1</key></Toolbar-00f510a8></Sizes></Row0><Row1><Sizes><Toolbar-0826aba0><key>debuggergui.enu1</key></Toolbar-0826aba0></Sizes></Row1><Row2><Sizes><Toolbar-0826ad30><key>430fet1</key></Toolbar-0826ad30></Sizes></Row2><Row3><Sizes/></Row3><Row4><Sizes/></Row4><Row5><Sizes/></Row5><Row6><Sizes/></Row6><Row7><Sizes/></Row7></Top><Left><Row0><Sizes><Wnd4><Rect><Top>-2</Top><Left>-2</Left><Bottom>827</Bottom><Right>297</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>178891</sizeHorzCY><sizeVertCX>155729</sizeVertCX><sizeVertCY>741503</sizeVertCY></Rect></Wnd4></Sizes></Row0></Left><Right><Row0><Sizes><Wnd5><Rect><Top>-2</Top><Left>-2</Left><Bottom>827</Bottom><Right>845</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>178891</sizeHorzCY><sizeVertCX>441146</sizeVertCX><sizeVertCY>741503</sizeVertCY></Rect></Wnd5></Sizes></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>200</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>178891</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>178891</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00fa2180><key>iaridepm.enu1</key></Toolbar-00fa2180></Sizes></Row0><Row1><Sizes><Toolbar-0271c5b0><key>debuggergui.enu1</key></Toolbar-0271c5b0></Sizes></Row1><Row2><Sizes><Toolbar-0271c678><key>430fet1</key></Toolbar-0271c678></Sizes></Row2></Top><Left><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>665</Bottom><Right>297</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>178891</sizeHorzCY><sizeVertCX>155729</sizeVertCX><sizeVertCY>596601</sizeVertCY></Rect></Wnd1></Sizes></Row0></Left><Right><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>665</Bottom><Right>829</Right><x>-2</x><y>-2</y><xscreen>200</xscreen><yscreen>200</yscreen><sizeHorzCX>104167</sizeHorzCX><sizeHorzCY>178891</sizeHorzCY><sizeVertCX>432813</sizeVertCX><sizeVertCY>596601</sizeVertCY></Rect></Wnd2></Sizes></Row0></Right><Bottom><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>360</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>362</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>323792</sizeHorzCY><sizeVertCX>104167</sizeVertCX><sizeVertCY>178891</sizeVertCY></Rect></Wnd0></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Project>
 

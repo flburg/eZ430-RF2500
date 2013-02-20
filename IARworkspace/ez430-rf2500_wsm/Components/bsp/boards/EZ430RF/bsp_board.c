@@ -49,7 +49,6 @@
  *                                            Prototypes
  * ------------------------------------------------------------------------------------------------
  */
-static void bspSpiInit(void);
 
 /* ------------------------------------------------------------------------------------------------
  *                                            Defines
@@ -116,9 +115,6 @@ void BSP_InitBoard(void)
   /* Select the clk source to be - SMCLK (Sub-Main CLK)*/
   TACTL |= TASSEL_2;
 
-  /* Initialize SPI for multiple devices */
-  bspSpiInit();
-
 #if defined(SW_TIMER)
 #define MHZ_CLOCKS_PER_USEC      BSP_CLOCK_MHZ
 #define MHZ_CLOCKS_PER_ITERATION 10
@@ -161,7 +157,11 @@ void BSP_Delay(uint16_t usec)
   /* Clear the interrupt flag */
    TACCTL0 &= ~CCIFG;
 }
+
+
 #else  /* !SW_TIMER */
+
+
 {
   /* Declared 'volatile' in case User optimizes for speed. This will
    * prevent the optimizer from eliminating the loop completely. But
@@ -173,30 +173,10 @@ void BSP_Delay(uint16_t usec)
 
   return;
 }
+
 #endif  /* !SW_TIMER */
 /**************************************************************************************************
 */
-
-/**************************************************************************************************
- * @fn          bspSpiInit
- *
- * @brief       Initialize SPI.
- *
- * @param       none
- *
- * @return      none
- **************************************************************************************************
- */
-static void bspSpiInit(void)
-{
-  /* configure all common SPI pins */
-  BSP_SPI_CONFIG_SCLK_PIN_AS_OUTPUT();
-  BSP_SPI_CONFIG_SI_PIN_AS_OUTPUT();
-  BSP_SPI_CONFIG_SO_PIN_AS_INPUT();
-
-  /* initialize the SPI registers */
-  BSP_SPI_INIT();
-}
 
 
 
