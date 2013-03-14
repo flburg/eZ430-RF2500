@@ -1,0 +1,881 @@
+******************************************************************************
+                  MSP430 Linker PC v4.1.1                      
+******************************************************************************
+>> Linked Thu Mar 14 10:08:36 2013
+
+OUTPUT FILE NAME:   <eZ430-RF2500_WSM.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 0000e9f2
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  SFR                   00000000   00000010  00000000  00000010  RWIX
+  PERIPHERALS_8BIT      00000010   000000f0  00000000  000000f0  RWIX
+  PERIPHERALS_16BIT     00000100   00000100  00000000  00000100  RWIX
+  RAM                   00000200   00000400  00000207  000001f9  RWIX
+  INFOD                 00001000   00000040  00000000  00000040  RWIX
+  INFOC                 00001040   00000040  00000000  00000040  RWIX
+  INFOB                 00001080   00000040  00000000  00000040  RWIX
+  INFOA                 000010c0   00000040  00000000  00000040  RWIX
+  SAMPLEMEM             00008000   00004000  00004000  00000000  RWIX
+  FLASH                 0000c000   00003fc0  00002fcb  00000ff5  RWIX
+  INT00                 0000ffe0   00000002  00000000  00000002  RWIX
+  INT01                 0000ffe2   00000002  00000000  00000002  RWIX
+  INT02                 0000ffe4   00000002  00000000  00000002  RWIX
+  INT03                 0000ffe6   00000002  00000002  00000000  RWIX
+  INT04                 0000ffe8   00000002  00000000  00000002  RWIX
+  INT05                 0000ffea   00000002  00000002  00000000  RWIX
+  INT06                 0000ffec   00000002  00000000  00000002  RWIX
+  INT07                 0000ffee   00000002  00000000  00000002  RWIX
+  INT08                 0000fff0   00000002  00000000  00000002  RWIX
+  INT09                 0000fff2   00000002  00000002  00000000  RWIX
+  INT10                 0000fff4   00000002  00000000  00000002  RWIX
+  INT11                 0000fff6   00000002  00000000  00000002  RWIX
+  INT12                 0000fff8   00000002  00000000  00000002  RWIX
+  INT13                 0000fffa   00000002  00000000  00000002  RWIX
+  INT14                 0000fffc   00000002  00000000  00000002  RWIX
+  RESET                 0000fffe   00000002  00000002  00000000  RWIX
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.pinit     0    0000c000    00000000     UNINITIALIZED
+
+.bss       0    00000200    000001b7     UNINITIALIZED
+                  00000200    00000108     nwk_QMgmt.obj (.bss)
+                  00000308    0000004e     mrfi.obj (.bss)
+                  00000356    00000029     nwk.obj (.bss)
+                  0000037f    00000001     bsp.obj (.bss)
+                  00000380    0000000a     nwk_link.obj (.bss)
+                  0000038a    00000009     nwk_globals.obj (.bss)
+                  00000393    00000001     nwk_api.obj (.bss)
+                  00000394    00000008     main_ED.obj (.bss)
+                  0000039c    00000008     nwk_frame.obj (.bss)
+                  000003a4    00000007     nwk_join.obj (.bss)
+                  000003ab    00000001     nwk_ping.obj (.bss)
+                  000003ac    00000004     rts430.lib : _lock.obj (.bss)
+                  000003b0    00000004                : boot.obj (.bss)
+                  000003b4    00000003     nwk_mgmt.obj (.bss)
+
+.stack     0    000005b0    00000050     UNINITIALIZED
+                  000005b0    00000002     rts430.lib : boot.obj (.stack)
+                  000005b2    0000004e     --HOLE--
+
+.samplemem 
+*          0    00008000    00004000     UNINITIALIZED
+                  00008000    00004000     flash.obj (.samplemem)
+
+.text      0    0000c000    00002e98     
+                  0000c000    000001fe     mrfi.obj (.text:MRFI_Init)
+                  0000c1fe    000001ea     nwk_link.obj (.text:smpl_send_link_reply)
+                  0000c3e8    0000019a     nwk_QMgmt.obj (.text:nwk_QfindOldest)
+                  0000c582    00000198     nwk_link.obj (.text:nwk_link)
+                  0000c71a    00000196     nwk_api.obj (.text:SMPL_Ioctl)
+                  0000c8b0    0000016c     flash.obj (.text:flashtest)
+                  0000ca1c    0000015c     main_ED.obj (.text:selfMeasure)
+                  0000cb78    00000156     nwk_api.obj (.text:SMPL_SendOpt)
+                  0000ccce    0000014a     nwk.obj (.text:nwk_allocateLocalRxPort)
+                  0000ce18    0000011c     mrfi.obj (.text:MRFI_Transmit)
+                  0000cf34    00000102     nwk_join.obj (.text:nwk_join)
+                  0000d036    000000fc     nwk_frame.obj (.text:nwk_retrieveFrame)
+                  0000d132    000000ea     mrfi.obj (.text:Mrfi_SyncPinRxIsr)
+                  0000d21c    000000e8     nwk_frame.obj (.text:nwk_buildFrame)
+                  0000d304    000000e4     nwk_ioctl.obj (.text:nwk_radioControl)
+                  0000d3e8    000000de     main_ED.obj (.text:sendWithAckReq)
+                  0000d4c6    000000d8     nwk_frame.obj (.text:dispatchFrame)
+                  0000d59e    000000d8     nwk_QMgmt.obj (.text:nwk_QfindSlot)
+                  0000d676    000000d0     nwk.obj (.text:nwk_isConnectionValid)
+                  0000d746    000000ac     nwk_frame.obj (.text:nwk_sendAckReply)
+                  0000d7f2    000000a8     mrfi.obj (.text:spiBurstFifoAccess)
+                  0000d89a    00000088     nwk.obj (.text:nwk_nwkInit)
+                  0000d922    00000084     nwk_link.obj (.text:smpl_send_unlink_reply)
+                  0000d9a6    00000072     nwk_ioctl.obj (.text:nwk_rawSend)
+                  0000da18    00000070     mrfi.obj (.text:MRFI_RxAddrIsFiltered)
+                  0000da88    0000006a     mrfi.obj (.text:spiRegAccess)
+                  0000daf2    00000068     mrfi.obj (.text:mrfiSpiCmdStrobe)
+                  0000db5a    00000068     nwk.obj (.text:nwk_putNumObjectIntoMsg)
+                  0000dbc2    00000062     nwk.obj (.text:nwk_findPeer)
+                  0000dc24    0000005e     nwk.obj (.text:nwk_isLinkDuplicate)
+                  0000dc82    0000005c     rts430.lib : lsr32.obj (.text:l_lsr_const)
+                  0000dcde    0000005a     nwk.obj (.text:initializeConnection)
+                  0000dd38    0000005a     nwk_QMgmt.obj (.text:nwk_QadjustOrder)
+                  0000dd92    0000005a     nwk.obj (.text:nwk_getNextConnection)
+                  0000ddec    0000005a     nwk.obj (.text:nwk_isValidReply)
+                  0000de46    00000058     rts430.lib : div32u.obj (.text)
+                  0000de9e    00000056     nwk_mgmt.obj (.text:nwk_processMgmt)
+                  0000def4    00000056     nwk_ping.obj (.text:smpl_send_ping_reply)
+                  0000df4a    00000054     mrfi.obj (.text:MRFI_WakeUp)
+                  0000df9e    0000004e     nwk.obj (.text:map_lid2idx)
+                  0000dfec    0000004e     nwk.obj (.text:nwk_getNumObjectFromMsg)
+                  0000e03a    0000004c     mrfi.obj (.text:MRFI_Rssi)
+                  0000e086    0000004c     mrfi.obj (.text:Mrfi_CalculateRssi)
+                  0000e0d2    0000004c     rts430.lib : lsr16.obj (.text)
+                  0000e11e    0000004a     mrfi.obj (.text:MRFI_ReplyDelay)
+                  0000e168    0000004a     nwk_frame.obj (.text:nwk_buildAckReqFrame)
+                  0000e1b2    0000004a     nwk_ioctl.obj (.text:nwk_deviceAddress)
+                  0000e1fc    00000048     nwk_frame.obj (.text:nwk_sendFrame)
+                  0000e244    00000048     main_ED.obj (.text:sendBestEffort)
+                  0000e28c    00000046     mrfi.obj (.text:Mrfi_DelayUsecSem)
+                  0000e2d2    00000046     rts430.lib : autoinit.obj (.text:_auto_init)
+                  0000e318    00000044     nwk_link.obj (.text:handleLinkRequest)
+                  0000e35c    00000042     mrfi.obj (.text:MRFI_SetRxAddrFilter)
+                  0000e39e    00000042     main_ED.obj (.text:init)
+                  0000e3e0    00000042     nwk.obj (.text:nwk_getConnInfo)
+                  0000e422    00000040     mrfi.obj (.text:Mrfi_DelayUsec)
+                  0000e462    00000040     nwk_api.obj (.text:SMPL_Init)
+                  0000e4a2    00000040     nwk.obj (.text:nwk_checkConnInfo)
+                  0000e4e2    00000040     nwk_ioctl.obj (.text:nwk_connectionControl)
+                  0000e522    0000003c     nwk_link.obj (.text:nwk_processLink)
+                  0000e55e    0000003c     nwk_ping.obj (.text:nwk_processPing)
+                  0000e59a    00000038     flash.obj (.text:flashEraseSegment)
+                  0000e5d2    00000038     nwk_ioctl.obj (.text:nwk_rawReceive)
+                  0000e60a    00000036     mrfi.obj (.text:MRFI_SetRFPwr)
+                  0000e640    00000034     mrfi.obj (.text:MRFI_SetLogicalChannel)
+                  0000e674    00000034     nwk_join.obj (.text:nwk_processJoin)
+                  0000e6a8    00000032     main_ED.obj (.text:Port2_ISR)
+                  0000e6da    00000032     nwk_link.obj (.text:nwk_linkInit)
+                  0000e70c    00000030     bsp.obj (.text:BSP_Init)
+                  0000e73c    00000030     main_ED.obj (.text:link)
+                  0000e76c    00000030     main_ED.obj (.text:run)
+                  0000e79c    0000002e     bsp.obj (.text:BSP_InitBoard)
+                  0000e7ca    0000002e     nwk_join.obj (.text:nwk_joinInit)
+                  0000e7f8    0000002c     mrfi.obj (.text:Mrfi_RandomBackoffDelay)
+                  0000e824    0000002c     mrfi.obj (.text:Mrfi_RxModeOff)
+                  0000e850    0000002c     bsp.obj (.text:bspSpiInit)
+                  0000e87c    0000002c     nwk_globals.obj (.text:nwk_setMyAddress)
+                  0000e8a8    0000002c     rts430.lib : div16s.obj (.text)
+                  0000e8d4    0000002c                : lsl16.obj (.text)
+                  0000e900    0000002a     nwk_api.obj (.text:ioctlPreInitAccessIsOK)
+                  0000e92a    0000002a     main_ED.obj (.text:sendPacket)
+                  0000e954    00000028     bsp.obj (.text:BSP_Delay)
+                  0000e97c    00000028     mrfi.obj (.text:mrfiSpiWriteReg)
+                  0000e9a4    00000028     nwk_frame.obj (.text:nwk_frameInit)
+                  0000e9cc    00000026     mrfi.obj (.text:MRFI_Sleep)
+                  0000e9f2    00000026     rts430.lib : boot.obj (.text:_c_int00_noexit)
+                  0000ea18    00000026     mrfi.obj (.text:mrfiSpiReadReg)
+                  0000ea3e    00000026     nwk_globals.obj (.text:nwk_globalsInit)
+                  0000ea64    00000026     rts430.lib : mult32.obj (.text)
+                  0000ea8a    00000024     nwk_frame.obj (.text:MRFI_RxCompleteISR)
+                  0000eaae    00000024     rts430.lib : memcmp.obj (.text:memcmp)
+                  0000ead2    00000024     nwk_join.obj (.text:nwk_setJoinToken)
+                  0000eaf6    00000024     nwk_link.obj (.text:nwk_setLinkToken)
+                  0000eb1a    00000022     main_ED.obj (.text:join)
+                  0000eb3c    00000022     flash.obj (.text:segAddress)
+                  0000eb5e    00000020     mrfi.obj (.text:MRFI_EnableRxAddrFilter)
+                  0000eb7e    00000020     mrfi.obj (.text:MRFI_RxOn)
+                  0000eb9e    00000020     rts430.lib : memmov.obj (.text:memmove)
+                  0000ebbe    0000001e     mrfi.obj (.text:MRFI_RxIdle)
+                  0000ebdc    0000001e     nwk_QMgmt.obj (.text:nwk_QInit)
+                  0000ebfa    0000001c     mrfi.obj (.text:MRFI_GpioIsr)
+                  0000ec16    0000001c     nwk_ping.obj (.text:handlePingRequest)
+                  0000ec32    0000001c     nwk_join.obj (.text:nwk_getJoinToken)
+                  0000ec4e    0000001c     nwk_link.obj (.text:nwk_getLinkToken)
+                  0000ec6a    0000001a     mrfi.obj (.text:mrfiSpiWriteTxFifo)
+                  0000ec84    00000018     mrfi.obj (.text:mrfiSpiReadRxFifo)
+                  0000ec9c    00000016     mrfi.obj (.text:MRFI_RandomByte)
+                  0000ecb2    00000016     mrfi.obj (.text:MRFI_Receive)
+                  0000ecc8    00000016     mrfi.obj (.text:Mrfi_RxModeOn)
+                  0000ecde    00000016     nwk_globals.obj (.text:nwk_setAPAddress)
+                  0000ecf4    00000016     rts430.lib : div16u.obj (.text)
+                  0000ed0a    00000016     flash.obj (.text:saveSample)
+                  0000ed20    00000014     rts430.lib : memset.obj (.text:memset)
+                  0000ed34    00000014                : mult16.obj (.text)
+                  0000ed48    00000012     bsp.obj (.text:BSP_InitLeds)
+                  0000ed5a    00000012     main_ED.obj (.text:main)
+                  0000ed6c    00000012     rts430.lib : memcpy.obj (.text:memcpy)
+                  0000ed7e    00000012     nwk_globals.obj (.text:nwk_getMyAddress)
+                  0000ed90    00000010     rts430.lib : asr32.obj (.text:l_asr)
+                  0000eda0    00000010     nwk.obj (.text:nwk_NVObj)
+                  0000edb0    00000010     flash.obj (.text:readSample)
+                  0000edc0    00000010     rts430.lib : epilog.obj (.text)
+                  0000edd0    0000000e     nwk_api.obj (.text:SMPL_Link)
+                  0000edde    0000000e     flash.obj (.text:flashInit)
+                  0000edec    0000000e     nwk.obj (.text:nwk_freeConnection)
+                  0000edfa    0000000c     mrfi.obj (.text:MRFI_PostKillSem)
+                  0000ee06    0000000c     main_ED.obj (.text:TimerA_ISR)
+                  0000ee12    0000000c     nwk_freq.obj (.text:nwk_processFreq)
+                  0000ee1e    0000000c     nwk_security.obj (.text:nwk_processSecurity)
+                  0000ee2a    0000000a     bsp.obj (.text:BSP_InitButtons)
+                  0000ee34    0000000a     bsp.obj (.text:BSP_InitDrivers)
+                  0000ee3e    0000000a     bsp.obj (.text:_system_pre_init)
+                  0000ee48    0000000a     nwk_mgmt.obj (.text:nwk_mgmtInit)
+                  0000ee52    0000000a     nwk_ping.obj (.text:nwk_pingInit)
+                  0000ee5c    0000000a     nwk_mgmt.obj (.text:smpl_send_mgmt_reply)
+                  0000ee66    00000008     main_ED.obj (.text:ADC10_ISR)
+                  0000ee6e    00000006     mrfi.obj (.text:MRFI_GetRadioState)
+                  0000ee74    00000006     nwk_globals.obj (.text:nwk_getBCastAddress)
+                  0000ee7a    00000006     nwk_globals.obj (.text:nwk_getFWVersion)
+                  0000ee80    00000006     nwk_frame.obj (.text:nwk_getMyRxType)
+                  0000ee86    00000006     nwk_globals.obj (.text:nwk_getProtocolVersion)
+                  0000ee8c    00000004     rts430.lib : exit.obj (.text:abort)
+                  0000ee90    00000002                : _lock.obj (.text:_nop)
+                  0000ee92    00000002     mrfi.obj (.text:mrfiSpiInit)
+                  0000ee94    00000002     nwk_freq.obj (.text:nwk_freqInit)
+                  0000ee96    00000002     nwk_security.obj (.text:nwk_securityInit)
+
+.cinit     0    0000ee98    000000c6     
+                  0000ee98    0000002f     mrfi.obj (.cinit)
+                  0000eec7    00000001     --HOLE-- [fill = 0]
+                  0000eec8    0000001e     nwk_frame.obj (.cinit)
+                  0000eee6    0000001d     main_ED.obj (.cinit)
+                  0000ef03    00000001     --HOLE-- [fill = 0]
+                  0000ef04    00000019     nwk_link.obj (.cinit)
+                  0000ef1d    00000001     --HOLE-- [fill = 0]
+                  0000ef1e    00000013     nwk_join.obj (.cinit)
+                  0000ef31    00000001     --HOLE-- [fill = 0]
+                  0000ef32    0000000b     nwk_mgmt.obj (.cinit)
+                  0000ef3d    00000001     --HOLE-- [fill = 0]
+                  0000ef3e    00000005     bsp.obj (.cinit)
+                  0000ef43    00000001     --HOLE-- [fill = 0]
+                  0000ef44    00000005     nwk.obj (.cinit)
+                  0000ef49    00000001     --HOLE-- [fill = 0]
+                  0000ef4a    00000005     nwk_api.obj (.cinit)
+                  0000ef4f    00000001     --HOLE-- [fill = 0]
+                  0000ef50    00000005     nwk_globals.obj (.cinit)
+                  0000ef55    00000001     --HOLE-- [fill = 0]
+                  0000ef56    00000005     nwk_ping.obj (.cinit)
+                  0000ef5b    00000001     --HOLE-- [fill = 0]
+                  0000ef5c    00000002     (.pad.cinit) [fill = 0]
+
+.const     0    0000ef5e    0000006d     
+                  0000ef5e    0000003c     mrfi.obj (.const:mrfiRadioCfg)
+                  0000ef9a    00000010     main_ED.obj (.const:$P$T0$1)
+                  0000efaa    0000000c     nwk_frame.obj (.const:func)
+                  0000efb6    00000009     nwk_globals.obj (.const)
+                  0000efbf    00000001     --HOLE-- [fill = 0]
+                  0000efc0    00000004     mrfi.obj (.const:.string:mrfiBroadcastAddr)
+                  0000efc4    00000004     mrfi.obj (.const:.string:mrfiLogicalChanTable)
+                  0000efc8    00000003     mrfi.obj (.const:.string:mrfiRFPowerTable)
+
+.int03     0    0000ffe6    00000002     
+                  0000ffe6    00000002     main_ED.obj (.int03)
+
+.int05     0    0000ffea    00000002     
+                  0000ffea    00000002     main_ED.obj (.int05)
+
+.int09     0    0000fff2    00000002     
+                  0000fff2    00000002     main_ED.obj (.int09)
+
+.reset     0    0000fffe    00000002     
+                  0000fffe    00000002     rts430.lib : boot.obj (.reset)
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address    name
+--------   ----
+00000200   .bss
+0000c000   .text
+0000004a   ADC10AE0
+0000004b   ADC10AE1
+000001b0   ADC10CTL0
+000001b2   ADC10CTL1
+00000048   ADC10DTC0
+00000049   ADC10DTC1
+000001b4   ADC10MEM
+000001bc   ADC10SA
+0000ee66   ADC10_ISR
+00000057   BCSCTL1
+00000058   BCSCTL2
+00000053   BCSCTL3
+0000e954   BSP_Delay
+0000e70c   BSP_Init
+0000e79c   BSP_InitBoard
+0000ee2a   BSP_InitButtons
+0000ee34   BSP_InitDrivers
+0000ed48   BSP_InitLeds
+0000ee8c   C$$EXIT
+000010fb   CALBC1_12MHZ
+000010f9   CALBC1_16MHZ
+000010ff   CALBC1_1MHZ
+000010fd   CALBC1_8MHZ
+000010fa   CALDCO_12MHZ
+000010f8   CALDCO_16MHZ
+000010fe   CALDCO_1MHZ
+000010fc   CALDCO_8MHZ
+00000056   DCOCTL
+00000128   FCTL1
+0000012a   FCTL2
+0000012c   FCTL3
+00000398   Flash_Addr
+00000000   IE1
+00000001   IE2
+00000002   IFG1
+00000003   IFG2
+0000e8d4   I_LSL
+0000e8fc   I_LSL_1
+0000e8ea   I_LSL_10
+0000e8e8   I_LSL_11
+0000e8e6   I_LSL_12
+0000e8e4   I_LSL_13
+0000e8e2   I_LSL_14
+0000e8e0   I_LSL_15
+0000e8fa   I_LSL_2
+0000e8f8   I_LSL_3
+0000e8f6   I_LSL_4
+0000e8f4   I_LSL_5
+0000e8f2   I_LSL_6
+0000e8f0   I_LSL_7
+0000e8ee   I_LSL_8
+0000e8ec   I_LSL_9
+0000e0d2   I_LSR
+0000e118   I_LSR_1
+0000e0f4   I_LSR_10
+0000e0f0   I_LSR_11
+0000e0ec   I_LSR_12
+0000e0e8   I_LSR_13
+0000e0e4   I_LSR_14
+0000e0e0   I_LSR_15
+0000e114   I_LSR_2
+0000e110   I_LSR_3
+0000e10c   I_LSR_4
+0000e108   I_LSR_5
+0000e104   I_LSR_6
+0000e100   I_LSR_7
+0000e0fc   I_LSR_8
+0000e0f8   I_LSR_9
+0000ed90   L_ASR
+0000dcd6   L_LSR_1
+0000dca0   L_LSR_10
+0000dc9a   L_LSR_11
+0000dc94   L_LSR_12
+0000dc8e   L_LSR_13
+0000dc88   L_LSR_14
+0000dc82   L_LSR_15
+0000dcd0   L_LSR_2
+0000dcca   L_LSR_3
+0000dcc4   L_LSR_4
+0000dcbe   L_LSR_5
+0000dcb8   L_LSR_6
+0000dcb2   L_LSR_7
+0000dcac   L_LSR_8
+0000dca6   L_LSR_9
+0000eb5e   MRFI_EnableRxAddrFilter
+0000ee6e   MRFI_GetRadioState
+0000ebfa   MRFI_GpioIsr
+0000c000   MRFI_Init
+0000edfa   MRFI_PostKillSem
+0000ec9c   MRFI_RandomByte
+0000ecb2   MRFI_Receive
+0000e11e   MRFI_ReplyDelay
+0000e03a   MRFI_Rssi
+0000da18   MRFI_RxAddrIsFiltered
+0000ea8a   MRFI_RxCompleteISR
+0000ebbe   MRFI_RxIdle
+0000eb7e   MRFI_RxOn
+0000e640   MRFI_SetLogicalChannel
+0000e60a   MRFI_SetRFPwr
+0000e35c   MRFI_SetRxAddrFilter
+0000e9cc   MRFI_Sleep
+0000ce18   MRFI_Transmit
+0000df4a   MRFI_WakeUp
+000000c0   OA0CTL0
+000000c1   OA0CTL1
+000000c2   OA1CTL0
+000000c3   OA1CTL1
+00000022   P1DIR
+00000025   P1IE
+00000024   P1IES
+00000023   P1IFG
+00000020   P1IN
+00000021   P1OUT
+00000027   P1REN
+00000026   P1SEL
+0000002a   P2DIR
+0000002d   P2IE
+0000002c   P2IES
+0000002b   P2IFG
+00000028   P2IN
+00000029   P2OUT
+0000002f   P2REN
+0000002e   P2SEL
+0000001a   P3DIR
+00000018   P3IN
+00000019   P3OUT
+00000010   P3REN
+0000001b   P3SEL
+0000001e   P4DIR
+0000001c   P4IN
+0000001d   P4OUT
+00000011   P4REN
+0000001f   P4SEL
+0000e6a8   Port2_ISR
+0000e462   SMPL_Init
+0000c71a   SMPL_Ioctl
+0000edd0   SMPL_Link
+0000cb78   SMPL_SendOpt
+00000172   TACCR0
+00000174   TACCR1
+00000176   TACCR2
+00000162   TACCTL0
+00000164   TACCTL1
+00000166   TACCTL2
+00000160   TACTL
+0000012e   TAIV
+00000170   TAR
+00000192   TBCCR0
+00000194   TBCCR1
+00000196   TBCCR2
+00000182   TBCCTL0
+00000184   TBCCTL1
+00000186   TBCCTL2
+00000180   TBCTL
+0000011e   TBIV
+00000190   TBR
+0000ee06   TimerA_ISR
+0000005d   UCA0ABCTL
+00000062   UCA0BR0
+00000063   UCA0BR1
+00000060   UCA0CTL0
+00000061   UCA0CTL1
+0000005f   UCA0IRRCTL
+0000005e   UCA0IRTCTL
+00000064   UCA0MCTL
+00000066   UCA0RXBUF
+00000065   UCA0STAT
+00000067   UCA0TXBUF
+0000006a   UCB0BR0
+0000006b   UCB0BR1
+00000068   UCB0CTL0
+00000069   UCB0CTL1
+0000006c   UCB0I2CIE
+00000118   UCB0I2COA
+0000011a   UCB0I2CSA
+0000006e   UCB0RXBUF
+0000006d   UCB0STAT
+0000006f   UCB0TXBUF
+00000120   WDTCTL
+00000600   __STACK_END
+00000050   __STACK_SIZE
+00000001   __TI_args_main
+00000001   __TI_auto_init
+00000001   __TI_exit
+ffffffff   __binit__
+00000200   __bss__
+ffffffff   __c_args__
+0000ee98   __cinit__
+0000e8a8   __divi
+0000ecf4   __divu
+0000de46   __divul
+000003b7   __end__
+0000ee98   __etext__
+0000ed34   __mpyi
+0000ea64   __mpyl
+ffffffff   __pinit__
+0000e8a8   __remi
+0000ecf4   __remu
+0000de46   __remul
+0000c000   __text__
+0000e2d2   _auto_init
+0000e9f2   _c_int00
+0000e9f2   _c_int00_noexit
+000003b0   _cleanup_ptr
+000003b2   _dtors_ptr
+000003ac   _lock
+0000ee90   _nop
+0000fffe   _reset_vector
+000005b0   _stack
+0000ee3e   _system_pre_init
+000003ae   _unlock
+0000ee8c   abort
+ffffffff   binit
+0000ee98   cinit
+000003b7   end
+0000ee98   etext
+0000e59a   flashEraseSegment
+0000edde   flashInit
+0000c8b0   flashtest
+0000edcc   func_epilog_1
+0000edca   func_epilog_2
+0000edc8   func_epilog_3
+0000edc6   func_epilog_4
+0000edc4   func_epilog_5
+0000edc2   func_epilog_6
+0000edc0   func_epilog_7
+0000ed5a   main
+0000eaae   memcmp
+0000ed6c   memcpy
+0000eb9e   memmove
+0000ed20   memset
+0000039b   missedAcks
+0000efc0   mrfiBroadcastAddr
+0000daf2   mrfiSpiCmdStrobe
+0000ee92   mrfiSpiInit
+0000ea18   mrfiSpiReadReg
+0000ec84   mrfiSpiReadRxFifo
+0000e97c   mrfiSpiWriteReg
+0000ec6a   mrfiSpiWriteTxFifo
+0000eda0   nwk_NVObj
+0000ebdc   nwk_QInit
+0000dd38   nwk_QadjustOrder
+0000c3e8   nwk_QfindOldest
+0000d59e   nwk_QfindSlot
+0000ccce   nwk_allocateLocalRxPort
+0000e168   nwk_buildAckReqFrame
+0000d21c   nwk_buildFrame
+0000e4a2   nwk_checkConnInfo
+0000e4e2   nwk_connectionControl
+0000e1b2   nwk_deviceAddress
+0000dbc2   nwk_findPeer
+0000e9a4   nwk_frameInit
+0000edec   nwk_freeConnection
+0000ee94   nwk_freqInit
+0000ee74   nwk_getBCastAddress
+0000e3e0   nwk_getConnInfo
+0000ee7a   nwk_getFWVersion
+0000ec32   nwk_getJoinToken
+0000ec4e   nwk_getLinkToken
+0000ed7e   nwk_getMyAddress
+0000ee80   nwk_getMyRxType
+0000dd92   nwk_getNextConnection
+0000dfec   nwk_getNumObjectFromMsg
+0000ee86   nwk_getProtocolVersion
+0000ea3e   nwk_globalsInit
+0000d676   nwk_isConnectionValid
+0000dc24   nwk_isLinkDuplicate
+0000ddec   nwk_isValidReply
+0000cf34   nwk_join
+0000e7ca   nwk_joinInit
+0000c582   nwk_link
+0000e6da   nwk_linkInit
+0000ee48   nwk_mgmtInit
+0000d89a   nwk_nwkInit
+0000ee52   nwk_pingInit
+0000ee12   nwk_processFreq
+0000e674   nwk_processJoin
+0000e522   nwk_processLink
+0000de9e   nwk_processMgmt
+0000e55e   nwk_processPing
+0000ee1e   nwk_processSecurity
+0000db5a   nwk_putNumObjectIntoMsg
+0000d304   nwk_radioControl
+0000e5d2   nwk_rawReceive
+0000d9a6   nwk_rawSend
+0000d036   nwk_retrieveFrame
+0000ee96   nwk_securityInit
+0000d746   nwk_sendAckReply
+0000e1fc   nwk_sendFrame
+0000ecde   nwk_setAPAddress
+0000ead2   nwk_setJoinToken
+0000eaf6   nwk_setLinkToken
+0000e87c   nwk_setMyAddress
+ffffffff   pinit
+0000edb0   readSample
+00008000   samplebuf
+0000ed0a   saveSample
+0000eb3c   segAddress
+00000396   tempOffset
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address    name
+--------   ----
+00000000   IE1
+00000001   IE2
+00000001   __TI_args_main
+00000001   __TI_auto_init
+00000001   __TI_exit
+00000002   IFG1
+00000003   IFG2
+00000010   P3REN
+00000011   P4REN
+00000018   P3IN
+00000019   P3OUT
+0000001a   P3DIR
+0000001b   P3SEL
+0000001c   P4IN
+0000001d   P4OUT
+0000001e   P4DIR
+0000001f   P4SEL
+00000020   P1IN
+00000021   P1OUT
+00000022   P1DIR
+00000023   P1IFG
+00000024   P1IES
+00000025   P1IE
+00000026   P1SEL
+00000027   P1REN
+00000028   P2IN
+00000029   P2OUT
+0000002a   P2DIR
+0000002b   P2IFG
+0000002c   P2IES
+0000002d   P2IE
+0000002e   P2SEL
+0000002f   P2REN
+00000048   ADC10DTC0
+00000049   ADC10DTC1
+0000004a   ADC10AE0
+0000004b   ADC10AE1
+00000050   __STACK_SIZE
+00000053   BCSCTL3
+00000056   DCOCTL
+00000057   BCSCTL1
+00000058   BCSCTL2
+0000005d   UCA0ABCTL
+0000005e   UCA0IRTCTL
+0000005f   UCA0IRRCTL
+00000060   UCA0CTL0
+00000061   UCA0CTL1
+00000062   UCA0BR0
+00000063   UCA0BR1
+00000064   UCA0MCTL
+00000065   UCA0STAT
+00000066   UCA0RXBUF
+00000067   UCA0TXBUF
+00000068   UCB0CTL0
+00000069   UCB0CTL1
+0000006a   UCB0BR0
+0000006b   UCB0BR1
+0000006c   UCB0I2CIE
+0000006d   UCB0STAT
+0000006e   UCB0RXBUF
+0000006f   UCB0TXBUF
+000000c0   OA0CTL0
+000000c1   OA0CTL1
+000000c2   OA1CTL0
+000000c3   OA1CTL1
+00000118   UCB0I2COA
+0000011a   UCB0I2CSA
+0000011e   TBIV
+00000120   WDTCTL
+00000128   FCTL1
+0000012a   FCTL2
+0000012c   FCTL3
+0000012e   TAIV
+00000160   TACTL
+00000162   TACCTL0
+00000164   TACCTL1
+00000166   TACCTL2
+00000170   TAR
+00000172   TACCR0
+00000174   TACCR1
+00000176   TACCR2
+00000180   TBCTL
+00000182   TBCCTL0
+00000184   TBCCTL1
+00000186   TBCCTL2
+00000190   TBR
+00000192   TBCCR0
+00000194   TBCCR1
+00000196   TBCCR2
+000001b0   ADC10CTL0
+000001b2   ADC10CTL1
+000001b4   ADC10MEM
+000001bc   ADC10SA
+00000200   .bss
+00000200   __bss__
+00000396   tempOffset
+00000398   Flash_Addr
+0000039b   missedAcks
+000003ac   _lock
+000003ae   _unlock
+000003b0   _cleanup_ptr
+000003b2   _dtors_ptr
+000003b7   __end__
+000003b7   end
+000005b0   _stack
+00000600   __STACK_END
+000010f8   CALDCO_16MHZ
+000010f9   CALBC1_16MHZ
+000010fa   CALDCO_12MHZ
+000010fb   CALBC1_12MHZ
+000010fc   CALDCO_8MHZ
+000010fd   CALBC1_8MHZ
+000010fe   CALDCO_1MHZ
+000010ff   CALBC1_1MHZ
+00008000   samplebuf
+0000c000   .text
+0000c000   MRFI_Init
+0000c000   __text__
+0000c3e8   nwk_QfindOldest
+0000c582   nwk_link
+0000c71a   SMPL_Ioctl
+0000c8b0   flashtest
+0000cb78   SMPL_SendOpt
+0000ccce   nwk_allocateLocalRxPort
+0000ce18   MRFI_Transmit
+0000cf34   nwk_join
+0000d036   nwk_retrieveFrame
+0000d21c   nwk_buildFrame
+0000d304   nwk_radioControl
+0000d59e   nwk_QfindSlot
+0000d676   nwk_isConnectionValid
+0000d746   nwk_sendAckReply
+0000d89a   nwk_nwkInit
+0000d9a6   nwk_rawSend
+0000da18   MRFI_RxAddrIsFiltered
+0000daf2   mrfiSpiCmdStrobe
+0000db5a   nwk_putNumObjectIntoMsg
+0000dbc2   nwk_findPeer
+0000dc24   nwk_isLinkDuplicate
+0000dc82   L_LSR_15
+0000dc88   L_LSR_14
+0000dc8e   L_LSR_13
+0000dc94   L_LSR_12
+0000dc9a   L_LSR_11
+0000dca0   L_LSR_10
+0000dca6   L_LSR_9
+0000dcac   L_LSR_8
+0000dcb2   L_LSR_7
+0000dcb8   L_LSR_6
+0000dcbe   L_LSR_5
+0000dcc4   L_LSR_4
+0000dcca   L_LSR_3
+0000dcd0   L_LSR_2
+0000dcd6   L_LSR_1
+0000dd38   nwk_QadjustOrder
+0000dd92   nwk_getNextConnection
+0000ddec   nwk_isValidReply
+0000de46   __divul
+0000de46   __remul
+0000de9e   nwk_processMgmt
+0000df4a   MRFI_WakeUp
+0000dfec   nwk_getNumObjectFromMsg
+0000e03a   MRFI_Rssi
+0000e0d2   I_LSR
+0000e0e0   I_LSR_15
+0000e0e4   I_LSR_14
+0000e0e8   I_LSR_13
+0000e0ec   I_LSR_12
+0000e0f0   I_LSR_11
+0000e0f4   I_LSR_10
+0000e0f8   I_LSR_9
+0000e0fc   I_LSR_8
+0000e100   I_LSR_7
+0000e104   I_LSR_6
+0000e108   I_LSR_5
+0000e10c   I_LSR_4
+0000e110   I_LSR_3
+0000e114   I_LSR_2
+0000e118   I_LSR_1
+0000e11e   MRFI_ReplyDelay
+0000e168   nwk_buildAckReqFrame
+0000e1b2   nwk_deviceAddress
+0000e1fc   nwk_sendFrame
+0000e2d2   _auto_init
+0000e35c   MRFI_SetRxAddrFilter
+0000e3e0   nwk_getConnInfo
+0000e462   SMPL_Init
+0000e4a2   nwk_checkConnInfo
+0000e4e2   nwk_connectionControl
+0000e522   nwk_processLink
+0000e55e   nwk_processPing
+0000e59a   flashEraseSegment
+0000e5d2   nwk_rawReceive
+0000e60a   MRFI_SetRFPwr
+0000e640   MRFI_SetLogicalChannel
+0000e674   nwk_processJoin
+0000e6a8   Port2_ISR
+0000e6da   nwk_linkInit
+0000e70c   BSP_Init
+0000e79c   BSP_InitBoard
+0000e7ca   nwk_joinInit
+0000e87c   nwk_setMyAddress
+0000e8a8   __divi
+0000e8a8   __remi
+0000e8d4   I_LSL
+0000e8e0   I_LSL_15
+0000e8e2   I_LSL_14
+0000e8e4   I_LSL_13
+0000e8e6   I_LSL_12
+0000e8e8   I_LSL_11
+0000e8ea   I_LSL_10
+0000e8ec   I_LSL_9
+0000e8ee   I_LSL_8
+0000e8f0   I_LSL_7
+0000e8f2   I_LSL_6
+0000e8f4   I_LSL_5
+0000e8f6   I_LSL_4
+0000e8f8   I_LSL_3
+0000e8fa   I_LSL_2
+0000e8fc   I_LSL_1
+0000e954   BSP_Delay
+0000e97c   mrfiSpiWriteReg
+0000e9a4   nwk_frameInit
+0000e9cc   MRFI_Sleep
+0000e9f2   _c_int00
+0000e9f2   _c_int00_noexit
+0000ea18   mrfiSpiReadReg
+0000ea3e   nwk_globalsInit
+0000ea64   __mpyl
+0000ea8a   MRFI_RxCompleteISR
+0000eaae   memcmp
+0000ead2   nwk_setJoinToken
+0000eaf6   nwk_setLinkToken
+0000eb3c   segAddress
+0000eb5e   MRFI_EnableRxAddrFilter
+0000eb7e   MRFI_RxOn
+0000eb9e   memmove
+0000ebbe   MRFI_RxIdle
+0000ebdc   nwk_QInit
+0000ebfa   MRFI_GpioIsr
+0000ec32   nwk_getJoinToken
+0000ec4e   nwk_getLinkToken
+0000ec6a   mrfiSpiWriteTxFifo
+0000ec84   mrfiSpiReadRxFifo
+0000ec9c   MRFI_RandomByte
+0000ecb2   MRFI_Receive
+0000ecde   nwk_setAPAddress
+0000ecf4   __divu
+0000ecf4   __remu
+0000ed0a   saveSample
+0000ed20   memset
+0000ed34   __mpyi
+0000ed48   BSP_InitLeds
+0000ed5a   main
+0000ed6c   memcpy
+0000ed7e   nwk_getMyAddress
+0000ed90   L_ASR
+0000eda0   nwk_NVObj
+0000edb0   readSample
+0000edc0   func_epilog_7
+0000edc2   func_epilog_6
+0000edc4   func_epilog_5
+0000edc6   func_epilog_4
+0000edc8   func_epilog_3
+0000edca   func_epilog_2
+0000edcc   func_epilog_1
+0000edd0   SMPL_Link
+0000edde   flashInit
+0000edec   nwk_freeConnection
+0000edfa   MRFI_PostKillSem
+0000ee06   TimerA_ISR
+0000ee12   nwk_processFreq
+0000ee1e   nwk_processSecurity
+0000ee2a   BSP_InitButtons
+0000ee34   BSP_InitDrivers
+0000ee3e   _system_pre_init
+0000ee48   nwk_mgmtInit
+0000ee52   nwk_pingInit
+0000ee66   ADC10_ISR
+0000ee6e   MRFI_GetRadioState
+0000ee74   nwk_getBCastAddress
+0000ee7a   nwk_getFWVersion
+0000ee80   nwk_getMyRxType
+0000ee86   nwk_getProtocolVersion
+0000ee8c   C$$EXIT
+0000ee8c   abort
+0000ee90   _nop
+0000ee92   mrfiSpiInit
+0000ee94   nwk_freqInit
+0000ee96   nwk_securityInit
+0000ee98   __cinit__
+0000ee98   __etext__
+0000ee98   cinit
+0000ee98   etext
+0000efc0   mrfiBroadcastAddr
+0000fffe   _reset_vector
+ffffffff   __binit__
+ffffffff   __c_args__
+ffffffff   __pinit__
+ffffffff   binit
+ffffffff   pinit
+
+[301 symbols]

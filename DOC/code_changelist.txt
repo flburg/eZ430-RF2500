@@ -1,0 +1,77 @@
+DEFAULT - WSM
+
+main_AP.c
+	added adjustable time stamp period
+	simplified code in sSelfMeasureSem a little
+	added support for integer payload
+	added space in payload for peeraddr
+	changed SMPL_Receive to SMPL_RecieveWithAddr
+
+main_ED.c
+	added metrics for missed acks
+	reorganized init, join, link, run, sSelfMeasure, sendWithAckReq into separate functions
+	split sendPacket() into three functions: sendPacket() for dispatch, sendBestEffort() for no acks, sendWithAckReq() for acks
+	removed createRandomAddress() and related code
+	added hook into nwk to get local address (nwk_getMyAddr())
+	cleaned up init code a bit
+	added pressure (aux channel), seqno, and missedacks to binary packet
+	removed support for text packet
+	
+nwk_api.c
+	added SMPL_ReceiveWithAddr and modified SMPL_Recieve
+
+nwk_api.h
+	added SMPL_RecieveWithAddr prototype
+
+
+
+WSM - ACCEL
+
+main_AP.c
+	added global SPI support
+	disabled self measure packet to USB
+	changed to fixed payload size in peerFrameSem (sizeof)
+
+main_ED.c
+	added global SPI support
+	added support for accel alarm (accel.c, accel.h, accelInit(), soundAlarm() and Port2_ISR()
+	
+virtual_com_cmds.c
+	modified transmitDataString() - probably deprecated, function not used in main.
+
+
+virtual_com_cmds.h
+	changed MESSAGE_LENGTH from 3 to 11 - see virtual_com_cmds.h
+
+
+
+BSP
+
+mrfi_board.c
+	put #ifdef ACCESS_POINT around BSP_ISR_FUNCTION
+
+mrfi_board_defs.h
+	moved clk config, SPI pin configuration, read/write and SPI init macros to bsp_board_defs.h
+	created reference macros to above for mrfi
+
+bsp_board.c
+	added bspSpiInit() function and call in BSP_InitBoard()
+	bspSpiInit() calls the new macros in bsp_board_defs.h
+
+bsp_board_defs.h
+	added macros moved from mrfi_board_defs.h, and renamed
+
+
+
+MRFI
+
+mrfi_spi.c
+	removed DUMMY_BYTE, READ_BIT, and BURST_BIT macros - they are now at the bsp level
+	removed all code from mrfiSpiInit() because this is now done at the bsp level
+	added MRFI_SPI_CLK_CONFIG() to mrfiSpiCmdStrobe() to make sure clock is correct for selected SPI device
+
+
+
+SIMPLICITI
+
+no differences

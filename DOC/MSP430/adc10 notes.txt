@@ -1,0 +1,78 @@
+ADC config:
+	ADC10CTL0
+	ADC10CTL1
+
+ADC10DF - data format (0: binary, 1: 2s complemenent)
+
+INCHx - input channel
+
+SREFx	- select reference	000 - Vcc/Vss
+
+ADC10IE	- interrupt enable
+
+ADC10IFG
+	when DTC is not used, is set when conversion results are loaded into ADC10MEM
+	when DTC is used, is set when a block transfer is complete
+	is automatically reset when IRQ is serviced (can be reset by software)
+
+ADC10ON	- core enabled
+
+ADC10BUSY	- conversion in progress
+
+ENC	- enable conversion (toggling aborts repeat or sequence conversions - see users guide section 22.2.6.6)
+
+*ADC10CLK	- conversion/sampling clock
+	ADC10SSELx	- select ADC10CLK source
+	ADC10DIVx	- select ADC10CLK division
+
+ADC10AEx	- disables port pin IO buffers
+
+REFON	- enables internal reference
+	REF2_5V	- selects 2.5/1.5v
+	REFOUT	- if 1 puts ref v on Vref+
+	REFBURST	- leave 0
+	ADC10SR	- if sample rate < 50k, set this bit to reduce power
+	do not use external reference
+
+SHI	- conversion init
+	SHSx - sample and hold source select
+		ADC10SC bit (reset automatically)
+		Timer_A outputs
+	ISSH	- invert active SHI level
+*	ADC10SHTx	- select sample period (4,8,16,32 ADC10CYCLES)
+	SAMPCON	- indicates sync/sampling in progress
+*	conversion takes 13 ADC10CLKs
+*see users guide section 22.2.5.1 for pin model - determines delay needed
+	input looks like series RC with R = 2k max and C = 27pf max
+	tsample > (Rs + Ri) x ln(2^11) x C1
+	tsample > (Rs + 2k) x 7.625 * 27pf
+
+CONSEQx	- conversion mode select (single, sequence, repeat single, repeat sequence)
+*	MSC	- multiple sample and convert - fast as possible conversion
+
+*DTC	- data transfer controller (DMA) - uses MCLK
+	ADCDTC1	- non-zero enables DTC
+	do not transfer while ADC10 is busy (check ADC10BUSY bit?)
+	one or two block transfer modes
+	ADC10TB	- 0: one block, 1: two blocks
+	ADC10DTC1	- # of 16 bit transfers in a block
+	ADC10SA	- start address
+	ADC10IFG	- set after complete block has been transferred; twice in two block mode
+	sequence:
+		write to ADC10DTC1
+		write to ADC10SA
+		a write to ADC10SA or write 0 to ADC10DTC1 cancels block; behavior slightly different depending on state
+	ADC10CT	- continuous transfer
+	ADC10B1	- 1: block one complete in two block mode
+		  0: block two complete in two block mode 
+		  (this and ADC10IFG can be polled for either block completion)
+	ADC10FETCH - ????
+
+	see users guide table 22-2 for timing details
+
+
+
+
+
+
+
