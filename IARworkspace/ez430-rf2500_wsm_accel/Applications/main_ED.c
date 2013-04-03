@@ -102,15 +102,21 @@
 #include "bsp_buttons.h"
 #include "vlo_rand.h"
 #include "accel_spi.h"
-#include <ti/mcu/msp430/csl/CSL.h>
+//#include <ti/mcu/msp430/csl/CSL.h>
 
 /*------------------------------------------------------------------------------
  * Defines
  *----------------------------------------------------------------------------*/
-/* How many times to try a TX and miss an acknowledge before doing a scan */
-#define MISSES_IN_A_ROW  5
-/* Number of seconds between transmissions */
-#define TRANSMIT_PERIOD_SECS 1
+#define NUM_PKTS_PER_AXIS 7		/* Number of packets to transmit for each axis (determines buffer size, max 7 for 8 bit data @3200Sps) */
+
+#define APP_HEADER_LEN 4		/* Application header length */
+#define MISSES_IN_A_ROW  5		/* For ackreq, how many times to try a TX and miss an acknowledge before giving up */
+
+#define APP_PAYLOAD_LEN (MAX_APP_PAYLOAD-APP_HEADER_LEN)	/* Payload length */
+#define ACCEL_BUFFER_LEN (NUM_PKTS_PER_AXIS * APP_PAYLOAD_LEN)	/* Size of sample buffer */
+
+/* Message types */
+#define MSG_TYPE_ACCEL_SPECTRA 0
 
 /*------------------------------------------------------------------------------
  * Prototypes
@@ -119,8 +125,8 @@ static void init(void);
 static void join(void);
 static void link(void);
 static void run(void);
-static void soundAlarm(void);
-static void selfMeasure(uint32_t seqno);
+static void spectra(void);
+static void sendMessage(uint8_t axis, uint8_t *results);
 static smplStatus_t sendPacket(uint8_t *msg, int len, int ackreq);
 static smplStatus_t sendBestEffort(uint8_t *mag, int len);
 #ifdef APP_AUTO_ACK
@@ -130,6 +136,7 @@ void createRandomAddress(void);
 __interrupt void ADC10_ISR(void);
 __interrupt void TimerA_ISR (void);
 __interrupt void Port2_ISR (void);
+void MRFI_GpioIsr(void); /* defined in mrfi_radio.c */
 
 /*------------------------------------------------------------------------------
 * Globals
@@ -143,6 +150,8 @@ char * Flash_Addr = (char *)0x10F0;
 static volatile uint8_t sSelfMeasureSem = 0;
 /* Accelerometer alarm interrupt flag */
 static volatile uint8_t sAccelAlarm = 0;
+/* Radio sync interrupt flag */
+static volatile uint8_t sRadioSync = 0;
 /* Keeps track of missed acknowledgements across calls to selfMeasure() */
 uint8_t missedAcks = 0;
 
@@ -170,6 +179,9 @@ void main (void)
 
 static void init()
 {
+// FLASH is unused between 0xad73 (end of .const) and 0xffe6 (start of int table) - about 20KB
+// this is subject to link conditions
+
   /* Read out address from flash (hard-coded) */
   addr_t const *myaddr = nwk_getMyAddress();;
 
@@ -253,123 +265,90 @@ static void link()
 
 static void run()
 {
-  uint32_t seqno = 1;
-
   while (1)
   {
-    /* Go to sleep, waiting for interrupt every second */
+    /*
+     * Go to sleep, waiting for interrupt every second.
+     * Any interrupt will wake the processor:
+     *     accelerometer alarm
+     *     radio sync
+     *     one second timer
+     */
     __bis_SR_register(LPM3_bits);
 
     /* Check accelerometer alarm */
     if (sAccelAlarm) {
-      soundAlarm();
+      spectra();
+
+      // blink an LED
+      BSP_TURN_OFF_LED2();
+      BSP_TURN_ON_LED1();
+      BSP_DELAY_USECS(10000);
+      BSP_TURN_OFF_LED1();
+
       sAccelAlarm = 0;
     }
 
-    /* Time to measure */
-    if (sSelfMeasureSem >= TRANSMIT_PERIOD_SECS) {
-      selfMeasure(seqno++);
+    if (sRadioSync) {
+      MRFI_GpioIsr();
+      sRadioSync = 0;
+    }
+
+    if (sSelfMeasureSem) {
+      // placeholder
+      sSelfMeasureSem = 0;
     }
   }
 }
 
-static void soundAlarm(void)
+static void spectra(void)
 {
-  uint8_t msg[9], i;
+  uint8_t results[ACCEL_BUFFER_LEN];
 
-  memset(msg, 0x0, sizeof(msg));
+  /* Measure X */
+  accelSpiReadDataBytes2(DATAX0_ADDR, results, ACCEL_BUFFER_LEN);
+  sendMessage(0, results);
 
-  // send packet until acknowledged (sendPacket returns SMPL_SUCCESS)
-  // but not more than some arbitrary number of times
-  for (i = 0; i < 10; i++) {
-    if (sendPacket(msg, sizeof(msg), 0) == SMPL_SUCCESS) {
-      break;
-    }
-  }
+  /* Measure Y */
+//  accelSpiReadDataBytes2(DATAY0_ADDR, results, ACCEL_BUFFER_LEN);
+//  sendMessage(1, results);
 
-  __delay_cycles(100000);
-
-  BSP_TURN_OFF_LED1();
-  BSP_TURN_OFF_LED2();
+  /* Measure Z */
+//  accelSpiReadDataBytes2(DATAZ0_ADDR, results, ACCEL_BUFFER_LEN);
+//  sendMessage(2, results);
 }
 
-static void selfMeasure(uint32_t seqno)
+static void sendMessage(uint8_t axis, uint8_t *results)
 {
-  uint8_t msg[9];
-  volatile long resval;
-  int degC, volt, pressure;
-  int results[3];
-
-  /* Get temperature */
-  ADC10CTL1 = INCH_10 + ADC10DIV_4;       // Temp Sensor ADC10CLK/5
-  ADC10CTL0 = SREF_1 + ADC10SHT_3 + REFON + ADC10ON + ADC10IE + ADC10SR;
-  /* Allow ref voltage to settle for at least 30us (30us * 8MHz = 240 cycles)
-   * See SLAS504D for settling time spec
-   */
-  __delay_cycles(240);
-  ADC10CTL0 |= ENC + ADC10SC;             // Sampling and conversion start
-  __bis_SR_register(CPUOFF + GIE);        // LPM0 with interrupts enabled
-  results[0] = ADC10MEM;                  // Retrieve result
-  ADC10CTL0 &= ~ENC;
-
-  /* Get voltage */
-  ADC10CTL1 = INCH_11;                     // AVcc/2
-  ADC10CTL0 = SREF_1 + ADC10SHT_2 + REFON + ADC10ON + ADC10IE + REF2_5V;
-  __delay_cycles(240);
-  ADC10CTL0 |= ENC + ADC10SC;             // Sampling and conversion start
-  __bis_SR_register(CPUOFF + GIE);        // LPM0 with interrupts enabled
-  results[1] = ADC10MEM;                  // Retrieve result
-  ADC10CTL0 &= ~ENC;
-
-  /* Get pressure */
-  ADC10CTL1 = INCH_0;                     // A0 (P2.0)
-  ADC10CTL0 = SREF_0 + ADC10SHT_2 + ADC10SR + ADC10ON + ADC10IE;
-  ADC10AE0 = 0x1;
-  __delay_cycles(240);
-  ADC10CTL0 |= ENC + ADC10SC;             // Sampling and conversion start
-  __bis_SR_register(CPUOFF + GIE);        // LPM0 with interrupts enabled
-  results[2] = ADC10MEM;                  // Retrieve result
-
-  /* Stop and turn off ADC */
-  ADC10CTL0 &= ~ENC;
-  ADC10CTL0 &= ~(REFON + ADC10ON);
-
-  /* oC = ((A10/1024)*1500mV)-986mV)*1/3.55mV = A10*423/1024 - 278
-   * the temperature is transmitted as an integer where 32.1 = 321
-   * hence 4230 instead of 423
-   */
-  resval = results[0];
-  degC = ((resval - 673) * 4230) / 1024;
-  if( (*tempOffset) != 0xFFFF )
-  {
-    degC += (*tempOffset);
-  }
-
-  // send raw voltage for higher precision
-  volt = results[1];
-//  resval = results[1];
-//  volt = (resval*25)/512;
-
-  pressure = results[2];
+  uint8_t seqno = 1;
+  int i;
+  uint8_t msg[MAX_APP_PAYLOAD];
 
   /* message format
-   --------------------------------------------------------------------------
-  | degC LSB,MSB | volt LSB,MSB | press LSB,MSB | seqno LSB,MSB | missedAcks |
-   --------------------------------------------------------------------------
-         0,1           2,3            4,5             6,7             8
-  */
+	   -------------------------------------------------------------
+	  | message type | missed acks | axis | sequence number |  data |
+	   -------------------------------------------------------------
+	          0             1          2           3           4-49
+   */
 
-  msg[0] = degC & 0xFF;
-  msg[1] = (degC >> 8) & 0xFF;
-  msg[2] = volt & 0xFF;
-  msg[3] = (volt >> 8) & 0xFF;
-  msg[4] = pressure & 0xFF;
-  msg[5] = (pressure >> 8) & 0x3;
-  msg[6] = seqno & 0xFF;
-  msg[7] = (seqno >> 8) & 0xFF;
-  msg[8] = 0;  // this is also set below when APP_AUTO_ACK is TRUE and an ack is requested
+  for (i = 0; i < NUM_PKTS_PER_AXIS; i++) {
+    /* Go to sleep, waiting for interrupt */
+    __bis_SR_register(LPM3_bits);
 
-  sendPacket(msg, sizeof(msg), 0);
+    BSP_TURN_OFF_LED1();
+    BSP_TURN_ON_LED2();
+
+    msg[0] = MSG_TYPE_ACCEL_SPECTRA;
+    msg[1] = 0;  // this will be set in sendWithAckReq() when APP_AUTO_ACK is TRUE and an ack is requested
+    msg[2] = axis;
+    msg[3] = seqno++;
+
+    memcpy((char *) &msg[4], (char *) &results[i*APP_PAYLOAD_LEN], APP_PAYLOAD_LEN);
+
+    sendPacket(msg, MAX_APP_PAYLOAD, 0);
+
+    BSP_TURN_OFF_LED2();
+  }
 }
 
 static smplStatus_t sendPacket(uint8_t *msg, int len, int ackflag)
@@ -402,9 +381,6 @@ static smplStatus_t sendBestEffort(uint8_t *msg, int len)
   /* Put radio back to sleep */
   SMPL_Ioctl( IOCTL_OBJ_RADIO, IOCTL_ACT_RADIO_SLEEP, 0);
 
-  /* Done with measurement, disable measure flag */
-  sSelfMeasureSem = 0;
-
   return rc;
 }
 
@@ -434,7 +410,7 @@ static smplStatus_t sendWithAckReq(uint8_t *msg, int len)
        * MISSES_IN_A_ROW happens when a transmit completely fails
        * (code gives up until next selfMeasureSem).
        */
-      msg[8] = missedAcks;
+      msg[1] = missedAcks;
       if (SMPL_SUCCESS == (rc = SMPL_SendOpt(sLinkID1, msg, len, SMPL_TXOPTION_ACKREQ)))
       {
         /* Message acked. We're done. Toggle LED 1 to indicate ack received. */
@@ -463,7 +439,7 @@ static smplStatus_t sendWithAckReq(uint8_t *msg, int len)
     {
       /* Message not acked */
 //      BSP_TURN_ON_LED2();
-      __delay_cycles(2000);
+//      BSP_DELAY_USECS(10000);
 //      BSP_TURN_OFF_LED2();
 #ifdef FREQUENCY_AGILITY
       /* Assume we're on the wrong channel so look for channel by
@@ -544,16 +520,10 @@ __interrupt void TimerA_ISR (void)
 /*------------------------------------------------------------------------------
  * Accelerometer interrupt service routine
  *----------------------------------------------------------------------------*/
-void MRFI_GpioIsr(void); /* defined in mrfi_radio.c */
 #pragma vector=PORT2_VECTOR
 __interrupt void Port2_ISR (void)
 {
   uint8_t flags = P2IFG, result = 0;
-
-  // radio sync
-  if (P2IFG & BIT6) {
-    MRFI_GpioIsr();
-  }
 
   // accelerometer alarm
   if (P2IFG & BIT1) {
@@ -563,6 +533,11 @@ __interrupt void Port2_ISR (void)
     }
     P2IFG &= ~BIT1;
     accelSpiReadReg(INT_SOURCE_ADDR);
+  }
+
+  // radio sync
+  if (P2IFG & BIT6) {
+    sRadioSync = 1;
   }
 
   __bic_SR_register_on_exit(LPM3_bits);        // Clear LPM3 bit from 0(SR)

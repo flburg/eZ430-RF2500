@@ -4,13 +4,13 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_freq.c \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_ioctl.c \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_join.c \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_link.c \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_mgmt.c \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_ping.c \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_security.c 
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_freq.c \
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_ioctl.c \
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_join.c \
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_link.c \
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_mgmt.c \
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_ping.c \
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_security.c 
 
 OBJS += \
 ./Components/nwk_applications/nwk_freq.obj \
@@ -49,12 +49,12 @@ OBJS__QUOTED += \
 "Components\nwk_applications\nwk_security.obj" 
 
 C_SRCS__QUOTED += \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_freq.c" \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_ioctl.c" \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_join.c" \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_link.c" \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_mgmt.c" \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_ping.c" \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk_applications/nwk_security.c" 
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_freq.c" \
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_ioctl.c" \
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_join.c" \
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_link.c" \
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_mgmt.c" \
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_ping.c" \
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk_applications/nwk_security.c" 
 
 

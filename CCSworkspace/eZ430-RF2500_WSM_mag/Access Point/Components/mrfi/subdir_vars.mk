@@ -4,7 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/mrfi/mrfi.c 
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/mrfi/mrfi.c 
 
 OBJS += \
 ./Components/mrfi/mrfi.obj 
@@ -19,6 +19,6 @@ OBJS__QUOTED += \
 "Components\mrfi\mrfi.obj" 
 
 C_SRCS__QUOTED += \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/mrfi/mrfi.c" 
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/mrfi/mrfi.c" 
 
 

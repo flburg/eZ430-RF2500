@@ -356,7 +356,7 @@ void main (void)
 
       // message from AP - payload is 14 bytes, like the ED
       // (sof: 1, index:1, address:1, rssi: 1, MAX_APP_PAYLOAD: 10)
-      TXString((char *) pld, sizeof(pld));
+//      TXString((char *) pld, 14);
 
 #else // string payload
       char msg[6];
@@ -426,7 +426,7 @@ void main (void)
 
           // message from peer - payload is 14 bytes
           // (sof: 1, index:1, address:1, rssi: 1, MAX_APP_PAYLOAD: 10)
-          TXString((char *) pld, sizeof(pld));
+          TXString((char *) pld, len+4);
 
 #else // string payload
           memcpy((char *) &msg[len], (char *) &peeraddr, NET_ADDR_SIZE);

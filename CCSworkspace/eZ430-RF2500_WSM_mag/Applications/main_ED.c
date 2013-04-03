@@ -100,10 +100,10 @@
 #include "nwk_api.h"
 #include "bsp_leds.h"
 #include "bsp_buttons.h"
-#include "vlo_rand.h"
 #include "bsp.h"
 #include "radios/family1/mrfi_spi.h"
 #include "bsp_external/mrfi_board_defs.h"
+#include "flash.h"
 
 /*------------------------------------------------------------------------------
  * Defines
@@ -122,13 +122,12 @@ static void init(void);
 static void join(void);
 static void link(void);
 static void run(void);
-static void selfMeasure(uint32_t seqno);
+static void selfMeasure(void);
 static smplStatus_t sendPacket(uint8_t *msg, int len, int ackreq);
 static smplStatus_t sendBestEffort(uint8_t *msg, int len);
 #ifdef APP_AUTO_ACK
 static smplStatus_t sendWithAckReq(uint8_t *msg, int len);
 #endif
-void createRandomAddress(void);
 __interrupt void ADC10_ISR(void);
 __interrupt void TimerA_ISR (void);
 __interrupt void Port2_ISR (void);
@@ -154,6 +153,7 @@ void main (void)
   /* Initialize board, radio, other peripherals and simpliciti
    */
   init();
+  selfMeasure();
 
   /* Keep trying to join (a side effect of successful initialization) until
    * successful. Toggle LEDS to indicate that joining has not occurred.
@@ -186,9 +186,9 @@ static void init()
   BCSCTL3 |= LFXT1S_2;                      // LFXT1 = VLO
 
   /* Complete initialization of TimerA */
-  TACCTL0 = CCIE;                           // TACCR0 interrupt enabled
-  TACCR0 = 12000;                           // ~ 1 sec
-  TACTL = TASSEL_1 + MC_1;                  // ACLK, upmode
+//  TACCTL0 = CCIE;                           // TACCR0 interrupt enabled
+//  TACCR0 = 12000;                           // ~ 1 sec
+//  TACTL = TASSEL_1 + MC_1;                  // ACLK, upmode
 
   /* BEGIN USER INITIALIZATION HERE */
 
@@ -207,6 +207,7 @@ static void init()
    * This port is not used by SimpliciTI for any purpose so there is no
    * possibility of conflict.
    */
+
 }
 
 static void join()
@@ -249,8 +250,6 @@ static void link()
 
 static void run()
 {
-  uint32_t seqno = 1;
-
   while (1)
   {
     /* Go to sleep, waiting for interrupt every second */
@@ -258,65 +257,23 @@ static void run()
 
     /* Time to measure */
     if (sSelfMeasureSem >= TRANSMIT_PERIOD_SECS) {
-      selfMeasure(seqno++);
+      selfMeasure();
     }
   }
 }
 
-static void selfMeasure(uint32_t seqno)
+static void selfMeasure()
 {
-  uint16_t channels[] = {INCH_0, INCH_1, INCH_2, INCH_3, INCH_4, INCH_12, INCH_13, INCH_14};
-  int chan = 0;
-  uint8_t msg[MAX_APP_PAYLOAD];
-  unsigned short adcresults[ADC_BUFFER_LEN];  // max is 233 for AP to recieve packet ???
+//  uint16_t channels[] = {INCH_0, INCH_1, INCH_2, INCH_3, INCH_4, INCH_12, INCH_13, INCH_14};
 
 BSP_TURN_ON_LED2();
 
-
-  for (chan = 0; chan < 8; ++chan) {
 BSP_TOGGLE_LED1();
-  ADC10CTL0 = SREF_0 + ADC10SHT_3 + MSC + ADC10ON + ADC10IE;
-  ADC10CTL1 = channels[chan] | ADC10SSEL_2 + CONSEQ_2;
-  ADC10DTC0 = 0;
-  ADC10DTC1 = ADC_BUFFER_LEN;
-  ADC10AE0 = 0x1f;
-  ADC10AE1 = 0x70;
 
-  ADC10SA = (unsigned short) adcresults;              // this starts the DTC
+  flashInit();
 
-  ADC10CTL0 |= ENC;
-  ADC10CTL0 |= ADC10SC;                               // this starts the ADC
-
-  while (!(ADC10DTC0 & ADC10B1));
-
-  /* Stop and turn off ADC */
-  ADC10CTL0 &= ~ENC;
-  ADC10CTL0 &= ~ADC10ON;
-
-  /* message format
-   -------------------------------------------------------------------
-  | message type | missed acks | sequence number | (LSB,MSB| adc data |
-   -------------------------------------------------------------------
-          0             1              2,3                4-49
-  */
-
-//  memset((char *) msg, 0, sizeof(msg));
-#define MSG_TYPE_ADC 0
-  msg[0] = MSG_TYPE_ADC;
-  msg[1] = 0;  // this is also set below when APP_AUTO_ACK is TRUE and an ack is requested
-  msg[2] = seqno & 0xFF;
-  msg[3] = (seqno >> 8) & 0xFF;
-
-  int i, j;
-  for (i = 0, j = 4; i < ADC_BUFFER_LEN; i++, j+=2) {
-    msg[j] = adcresults[i] & 0xFF;
-    msg[j+1] = (adcresults[i] >> 8) & 0xFF;
-    if (j == MAX_APP_PAYLOAD-2) {
-      sendPacket(msg, sizeof(msg), 0);
-      j = 4;
-    }
-  }
-  }
+  oneSpectrum(INCH_0);
+  transmitSpectrum();
 
   BSP_TURN_OFF_LED2();
 }
@@ -445,31 +402,6 @@ static smplStatus_t sendWithAckReq(uint8_t *msg, int len)
   return rc;
 }
 #endif /* APP_AUTO_ACK */
-
-void createRandomAddress()
-{
-  unsigned int rand, rand2;
-  do
-  {
-    rand = TI_getRandomIntegerFromVLO();    // first byte can not be 0x00 of 0xFF
-  }
-  while( (rand & 0xFF00)==0xFF00 || (rand & 0xFF00)==0x0000 );
-  rand2 = TI_getRandomIntegerFromVLO();
-
-  BCSCTL1 = CALBC1_1MHZ;                    // Set DCO to 1MHz
-  DCOCTL = CALDCO_1MHZ;
-  FCTL2 = FWKEY + FSSEL0 + FN1;             // MCLK/3 for Flash Timing Generator
-  FCTL3 = FWKEY + LOCKA;                    // Clear LOCK & LOCKA bits
-  FCTL1 = FWKEY + WRT;                      // Set WRT bit for write operation
-
-  Flash_Addr[0]=(rand>>8) & 0xFF;
-  Flash_Addr[1]=rand & 0xFF;
-  Flash_Addr[2]=(rand2>>8) & 0xFF;
-  Flash_Addr[3]=rand2 & 0xFF;
-
-  FCTL1 = FWKEY;                            // Clear WRT bit
-  FCTL3 = FWKEY + LOCKA + LOCK;             // Set LOCK & LOCKA bit
-}
 
 /*------------------------------------------------------------------------------
  * ADC10 interrupt service routine
