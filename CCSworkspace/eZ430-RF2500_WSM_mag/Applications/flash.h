@@ -12,10 +12,14 @@
 
 /* Flash macros */
 #define FLASH_UNLOCK    FCTL3 = FWKEY; FCTL1 = FWKEY + WRT;
-#define FLASH_LOCK      FCTL1 = FWKEY; FCTL3 = FWKEY +  LOCK;
+#define FLASH_LOCK      FCTL1 = FWKEY; FCTL3 = FWKEY + LOCK;
 
-#define SEG_1 0x8000
-#define SEG_2 (SEG_1 + 0x200)
-
+void flashInit(void);
+unsigned char readSample(unsigned int flashindx);
+void saveSample(unsigned int flashindx, unsigned char value);
+void flashEraseSegment(unsigned int segindx);
+unsigned long *segAddress(unsigned int segindx);
+void oneSpectrum(uint16_t adcchan);
+void transmitSpectrum(void);
 
 #endif /* FLASH_H_ */

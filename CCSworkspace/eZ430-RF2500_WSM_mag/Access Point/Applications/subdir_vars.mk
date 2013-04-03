@@ -8,18 +8,22 @@ C_SRCS += \
 ../Applications/virtual_com_cmds.c 
 
 OBJS += \
+./Applications/flash.obj \
 ./Applications/main_AP.obj \
 ./Applications/virtual_com_cmds.obj 
 
 C_DEPS += \
+./Applications/flash.pp \
 ./Applications/main_AP.pp \
 ./Applications/virtual_com_cmds.pp 
 
 C_DEPS__QUOTED += \
+"Applications\flash.pp" \
 "Applications\main_AP.pp" \
 "Applications\virtual_com_cmds.pp" 
 
 OBJS__QUOTED += \
+"Applications\flash.obj" \
 "Applications\main_AP.obj" \
 "Applications\virtual_com_cmds.obj" 
 

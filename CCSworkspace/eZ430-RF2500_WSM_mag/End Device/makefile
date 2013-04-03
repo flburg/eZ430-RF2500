@@ -9,6 +9,7 @@ CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/msp430_4.1.1
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
 "./Applications/main_ED.obj" \
+"./Applications/flash.obj" \
 "./Components/bsp/bsp.obj" \
 "./Components/mrfi/mrfi.obj" \
 "./Components/nwk/nwk_globals.obj" \
@@ -148,8 +149,8 @@ eZ430-RF2500_WSM.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(MSP430_EXECUTABLE_OUTPUTS__QUOTED) "eZ430-RF2500_WSM.out"
-	-$(RM) "Components\nwk_applications\nwk_freq.pp" "Components\nwk_applications\nwk_ioctl.pp" "Components\nwk_applications\nwk_join.pp" "Components\nwk_applications\nwk_link.pp" "Components\nwk_applications\nwk_mgmt.pp" "Components\nwk_applications\nwk_ping.pp" "Components\nwk_applications\nwk_security.pp" "Components\nwk\nwk.pp" "Components\nwk\nwk_QMgmt.pp" "Components\nwk\nwk_api.pp" "Components\nwk\nwk_frame.pp" "Components\nwk\nwk_globals.pp" "Components\mrfi\mrfi.pp" "Components\bsp\bsp.pp" "Applications\main_ED.pp" 
-	-$(RM) "Components\nwk_applications\nwk_freq.obj" "Components\nwk_applications\nwk_ioctl.obj" "Components\nwk_applications\nwk_join.obj" "Components\nwk_applications\nwk_link.obj" "Components\nwk_applications\nwk_mgmt.obj" "Components\nwk_applications\nwk_ping.obj" "Components\nwk_applications\nwk_security.obj" "Components\nwk\nwk.obj" "Components\nwk\nwk_QMgmt.obj" "Components\nwk\nwk_api.obj" "Components\nwk\nwk_frame.obj" "Components\nwk\nwk_globals.obj" "Components\mrfi\mrfi.obj" "Components\bsp\bsp.obj" "Applications\main_ED.obj" 
+	-$(RM) "Components\nwk_applications\nwk_freq.pp" "Components\nwk_applications\nwk_ioctl.pp" "Components\nwk_applications\nwk_join.pp" "Components\nwk_applications\nwk_link.pp" "Components\nwk_applications\nwk_mgmt.pp" "Components\nwk_applications\nwk_ping.pp" "Components\nwk_applications\nwk_security.pp" "Components\nwk\nwk.pp" "Components\nwk\nwk_QMgmt.pp" "Components\nwk\nwk_api.pp" "Components\nwk\nwk_frame.pp" "Components\nwk\nwk_globals.pp" "Components\mrfi\mrfi.pp" "Components\bsp\bsp.pp" "Applications\flash.pp" "Applications\main_ED.pp" 
+	-$(RM) "Components\nwk_applications\nwk_freq.obj" "Components\nwk_applications\nwk_ioctl.obj" "Components\nwk_applications\nwk_join.obj" "Components\nwk_applications\nwk_link.obj" "Components\nwk_applications\nwk_mgmt.obj" "Components\nwk_applications\nwk_ping.obj" "Components\nwk_applications\nwk_security.obj" "Components\nwk\nwk.obj" "Components\nwk\nwk_QMgmt.obj" "Components\nwk\nwk_api.obj" "Components\nwk\nwk_frame.obj" "Components\nwk\nwk_globals.obj" "Components\mrfi\mrfi.obj" "Components\bsp\bsp.obj" "Applications\flash.obj" "Applications\main_ED.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

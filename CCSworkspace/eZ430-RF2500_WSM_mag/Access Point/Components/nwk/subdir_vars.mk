@@ -4,11 +4,11 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk/nwk.c \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk/nwk_QMgmt.c \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk/nwk_api.c \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk/nwk_frame.c \
-C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk/nwk_globals.c 
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk/nwk.c \
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk/nwk_QMgmt.c \
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk/nwk_api.c \
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk/nwk_frame.c \
+C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk/nwk_globals.c 
 
 OBJS += \
 ./Components/nwk/nwk.obj \
@@ -39,10 +39,10 @@ OBJS__QUOTED += \
 "Components\nwk\nwk_globals.obj" 
 
 C_SRCS__QUOTED += \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk/nwk.c" \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk/nwk_QMgmt.c" \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk/nwk_api.c" \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk/nwk_frame.c" \
-"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Code/Components/simpliciti/nwk/nwk_globals.c" 
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk/nwk.c" \
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk/nwk_QMgmt.c" \
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk/nwk_api.c" \
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk/nwk_frame.c" \
+"C:/Users/flb.bwrclt61-1/Desktop/research/ME_local/eZ430-RF2500/CCSworkspace/Shared/Components/simpliciti/nwk/nwk_globals.c" 
 
 

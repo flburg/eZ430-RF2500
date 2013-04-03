@@ -465,12 +465,17 @@ void MRFI_Init(void)
 
     /* mantissa is in MDMCFG3 */
     mantissa = 256 + SMARTRF_SETTING_MDMCFG3;
+// 256 + 0x3b
 
     /* exponent is lower nibble of MDMCFG4. */
     exponent = 28 - (SMARTRF_SETTING_MDMCFG4 & 0x0F);
+// 28 - 0x0d
 
     /* we can now get data rate */
     dataRate = mantissa * (MRFI_RADIO_OSC_FREQ>>exponent);
+// 256 * 0x3b * (26000000 >> (28 - 0xd)
+// 15104 * 793
+// 11,977,472
 
     bits = ((uint32_t)((PHY_PREAMBLE_SYNC_BYTES + MRFI_MAX_FRAME_SIZE)*8))*10000;
 

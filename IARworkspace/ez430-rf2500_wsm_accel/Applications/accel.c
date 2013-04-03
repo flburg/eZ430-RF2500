@@ -20,9 +20,10 @@ static uint8_t spiRegAccess(uint8_t addrByte, uint8_t writeValue);
  */
 void accelInit(void)
 {
-  uint8_t x;
   // The SPI interface is initialized by SimpliciTI
   /* Accelerometer wiring
+         GND		-> Pin 1
+         VDD		-> Pin 2
          CS (Acc)   -> Pin 8  (4.3)
          INT1       -> Pin 4  (2.1)
          INT2       -> Pin 5  (2.2)
@@ -39,21 +40,12 @@ void accelInit(void)
 
   accelSpiWriteReg(THRESH_ACT_ADDR,    0xf0); // 62.5mg/bit
   accelSpiWriteReg(ACT_INACT_CTL_ADDR, 0xf0); // enable X,Y,Z activity, AC mode
-  accelSpiWriteReg(BW_RATE_ADDR,       0x0a); // set serial rate to 100Hz
+  accelSpiWriteReg(BW_RATE_ADDR,       0x0f); // set data rate to 3200Hz
   accelSpiWriteReg(POWER_CTL_ADDR,     0x08); // select measurement mode
   accelSpiWriteReg(INT_ENABLE_ADDR,    0x10); // enable activity interrupt
   accelSpiWriteReg(INT_MAP_ADDR,       0x00); // all interrupts on INT1
-
-  x = accelSpiReadReg(INT_SOURCE_ADDR);
-  x = accelSpiReadReg(INT_SOURCE_ADDR);
-
-  x = accelSpiReadReg(THRESH_ACT_ADDR);
-  x = accelSpiReadReg(ACT_INACT_CTL_ADDR);
-  x = accelSpiReadReg(BW_RATE_ADDR);
-  x = accelSpiReadReg(POWER_CTL_ADDR);
-  x = accelSpiReadReg(INT_ENABLE_ADDR);
-  x = accelSpiReadReg(INT_MAP_ADDR);
-
+  accelSpiWriteReg(DATA_FORMAT_ADDR,   0x80); // fixed 10 bit mode, range = +-2g, self-test
+  accelSpiWriteReg(FIFO_CTL_ADDR,      0x9f); // stream mode, samples = 0x1f
 }
 
 /**************************************************************************************************
@@ -142,7 +134,6 @@ void accelSpiWriteReg(uint8_t addr, uint8_t value)
   spiRegAccess(addr, value);
 }
 
-
 /*=================================================================================================
  * @fn          spiRegAccess
  *
@@ -196,6 +187,196 @@ static uint8_t spiRegAccess(uint8_t addrByte, uint8_t writeValue)
 
   /* return the register value */
   return(readValue);
+}
+
+/*=================================================================================================
+ * @fn          spiReadData
+ * 				Reads MSB and LSB and puts them in a 16 bit uint.
+ *
+ * @brief       Special case of spiRegAccess to read ADXL345 data registers.
+ *
+ * @param       addrByte - address byte of register
+ * @param		buf - place to put the 10 bit data
+ * @param		samples - number of samples to read
+ *
+ * @return      nothing
+ *=================================================================================================
+ */
+void accelSpiReadData(uint8_t addrByte, uint16_t *buf, int samples)
+{
+  int i;
+  mrfiSpiIState_t s;
+
+  BSP_ASSERT( BSP_SPI_IS_INITIALIZED() );
+
+  /* disable interrupts that use SPI */
+  BSP_ENTER_CRITICAL_SECTION(s);
+
+  /* make sure clock phase and polarity are correct for accelerometer */
+  ACCEL_SPI_CLK_CONFIG();
+
+  /* turn chip select "off" and then "on" to clear any current SPI access */
+  ACCEL_SPI_DRIVE_CSN_HIGH();
+
+  for (i = 0; i < samples; i++) {
+    uint8_t reg;
+
+    ACCEL_SPI_DRIVE_CSN_LOW();
+
+    BSP_SPI_WRITE_BYTE(READ_BIT | BURST_BIT | addrByte);
+    BSP_SPI_WAIT_DONE();
+
+    // read LSB
+    BSP_SPI_WRITE_BYTE(BSP_SPI_DUMMY_BYTE);
+    BSP_SPI_WAIT_DONE();
+    reg = BSP_SPI_READ_BYTE();
+    buf[i] = reg;
+
+    // read MSB
+    BSP_SPI_WRITE_BYTE(BSP_SPI_DUMMY_BYTE);
+    BSP_SPI_WAIT_DONE();
+    reg = BSP_SPI_READ_BYTE();
+    buf[i] |= (reg << 8) & 0xff00;
+
+    ACCEL_SPI_DRIVE_CSN_HIGH();
+  }
+
+  /* turn off chip select; enable interrupts that call SPI functions */
+  BSP_EXIT_CRITICAL_SECTION(s);
+}
+
+/*=================================================================================================
+ * @fn          spiReadDataBytes
+ *
+ * @brief       Special case of spiRegAccess to read ADXL345 data registers.
+ * 				Reads LSB only.
+ *
+ * @param       addrByte - address byte of register
+ * @param		buf - place to put the 8 bit data
+ * @param		samples - number of samples to read
+ *
+ * @return      nothing
+ *=================================================================================================
+ */
+void accelSpiReadDataBytes(uint8_t addrByte, uint8_t *buf, int samples)
+{
+  int i;
+  mrfiSpiIState_t s;
+
+  BSP_ASSERT( BSP_SPI_IS_INITIALIZED() );
+
+  /* disable interrupts that use SPI */
+  BSP_ENTER_CRITICAL_SECTION(s);
+
+  /* make sure clock phase and polarity are correct for accelerometer */
+  ACCEL_SPI_CLK_CONFIG();
+
+  /* turn chip select "off" and then "on" to clear any current SPI access */
+  ACCEL_SPI_DRIVE_CSN_HIGH();
+
+  for (i = 0; i < samples; i++) {
+    uint8_t reg;
+
+    ACCEL_SPI_DRIVE_CSN_LOW();
+
+    BSP_SPI_WRITE_BYTE(READ_BIT | addrByte);
+    BSP_SPI_WAIT_DONE();
+
+    // read LSB
+    BSP_SPI_WRITE_BYTE(BSP_SPI_DUMMY_BYTE);
+    BSP_SPI_WAIT_DONE();
+    reg = BSP_SPI_READ_BYTE();
+    buf[i] = reg;
+
+    ACCEL_SPI_DRIVE_CSN_HIGH();
+  }
+
+  /* turn off chip select; enable interrupts that call SPI functions */
+  BSP_EXIT_CRITICAL_SECTION(s);
+}
+
+/*=================================================================================================
+ * @fn          spiReadDataBytes2
+ *
+ * @brief       Special case of spiRegAccess to read ADXL345 data registers.
+ * 				Reads MSB and LSB and packs the MS 8 bits into an 8 bit uint.
+ *
+ * @param       addrByte - address byte of register
+ * @param		buf - place to put the 10 bit data
+ * @param		samples - number of samples to read
+ *
+ * @return      nothing
+ *=================================================================================================
+ */
+void accelSpiReadDataBytes2(uint8_t addrByte, uint8_t *buf, int samples)
+{
+  int i;
+  mrfiSpiIState_t s;
+
+  BSP_ASSERT( BSP_SPI_IS_INITIALIZED() );
+
+  /* disable interrupts that use SPI */
+  BSP_ENTER_CRITICAL_SECTION(s);
+
+  /* make sure clock phase and polarity are correct for accelerometer */
+  ACCEL_SPI_CLK_CONFIG();
+
+  /* turn chip select "off" and then "on" to clear any current SPI access */
+  ACCEL_SPI_DRIVE_CSN_HIGH();
+
+  /*
+   * The accelerometer is set to run at full speed (3200Hz, 312.5us per sample)
+   * The SPI runs at 4MHz (250ns per clock tick).  The SPI takes maybe
+   * 20-25 clocks for a transfer, or about 5-6us.  So there is plenty of time
+   * to do all this overhead.
+   */
+
+  for (i = 0; i < samples; i++) {
+    int status = 0;
+    uint8_t lsb, msb;
+
+    // wait for DATA_READY
+
+    while (!(status & 0x80)) {
+      ACCEL_SPI_DRIVE_CSN_LOW();
+
+      BSP_SPI_WRITE_BYTE(READ_BIT | INT_SOURCE_ADDR);
+      BSP_SPI_WAIT_DONE();
+
+      BSP_SPI_WRITE_BYTE(BSP_SPI_DUMMY_BYTE);
+      BSP_SPI_WAIT_DONE();
+
+      status = BSP_SPI_READ_BYTE();
+
+      ACCEL_SPI_DRIVE_CSN_HIGH();
+
+      BSP_DELAY_USECS(10);  // required delay, see accel datasheet
+    }
+
+    // read data
+
+    ACCEL_SPI_DRIVE_CSN_LOW();
+
+    BSP_SPI_WRITE_BYTE(READ_BIT | BURST_BIT | addrByte);
+    BSP_SPI_WAIT_DONE();
+
+    // read LSB
+    BSP_SPI_WRITE_BYTE(BSP_SPI_DUMMY_BYTE);
+    BSP_SPI_WAIT_DONE();
+    lsb = BSP_SPI_READ_BYTE();
+    buf[i] = (lsb >> 2) & 0x3f;
+
+    // read MSB
+    BSP_SPI_WRITE_BYTE(BSP_SPI_DUMMY_BYTE);
+    BSP_SPI_WAIT_DONE();
+    msb= BSP_SPI_READ_BYTE();
+    buf[i] |= (msb << 6) & 0xc0;
+
+    ACCEL_SPI_DRIVE_CSN_HIGH();
+  }
+
+  /* turn off chip select; enable interrupts that call SPI functions */
+  BSP_EXIT_CRITICAL_SECTION(s);
 }
 
 #endif // access point

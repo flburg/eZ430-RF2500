@@ -107,20 +107,16 @@
 /*------------------------------------------------------------------------------
  * Defines
  *----------------------------------------------------------------------------*/
-/* How many times to try a TX and miss an acknowledge before doing a scan */
-#define MISSES_IN_A_ROW  5
-/* Number of seconds between transmissions */
-#define TRANSMIT_PERIOD_SECS 1
-/* Number of seconds between measurements */
-#define MEASURE_GAP_SECS 15
-/* Application header length */
-#define APP_HEADER_LEN 4
-/* Data buffer length */
-#define ACCEL_BUFFER_LEN 322
-/* Data payload length */
-#define APP_PAYLOAD_LEN (MAX_APP_PAYLOAD-APP_HEADER_LEN)
-/* Number of payloads per buffer (adjust ACCEL_BUFFER_LEN to make this an integer) */
-#define NUM_APP_PAYLOADS (ACCEL_BUFFER_LEN/APP_PAYLOAD_LEN)
+#define TRANSMIT_PERIOD_SECS 1	/* Number of seconds between packets in a burst */
+#define MEASURE_GAP_SECS 15		/* Number of seconds between measurements */
+#define NUM_PKTS_PER_AXIS 3		/* Number of packets to transmit for each axis (determines buffer size, max 7) */
+
+#define APP_HEADER_LEN 4		/* Application header length */
+#define MISSES_IN_A_ROW  5		/* How many times to try a TX and miss an acknowledge before doing a scan */
+
+#define APP_PAYLOAD_LEN (MAX_APP_PAYLOAD-APP_HEADER_LEN)		/* Payload length */
+#define ACCEL_BUFFER_LEN (NUM_PKTS_PER_AXIS * APP_PAYLOAD_LEN)	/* Size of sample buffer */
+
 /* Message types */
 #define MSG_TYPE_ACCEL_SPECTRA 0
 
@@ -138,7 +134,6 @@ static smplStatus_t sendBestEffort(uint8_t *mag, int len);
 #ifdef APP_AUTO_ACK
 static smplStatus_t sendWithAckReq(uint8_t *mag, int len);
 #endif
-void createRandomAddress(void);
 __interrupt void ADC10_ISR(void);
 __interrupt void TimerA_ISR (void);
 __interrupt void Port2_ISR (void);
@@ -182,6 +177,9 @@ void main (void)
 
 static void init()
 {
+// FLASH is unused between 0xad73 (end of .const) and 0xffe6 (start of int table) - about 20KB
+// this is subject to link conditions
+
   /* Read out address from flash (hard-coded) */
   addr_t const *myaddr = nwk_getMyAddress();;
 
@@ -271,7 +269,9 @@ static void run()
     __bis_SR_register(LPM3_bits);
 
 	BSP_TURN_OFF_LED2();
-	BSP_TOGGLE_LED1();
+	BSP_TURN_ON_LED1();
+	BSP_DELAY_USECS(10000);
+	BSP_TURN_OFF_LED1();
 
 	/* Time to measure */
     if (sSelfMeasureSem >= MEASURE_GAP_SECS) {
@@ -285,19 +285,19 @@ static void selfMeasure(void)
 {
   uint8_t results[ACCEL_BUFFER_LEN];
 
-  accelSpiWriteReg(DATA_FORMAT_ADDR,   0x80); // fixed 10 bit mode, range = +-2g, self-test
+  accelSpiWriteReg(DATA_FORMAT_ADDR, 0x80); // fixed 10 bit mode, range = +-2g, self-test
 
   /* Measure X */
   accelSpiReadDataBytes2(DATAX0_ADDR, results, ACCEL_BUFFER_LEN);
   sendMessage(0, results);
 
   /* Measure Y */
-  accelSpiReadDataBytes2(DATAY0_ADDR, results, ACCEL_BUFFER_LEN);
-  sendMessage(1, results);
+//  accelSpiReadDataBytes2(DATAY0_ADDR, results, ACCEL_BUFFER_LEN);
+//  sendMessage(1, results);
 
   /* Measure Z */
-  accelSpiReadDataBytes2(DATAZ0_ADDR, results, ACCEL_BUFFER_LEN);
-  sendMessage(2, results);
+//  accelSpiReadDataBytes2(DATAZ0_ADDR, results, ACCEL_BUFFER_LEN);
+//  sendMessage(2, results);
 }
 
 static void sendMessage(uint8_t axis, uint8_t *results)
@@ -313,14 +313,14 @@ static void sendMessage(uint8_t axis, uint8_t *results)
 	          0             1          2           3           4-49
    */
 
-  for (i = 0; i < NUM_APP_PAYLOADS; i++) {
+  for (i = 0; i < NUM_PKTS_PER_AXIS; i++) {
     /* Go to sleep, waiting for interrupt */
     __bis_SR_register(LPM3_bits);
 
 	BSP_TURN_OFF_LED1();
-    BSP_TOGGLE_LED2();
 
     if (sSelfMeasureSem >= TRANSMIT_PERIOD_SECS) {
+      BSP_TURN_ON_LED2();
       sSelfMeasureSem = 0;
 
       msg[0] = MSG_TYPE_ACCEL_SPECTRA;
@@ -331,6 +331,8 @@ static void sendMessage(uint8_t axis, uint8_t *results)
       memcpy((char *) &msg[4], (char *) &results[i*APP_PAYLOAD_LEN], APP_PAYLOAD_LEN);
 
       sendPacket(msg, MAX_APP_PAYLOAD, 0);
+
+      BSP_TURN_OFF_LED2();
     }
   }
 }
@@ -456,31 +458,6 @@ static smplStatus_t sendWithAckReq(uint8_t *msg, int len)
   return rc;
 }
 #endif /* APP_AUTO_ACK */
-
-void createRandomAddress()
-{
-  unsigned int rand, rand2;
-  do
-  {
-    rand = TI_getRandomIntegerFromVLO();    // first byte can not be 0x00 of 0xFF
-  }
-  while( (rand & 0xFF00)==0xFF00 || (rand & 0xFF00)==0x0000 );
-  rand2 = TI_getRandomIntegerFromVLO();
-
-  BCSCTL1 = CALBC1_1MHZ;                    // Set DCO to 1MHz
-  DCOCTL = CALDCO_1MHZ;
-  FCTL2 = FWKEY + FSSEL0 + FN1;             // MCLK/3 for Flash Timing Generator
-  FCTL3 = FWKEY + LOCKA;                    // Clear LOCK & LOCKA bits
-  FCTL1 = FWKEY + WRT;                      // Set WRT bit for write operation
-
-  Flash_Addr[0]=(rand>>8) & 0xFF;
-  Flash_Addr[1]=rand & 0xFF;
-  Flash_Addr[2]=(rand2>>8) & 0xFF;
-  Flash_Addr[3]=rand2 & 0xFF;
-
-  FCTL1 = FWKEY;                            // Clear WRT bit
-  FCTL3 = FWKEY + LOCKA + LOCK;             // Set LOCK & LOCKA bit
-}
 
 /*------------------------------------------------------------------------------
  * ADC10 interrupt service routine

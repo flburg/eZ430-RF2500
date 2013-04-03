@@ -268,6 +268,7 @@ proc read_port {comfd logfd} {
 
     if {$seqno == 0} {
         post_impact_alarm $id
+        puts "alarm from node $id, missed acks = $missedacks"
 	return
     }
 
@@ -518,8 +519,24 @@ proc post_impact_alarm {id} {
     frame $w
     pack $w -side top -fill x
 
-    label $w.message -bg red -fg white \
+#    label $w.message -bg red -fg white \
+#      -text "impact alarm at node $id!!!" -justify center 
+    set bgcolor "red"
+    set fgcolor "white"
+
+    if {$id == 3} {
+        set bgcolor "#ff0000"
+    }
+    if {$id == 4} {
+        set bgcolor "#ff8800"
+    }
+    if {$id == 11} {
+	set bgcolor "#ff00ff"
+    }
+
+    label $w.message -bg $bgcolor -fg $fgcolor \
       -text "impact alarm at node $id!!!" -justify center 
+ 
     pack $w.message -side top -fill x
 }
 
