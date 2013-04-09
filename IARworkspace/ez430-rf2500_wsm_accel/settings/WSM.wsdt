@@ -3,7 +3,7 @@
 <Workspace>
   <ConfigDictionary>
     
-  <CurrentConfigs><Project>WSM/Access_Point</Project></CurrentConfigs></ConfigDictionary>
+  <CurrentConfigs><Project>WSM/End_Device</Project></CurrentConfigs></ConfigDictionary>
   <Desktop>
     <Static>
       <Workspace>
@@ -12,7 +12,7 @@
           
           
           
-        <Column0>260</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>277</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
     <Build><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Find-in-Files</Factory></Window></Windows></PreferedWindows><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1395</ColumnWidth1><ColumnWidth2>372</ColumnWidth2><ColumnWidth3>93</ColumnWidth3></Build><TerminalIO/><Find-in-Files><PreferedWindows><Position>3</Position><ScreenPosX>0</ScreenPosX><ScreenPosY>0</ScreenPosY><Windows><Window><Factory>Build</Factory></Window></Windows></PreferedWindows><ColumnWidth0>1068</ColumnWidth0><ColumnWidth1>94</ColumnWidth1><ColumnWidth2>1138</ColumnWidth2></Find-in-Files><Debug-Log><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1861</ColumnWidth1></Debug-Log></Static>
     <Windows>
@@ -35,14 +35,14 @@
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\accel.c</Filename><XPos>0</XPos><YPos>327</YPos><SelStart>10711</SelStart><SelEnd>10711</SelEnd></Tab><ActiveTab>0</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\accel.c</Filename><XPos>0</XPos><YPos>315</YPos><SelStart>1899</SelStart><SelEnd>1899</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Applications\main_ED.c</Filename><XPos>0</XPos><YPos>100</YPos><SelStart>5306</SelStart><SelEnd>5306</SelEnd></Tab><ActiveTab>1</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Components\mrfi\radios\family1\mrfi_radio.c</Filename><XPos>0</XPos><YPos>785</YPos><SelStart>29056</SelStart><SelEnd>29056</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-01bf10a8><key>iaridepm.enu1</key></Toolbar-01bf10a8></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>450</Bottom><Right>351</Right><x>-2</x><y>-2</y><xscreen>271</xscreen><yscreen>292</yscreen><sizeHorzCX>211719</sizeHorzCX><sizeHorzCY>406685</sizeHorzCY><sizeVertCX>275781</sizeVertCX><sizeVertCY>629526</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>223</Bottom><Right>1282</Right><x>-2</x><y>-2</y><xscreen>1284</xscreen><yscreen>225</yscreen><sizeHorzCX>1003125</sizeHorzCX><sizeHorzCY>313370</sizeHorzCY><sizeVertCX>103906</sizeVertCX><sizeVertCY>178273</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-01bf10a8><key>iaridepm.enu1</key></Toolbar-01bf10a8></Sizes></Row0></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>850</Bottom><Right>351</Right><x>-2</x><y>-2</y><xscreen>271</xscreen><yscreen>292</yscreen><sizeHorzCX>141146</sizeHorzCX><sizeHorzCY>261181</sizeHorzCY><sizeVertCX>183854</sizeVertCX><sizeVertCY>762075</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>223</Bottom><Right>1922</Right><x>-2</x><y>-2</y><xscreen>1924</xscreen><yscreen>225</yscreen><sizeHorzCX>1002083</sizeHorzCX><sizeHorzCY>201252</sizeHorzCY><sizeVertCX>69271</sizeVertCX><sizeVertCY>114490</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

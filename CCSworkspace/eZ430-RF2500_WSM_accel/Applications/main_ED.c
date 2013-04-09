@@ -101,6 +101,7 @@
 #include "bsp_leds.h"
 #include "bsp_buttons.h"
 #include "accel_spi.h"
+
 //#include <ti/mcu/msp430/csl/CSL.h>
 
 /*------------------------------------------------------------------------------
@@ -289,7 +290,7 @@ static void run()
     }
 
     if (sRadioSync) {
-      MRFI_GpioIsr();
+//      Mrfi_SyncPinRxIsr();
       sRadioSync = 0;
     }
 
@@ -511,7 +512,8 @@ __interrupt void Port2_ISR (void)
 
   // radio sync
   if (P2IFG & BIT6) {
-    sRadioSync = 1;
+    MRFI_GpioIsr();
+//    sRadioSync = 1;
   }
 
   __bic_SR_register_on_exit(LPM3_bits);        // Clear LPM3 bit from 0(SR)
