@@ -197,6 +197,17 @@ static void init()
   /* Set low frequency clock to VLO - drives ACLK (12KHz) */
   BCSCTL3 |= LFXT1S_2;                      // LFXT1 = VLO
 
+#ifdef TEST1
+  MRFI_Init();
+  accelInit();
+  while(1) {
+	  __bis_SR_register(LPM3_bits);
+	  BSP_TURN_ON_LED1();
+	  BSP_DELAY_USECS(10000);
+	  BSP_TURN_OFF_LED1();
+  }
+#endif
+
   /* Complete initialization of TimerA */
   TACCTL0 = CCIE;                           // TACCR0 interrupt enabled
   TACCR0 = 12000;                           // ~ 1 sec
@@ -263,7 +274,16 @@ static void link()
 
 static void run()
 {
-  while (1)
+#ifdef TEST2
+  while(1) {
+	  __bis_SR_register(LPM3_bits);
+	  BSP_TURN_ON_LED2();
+	  BSP_DELAY_USECS(10000);
+	  BSP_TURN_OFF_LED2();
+  }
+#endif
+
+while (1)
   {
     /* Go to sleep, waiting for interrupt every second */
     __bis_SR_register(LPM3_bits);

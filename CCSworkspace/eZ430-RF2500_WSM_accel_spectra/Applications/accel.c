@@ -42,7 +42,7 @@ void accelInit(void)
   accelSpiWriteReg(ACT_INACT_CTL_ADDR, 0xf0); // enable X,Y,Z activity, AC mode
   accelSpiWriteReg(BW_RATE_ADDR,       0x0f); // set data rate to 3200Hz
   accelSpiWriteReg(POWER_CTL_ADDR,     0x08); // select measurement mode
-  accelSpiWriteReg(INT_ENABLE_ADDR,    0x10); // enable activity interrupt
+  accelSpiWriteReg(INT_ENABLE_ADDR,    0x00); // no interrupts
   accelSpiWriteReg(INT_MAP_ADDR,       0x00); // all interrupts on INT1
   accelSpiWriteReg(DATA_FORMAT_ADDR,   0x00); // fixed 10 bit mode, range = +-2g
   accelSpiWriteReg(FIFO_CTL_ADDR,      0x9f); // stream mode, samples = 0x1f

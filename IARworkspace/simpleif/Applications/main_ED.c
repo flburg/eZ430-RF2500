@@ -1,4 +1,4 @@
-//#define TIMER
+#define TIMER
 
 #include <stdlib.h>
 #include <string.h>
@@ -81,29 +81,29 @@ static void sampleAndSend()
 
       BSP_TURN_ON_LED2();
 
-      P4OUT |= BIT3;
+//      P4OUT |= BIT3;
 
       takeSample(msg);
 
-      P4OUT &= ~BIT3;
+//      P4OUT &= ~BIT3;
 
       buildPayload(&mrfiPkt, msg, sizeof(msg));
 
-      P4OUT |= BIT3;
+//      P4OUT |= BIT3;
 
 #ifdef TIMER
       /* Get radio ready...awakens in idle state */
       MRFI_WakeUp();
 #endif
 
-      P4OUT &= ~BIT3;
+//      P4OUT &= ~BIT3;
 
       /* Send the message */
       if (MRFI_Transmit(&mrfiPkt, MRFI_TX_TYPE_CCA)) {
         BSP_TURN_ON_LED1();
       }
 
-      P4OUT |= BIT3;
+//      P4OUT |= BIT3;
 
       BSP_TURN_OFF_LED2();
 
@@ -116,7 +116,7 @@ static void sampleAndSend()
       sSelfMeasureSem = 0;
 #endif
 
-      P4OUT &= ~BIT3;
+//      P4OUT &= ~BIT3;
 
 #ifdef TIMER
       /* Go to sleep, waiting for interrupt every second to acquire data */

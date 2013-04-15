@@ -6,127 +6,97 @@
   <configuration>
     <name>AP</name>
     <outputs>
-      <file>$PROJ_DIR$\Applications\main_AP.c</file>
-      <file>$PROJ_DIR$\Applications\virtual_com_cmds.c</file>
-      <file>$PROJ_DIR$\Applications\virtual_com_cmds.h</file>
-      <file>$PROJ_DIR$\Applications\vlo_rand.s43</file>
-      <file>$PROJ_DIR$\Components\bsp\bsp.c</file>
-      <file>$PROJ_DIR$\Components\bsp\bsp.h</file>
-      <file>$PROJ_DIR$\Components\bsp\bsp_macros.h</file>
-      <file>$PROJ_DIR$\Components\mrfi\mrfi.c</file>
-      <file>$PROJ_DIR$\Components\mrfi\mrfi.h</file>
-      <file>$PROJ_DIR$\Components\mrfi\mrfi_defs.h</file>
-      <file>$PROJ_DIR$\Configuration\smpl_config_AP.dat</file>
-      <file>$PROJ_DIR$\Configuration\smpl_nwk_config.dat</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board_defs.h</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_buttons.h</file>
-      <file>$PROJ_DIR$\AP\Obj\vlo_rand.r43</file>
-      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_api.h</file>
-      <file>$TOOLKIT_DIR$\inc\msp430x22x4.h</file>
-      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.h</file>
-      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.c</file>
-      <file>$TOOLKIT_DIR$\lib\clib\cl430f.r43</file>
-      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.h</file>
-      <file>$PROJ_DIR$\AP\List\simpleif.map</file>
-      <file>$TOOLKIT_DIR$\inc\msp430f2274.h</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_leds.c</file>
-      <file>$PROJ_DIR$\Components\mrfi\smartrf\CC2500\smartrf_CC2500.h</file>
-      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_types.h</file>
-      <file>$PROJ_DIR$\AP\Exe\simpleif.d43</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_buttons.c</file>
-      <file>$PROJ_DIR$\AP\Obj\bsp.r43</file>
-      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
-      <file>$PROJ_DIR$\AP\Obj\main_AP.r43</file>
-      <file>$PROJ_DIR$\AP\Obj\mrfi.r43</file>
-      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_config.h</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_drivers.c</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_led_defs.h</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_leds.h</file>
-      <file>$TOOLKIT_DIR$\inc\msp430.h</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_driver_defs.h</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_leds.h</file>
-      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk.h</file>
-      <file>$PROJ_DIR$\Components\bsp\mcus\bsp_msp430_defs.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_radio.c</file>
+      <file>$TOOLKIT_DIR$\inc\in430.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board_defs.h</file>
+      <file>$PROJ_DIR$\AP\Obj\virtual_com_cmds.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board.c</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_buttons.h</file>
+      <file>$TOOLKIT_DIR$\config\lnk430F2274.xcl</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_button_defs.h</file>
       <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.c</file>
       <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board.c</file>
       <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_frame.h</file>
-      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
-      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_radio.c</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board_defs.h</file>
-      <file>$TOOLKIT_DIR$\inc\in430.h</file>
-      <file>$PROJ_DIR$\AP\Obj\virtual_com_cmds.r43</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_buttons.h</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board.c</file>
-      <file>$TOOLKIT_DIR$\config\lnk430F2274.xcl</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_button_defs.h</file>
+      <file>$PROJ_DIR$\AP\Obj\mrfi.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_leds.h</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\Components\bsp\mcus\bsp_msp430_defs.h</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_leds.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_led_defs.h</file>
+      <file>$PROJ_DIR$\AP\Exe\simpleif.d43</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_buttons.h</file>
+      <file>$PROJ_DIR$\Applications\main_AP.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.h</file>
+      <file>$PROJ_DIR$\AP\Obj\vlo_rand.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board_defs.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi_defs.h</file>
+      <file>$PROJ_DIR$\Applications\virtual_com_cmds.h</file>
+      <file>$PROJ_DIR$\Configuration\smpl_config_AP.dat</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_api.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi.c</file>
+      <file>$TOOLKIT_DIR$\inc\msp430.h</file>
+      <file>$PROJ_DIR$\Applications\virtual_com_cmds.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi.h</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp_macros.h</file>
+      <file>$PROJ_DIR$\Applications\vlo_rand.s43</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_driver_defs.h</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp.h</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_drivers.c</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl430f.r43</file>
+      <file>$PROJ_DIR$\AP\List\simpleif.map</file>
+      <file>$PROJ_DIR$\Configuration\smpl_nwk_config.dat</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.c</file>
+      <file>$TOOLKIT_DIR$\inc\msp430x22x4.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_leds.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_config.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430f2274.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\smartrf\CC2500\smartrf_CC2500.h</file>
+      <file>$PROJ_DIR$\Components\SimpliciTI\nwk\nwk_types.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_buttons.c</file>
+      <file>$PROJ_DIR$\AP\Obj\main_AP.r43</file>
+      <file>$PROJ_DIR$\AP\Obj\bsp.r43</file>
     </outputs>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 21 26</file>
+          <file> 40 19</file>
         </tool>
       </outputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\AP\Exe\simpleif.d43</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 40</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 7 53 52 12 4 23 39</file>
+        </tool>
+      </inputs>
     </file>
     <file>
       <name>$PROJ_DIR$\Applications\main_AP.c</name>
       <outputs>
         <tool>
           <name>ICC430</name>
-          <file> 30</file>
+          <file> 52</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICC430</name>
-          <file> 10 11 45 29 5 47 41 37 22 48 32 33 6 8 9 39 35 36 13 53 50 25 15 44 40 2</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Applications\virtual_com_cmds.c</name>
-      <outputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 49</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 10 11 45 29 5 47 41 37 22 48 32 33 6 2</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Applications\vlo_rand.s43</name>
-      <outputs>
-        <tool>
-          <name>A430</name>
-          <file> 14</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>A430</name>
-          <file> 16</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Components\bsp\bsp.c</name>
-      <outputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 28</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 10 11 5 47 41 37 22 48 32 33 6 38 51 34 39 35 36 13 53 50 23 27</file>
+          <file> 27 41 0 50 36 3 15 30 47 2 14 46 33 32 25 17 18 13 20 8 6 49 28 11 16 26</file>
         </tool>
       </inputs>
     </file>
@@ -135,28 +105,58 @@
       <outputs>
         <tool>
           <name>ICC430</name>
-          <file> 31</file>
+          <file> 12</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICC430</name>
-          <file> 10 11 9 5 47 41 37 22 48 32 33 6 46 45 29 8 12 17 20 24 42 18 43</file>
+          <file> 27 41 25 36 3 15 30 47 2 14 46 33 1 0 50 32 24 42 22 48 9 43 10</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\AP\Exe\simpleif.d43</name>
+      <name>$PROJ_DIR$\Applications\virtual_com_cmds.c</name>
       <outputs>
         <tool>
-          <name>XLINK</name>
-          <file> 21</file>
+          <name>ICC430</name>
+          <file> 4</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>XLINK</name>
-          <file> 52 28 30 31 49 14 19</file>
+          <name>ICC430</name>
+          <file> 27 41 0 50 36 3 15 30 47 2 14 46 33 26</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Applications\vlo_rand.s43</name>
+      <outputs>
+        <tool>
+          <name>A430</name>
+          <file> 23</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>A430</name>
+          <file> 44</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\bsp\bsp.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 53</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 27 41 36 3 15 30 47 2 14 46 33 35 5 38 17 18 13 20 8 6 45 51</file>
         </tool>
       </inputs>
     </file>
@@ -167,126 +167,96 @@
   <configuration>
     <name>ED</name>
     <outputs>
-      <file>$PROJ_DIR$\Applications\main_AP.c</file>
-      <file>$PROJ_DIR$\Applications\virtual_com_cmds.c</file>
-      <file>$PROJ_DIR$\Applications\vlo_rand.h</file>
-      <file>$PROJ_DIR$\Applications\main_ED.c</file>
-      <file>$PROJ_DIR$\Applications\virtual_com_cmds.h</file>
-      <file>$PROJ_DIR$\Applications\vlo_rand.s43</file>
-      <file>$PROJ_DIR$\Components\bsp\bsp.c</file>
-      <file>$PROJ_DIR$\Components\bsp\bsp.h</file>
-      <file>$PROJ_DIR$\Components\bsp\bsp_macros.h</file>
-      <file>$PROJ_DIR$\Components\mrfi\mrfi.c</file>
-      <file>$PROJ_DIR$\Components\mrfi\mrfi.h</file>
-      <file>$PROJ_DIR$\Components\mrfi\mrfi_defs.h</file>
-      <file>$PROJ_DIR$\Configuration\smpl_config_ED.dat</file>
-      <file>$PROJ_DIR$\Configuration\smpl_nwk_config.dat</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board_defs.h</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_buttons.h</file>
-      <file>$TOOLKIT_DIR$\inc\msp430x22x4.h</file>
-      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.h</file>
-      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.c</file>
-      <file>$TOOLKIT_DIR$\lib\clib\cl430f.r43</file>
-      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.h</file>
-      <file>$TOOLKIT_DIR$\inc\msp430f2274.h</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_leds.c</file>
-      <file>$PROJ_DIR$\Components\mrfi\smartrf\CC2500\smartrf_CC2500.h</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_buttons.c</file>
-      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
-      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_config.h</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_drivers.c</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_led_defs.h</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_leds.h</file>
-      <file>$TOOLKIT_DIR$\inc\msp430.h</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_driver_defs.h</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_leds.h</file>
-      <file>$PROJ_DIR$\Components\bsp\mcus\bsp_msp430_defs.h</file>
-      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.c</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board.c</file>
       <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
       <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_radio.c</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board_defs.h</file>
       <file>$TOOLKIT_DIR$\inc\in430.h</file>
-      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_buttons.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board_defs.h</file>
       <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_board.c</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_buttons.h</file>
       <file>$TOOLKIT_DIR$\config\lnk430F2274.xcl</file>
-      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_button_defs.h</file>
       <file>$TOOLKIT_DIR$\inc\clib\stdlib.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_button_defs.h</file>
       <file>$PROJ_DIR$\ED\Obj\virtual_com_cmds.r43</file>
       <file>$PROJ_DIR$\ED\List\simpleif.map</file>
       <file>$PROJ_DIR$\ED\Exe\simpleif.d43</file>
       <file>$PROJ_DIR$\ED\Obj\bsp.r43</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board.c</file>
       <file>$PROJ_DIR$\ED\Obj\mrfi.r43</file>
       <file>$PROJ_DIR$\ED\Obj\vlo_rand.r43</file>
       <file>$PROJ_DIR$\ED\Obj\main_ED.r43</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_generic_leds.h</file>
+      <file>$TOOLKIT_DIR$\inc\intrinsics.h</file>
+      <file>$PROJ_DIR$\Components\bsp\mcus\bsp_msp430_defs.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_leds.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_led_defs.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\bsp_buttons.h</file>
+      <file>$PROJ_DIR$\Applications\main_ED.c</file>
+      <file>$PROJ_DIR$\Applications\main_AP.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.h</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_external\mrfi_board_defs.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi_defs.h</file>
+      <file>$PROJ_DIR$\Applications\virtual_com_cmds.h</file>
+      <file>$PROJ_DIR$\Configuration\smpl_config_ED.dat</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi.c</file>
+      <file>$TOOLKIT_DIR$\inc\msp430.h</file>
+      <file>$PROJ_DIR$\Applications\vlo_rand.h</file>
+      <file>$PROJ_DIR$\Applications\virtual_com_cmds.c</file>
+      <file>$PROJ_DIR$\Components\mrfi\mrfi.h</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp_macros.h</file>
+      <file>$PROJ_DIR$\Applications\vlo_rand.s43</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_driver_defs.h</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp.h</file>
+      <file>$PROJ_DIR$\Components\bsp\bsp.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_drivers.c</file>
+      <file>$TOOLKIT_DIR$\lib\clib\cl430f.r43</file>
+      <file>$PROJ_DIR$\Configuration\smpl_nwk_config.dat</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\family1\mrfi_spi.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\radios\common\mrfi_f1f2.c</file>
+      <file>$TOOLKIT_DIR$\inc\msp430x22x4.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_leds.c</file>
+      <file>$PROJ_DIR$\Components\bsp\boards\EZ430RF\bsp_config.h</file>
+      <file>$TOOLKIT_DIR$\inc\msp430f2274.h</file>
+      <file>$PROJ_DIR$\Components\mrfi\smartrf\CC2500\smartrf_CC2500.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$PROJ_DIR$\Components\bsp\drivers\code\bsp_buttons.c</file>
     </outputs>
+    <file>
+      <name>$PROJ_DIR$\ED\Exe\simpleif.d43</name>
+      <outputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 10</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 6 12 17 15 9 16 42</file>
+        </tool>
+      </inputs>
+    </file>
     <file>
       <name>[ROOT_NODE]</name>
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 47 48</file>
+          <file> 11 10</file>
         </tool>
       </outputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Applications\virtual_com_cmds.c</name>
-      <outputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 46</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 12 13 37 25 7 39 34 31 21 40 26 27 8 4</file>
-        </tool>
-      </inputs>
     </file>
     <file>
       <name>$PROJ_DIR$\Applications\main_ED.c</name>
       <outputs>
         <tool>
           <name>ICC430</name>
-          <file> 52</file>
+          <file> 17</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICC430</name>
-          <file> 12 13 45 25 37 7 39 34 31 21 40 26 27 8 10 11 33 29 30 15 44 41 2</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Applications\vlo_rand.s43</name>
-      <outputs>
-        <tool>
-          <name>A430</name>
-          <file> 51</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>A430</name>
-          <file> 16</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Components\bsp\bsp.c</name>
-      <outputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 49</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>ICC430</name>
-          <file> 12 13 7 39 34 31 21 40 26 27 8 32 42 28 33 29 30 15 44 41 22 24</file>
+          <file> 30 43 7 51 0 39 3 20 32 49 2 19 48 36 35 28 21 22 18 23 8 5 33</file>
         </tool>
       </inputs>
     </file>
@@ -295,34 +265,61 @@
       <outputs>
         <tool>
           <name>ICC430</name>
-          <file> 50</file>
+          <file> 15</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>ICC430</name>
-          <file> 12 13 11 7 39 34 31 21 40 26 27 8 38 37 25 10 14 17 20 23 35 18 36</file>
+          <file> 30 43 28 39 3 20 32 49 2 19 48 36 1 0 51 35 27 44 26 50 13 45 14</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\ED\Exe\simpleif.d43</name>
+      <name>$PROJ_DIR$\Applications\virtual_com_cmds.c</name>
       <outputs>
         <tool>
-          <name>XLINK</name>
-          <file> 47</file>
+          <name>ICC430</name>
+          <file> 9</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
-          <name>XLINK</name>
-          <file> 43 49 52 50 46 51 19</file>
+          <name>ICC430</name>
+          <file> 30 43 0 51 39 3 20 32 49 2 19 48 36 29</file>
         </tool>
       </inputs>
     </file>
-    <forcedrebuild>
-      <name>[REBUILD_ALL]</name>
-    </forcedrebuild>
+    <file>
+      <name>$PROJ_DIR$\Applications\vlo_rand.s43</name>
+      <outputs>
+        <tool>
+          <name>A430</name>
+          <file> 16</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>A430</name>
+          <file> 46</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Components\bsp\bsp.c</name>
+      <outputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 12</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>ICC430</name>
+          <file> 30 43 39 3 20 32 49 2 19 48 36 38 4 41 21 22 18 23 8 5 47 52</file>
+        </tool>
+      </inputs>
+    </file>
   </configuration>
 </project>
 
